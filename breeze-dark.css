@@ -1,0 +1,26 @@
+/* Root variables */
+:root {
+    /* WaniKani style variables */
+    --color-text: #e3e3e3;
+    --color-dashboard-panel-background: #232629;
+    --color-dashboard-panel-content-background: #31363b;
+    --color-kanji: #fdbc4b;
+    --color-radical: #3daee9;
+    --color-vocabulary: #2ecc71;
+    
+    /* New style variables */
+    --color-page-background: var(--color-dashboard-panel-content-background);
+}
+
+/* Implement additional style variables */
+body {
+    background: var(--color-page-background);
+}
+
+/* Image inversion */
+.extra-study img {
+    filter: invert(81%) sepia(9%) saturate(582%) hue-rotate(169deg) brightness(96%) contrast(93%);
+}
+.logo__link h1:after {
+    filter: invert(100%);
+}
