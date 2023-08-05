@@ -1,0 +1,188 @@
+/* ==UserStyle==
+@name         WaniKani Breeze Dark 2
+@description  Dark mode for WaniKani, successor to Breeze Dark.
+@namespace    breezedark.two
+@version      0.1
+@author       leohumnew
+
+@var          color    color-tertiary            "Highlight color"    #B3C8DD
+@var          color    settings-color-radical    "Radical color"      #3DAEE9
+@var          color    settings-color-kanji      "Kanji color"        #fdbc4b
+@var          color    settings-color-vocabulary "Vocab color"        #2ecc71
+==/UserStyle== */
+@charset "UTF-8";
+
+@-moz-document domain("wanikani.com") {
+
+/*-------------- Root variables --------------*/
+:root {
+    color-scheme: dark;
+    
+    /*---- WaniKani style variables ----*/
+    /* General colors */
+    --color-text: #e3e3e3;
+    --color-link: #e6e6e6;
+    --color-link-active: var(--color-tertiary);
+
+    --color-dashboard-panel-background: #232629;
+    --color-dashboard-panel-content-background: #31363b;
+
+    /* Extra study colors */
+    --color-extra-study-tooltip-background: var(--color-dashboard-panel-background);
+    --color-extra-study-button-border: var(--color-tertiary);
+    --color-extra-study-button-hover: var(--color-extra-study-button-border);
+
+    /* Character colors */
+    --color-kanji: var(--settings-color-kanji);
+    --color-kanji-dark: color-mix(in srgb, var(--color-kanji) 90%, #000 10%);
+    --color-radical: var(--settings-color-radical);
+    --color-radical-dark: color-mix(in srgb, var(--color-radical) 90%, #000 10%);
+    --color-vocabulary: var(--settings-color-vocabulary);
+    --color-vocabulary-dark: color-mix(in srgb, var(--color-vocabulary) 90%, #000 10%);
+    --color-locked: #aeaeae;
+    --color-locked-dark: #828282;
+    --color-apprentice: #3daee9;
+    --color-guru: #2ecc71;
+    --color-master: #c9ce3b;
+    --color-enlightened: #f17607;
+    --color-burned: #da4453;
+    --color-burned-dark: color-mix(in srgb, var(--color-burned) 90%, #000 10%);;
+    
+    /* Level progress bar colors */
+    --color-level-progress-bar-progress: var(--color-tertiary);
+    --color-level-progress-bar-background: var(--color-dashboard-panel-content-background);
+    --color-level-progress-bar-text: var(--color-text);
+    --color-level-progress-bar-progress-text: #333;
+
+    /*---- New style variables ----*/
+    --color-text-dark: #333;
+    --color-page-background: var(--color-dashboard-panel-content-background);
+}
+
+/*-------------- Image inversion --------------*/
+.extra-study img {
+    filter: invert(81%) sepia(9%) saturate(582%) hue-rotate(169deg) brightness(96%) contrast(93%);
+}
+.global-header .logo {
+    filter: brightness(80%) hue-rotate(226deg);
+}
+
+/*-------------- Other CSS --------------*/
+body {
+    background: var(--color-page-background);
+}
+body span { /* Increased specificity needed to override class selectors */
+    text-shadow: none !important;
+}
+
+a {
+    color: var(--color-link);
+}
+
+/*---- Dashboard ----*/
+/* Header */
+.global-header {
+    background: none;
+    background-color: var(--color-dashboard-panel-background);
+    border-bottom: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.7);
+}
+.sitemap__section-header {
+    color: var(--text-color);
+}
+.navigation-shortcut__button {
+    color: var(--text-color);
+    border-color: var(--color-dashboard-panel-content-background);
+}
+.navigation-shortcut__count {
+    background: var(--color-tertiary);
+    color: var(--color-text-dark);
+}
+
+/* Lessons / reviews buttons */
+.lessons-and-reviews__button {
+    background-color: var(--color-dashboard-panel-background);
+    }
+    .lessons-and-reviews__button:hover {
+        background-color: var(--color-tertiary);
+        background-color: color-mix(in srgb, var(--color-tertiary) 10%, #2f2f2f 90%);
+    }
+    .lessons-and-reviews__button span {
+        background-color: transparent;
+        color: var(--color-tertiary);
+    }
+
+/* Review forecasts */
+.bg-white {
+    background-color: inherit;
+}
+.review-forecast__day {
+    border-bottom: 1px solid var(--color-dashboard-panel-content-background);
+}
+    .review-forecast__day-header::before,
+    .review-forecast__day-header::after {
+        display: none;
+    }
+    .review-forecast__day.is-collapsed {
+        border-radius: 0;
+    }
+    .review-forecast__hour {
+        background-color: var(--color-dashboard-panel-content-background) !important;
+        padding-bottom: 0;
+    }
+    .review-forecast__hour th,
+    .review-forecast__hour td {
+        border-color: var(--color-dashboard-panel-content-background);
+    }
+    .review-forecast__change {
+        border-right-color: var(--color-dashboard-panel-content-background);
+    }
+    .review-forecast__bar {
+        background: var(--color-tertiary);
+    }
+
+.dashboard section.forecast {
+    background-color: var(--color-dashboard-panel-background);
+}
+
+/* Level progress */
+span.subject-character__characters {
+    color: var(--color-text-dark);
+    border-radius: 5px !important;
+    box-shadow: none !important;
+}
+
+/* Item levels */
+section.srs-progress ul li {
+    background-image: none !important;
+    background-color: var(--color-dashboard-panel-background) !important;
+}
+    section.srs-progress ul li:first-child span { color: var(--color-apprentice); }
+    section.srs-progress ul li:nth-child(2) span { color: var(--color-guru); }
+    section.srs-progress ul li:nth-child(3) span { color: var(--color-master); }
+    section.srs-progress ul li:nth-child(4) span { color: var(--color-enlightened); }
+    section.srs-progress ul li:nth-child(5) span { color: var(--color-burned); }
+
+/* Footers */
+.community-banner {
+    background-color: var(--color-dashboard-panel-background);
+    border: none;
+}
+
+
+/*------ Multiple ------*/
+h1, html#public-profile div.wall-of-shame div.title, .community-banner__content p, h2, h3, h4, h5, h6 {
+    color: var(--color-text);
+    text-shadow: none;
+}
+
+[class|=account-subscription] h3, [class|=account-billing] h3, .kotoba-table-list h3, .forum-topics-list h3, .blog h3 {
+    background-color: var(--color-dashboard-panel-background) !important;
+    color: var(--color-text) !important;
+}
+
+.dashboard section.forecast, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
+    box-shadow: none;
+}
+
+}
