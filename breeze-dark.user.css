@@ -5,7 +5,7 @@
 @version      0.1
 @author       leohumnew
 
-@var          color    color-tertiary            "Highlight color"    #B3C8DD
+@var          color    settings-color-tertiary   "Highlight color"    #B3C8DD
 @var          color    settings-color-radical    "Radical color"      #3DAEE9
 @var          color    settings-color-kanji      "Kanji color"        #fdbc4b
 @var          color    settings-color-vocabulary "Vocab color"        #2ecc71
@@ -17,6 +17,7 @@
 /*-------------- Root variables --------------*/
 :root {
     color-scheme: dark;
+    --color-tertiary: --settings-color-tertiary;
     
     /*---- WaniKani style variables ----*/
     /* General colors */
@@ -53,6 +54,13 @@
     --color-level-progress-bar-background: var(--color-dashboard-panel-content-background);
     --color-level-progress-bar-text: var(--color-text);
     --color-level-progress-bar-progress-text: #333;
+    
+    
+    --color-button-default-border: #0efe0e;
+    --color-button-default-hover-border: #0efe0e;
+    --color-button-modal-primary-background: #0efe0e;
+    --color-button-modal-secondary-border: #0efe0e;
+    --color-text-shadow-light: #0efe0e;
 
     /*---- New style variables ----*/
     --color-text-dark: #333;
@@ -68,11 +76,12 @@
 }
 
 /*-------------- Other CSS --------------*/
+* {
+    text-shadow: none !important;
+}
+
 body {
     background: var(--color-page-background);
-}
-body span { /* Increased specificity needed to override class selectors */
-    text-shadow: none !important;
 }
 
 a {
@@ -90,14 +99,77 @@ a {
 .sitemap__section-header {
     color: var(--text-color);
 }
+    
 .navigation-shortcut__button {
     color: var(--text-color);
     border-color: var(--color-dashboard-panel-content-background);
+}
+.navigation-shortcut__button:hover {
+    color: var(--text-color);
+    border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%);
+}
+.navigation-shortcut__button:focus {
+    color: var(--text-color);
+    border-color: var(--color-tertiary);
 }
 .navigation-shortcut__count {
     background: var(--color-tertiary);
     color: var(--color-text-dark);
 }
+    
+@media only screen and (min-width: 1024px) {
+    .sitemap__section-header:hover {
+        border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%) }
+    .sitemap__section-header:focus {
+        border-color: var(--color-tertiary) }
+    
+    .sitemap__section-header--radicals:hover,.sitemap__section-header--radicals:focus,.sitemap__section-header--radicals[data-expanded="true"] {
+        color: var(--color-radical) }
+    .sitemap__section-header--radicals:hover {
+        border-color: color-mix(in srgb, var(--color-radical) 25%, #0000 75%) }
+    .sitemap__section-header--radicals[data-expanded="true"],.sitemap__section-header--radicals:focus {
+        border-color: var(--color-radical) }
+
+    .sitemap__section-header--kanji:hover,.sitemap__section-header--kanji:focus,.sitemap__section-header--kanji[data-expanded="true"] {
+        color: var(--color-kanji) }
+    .sitemap__section-header--kanji:hover {
+        border-color: color-mix(in srgb, var(--color-kanji) 25%, #0000 75%) }
+    .sitemap__section-header--kanji[data-expanded="true"],.sitemap__section-header--kanji:focus {
+        border-color: var(--color-kanji) }
+
+    .sitemap__section-header--vocabulary:hover,.sitemap__section-header--vocabulary:focus,.sitemap__section-header--vocabulary[data-expanded="true"] {
+        color: var(--color-vocabulary) }
+    .sitemap__section-header--vocabulary:hover {
+        border-color: color-mix(in srgb, var(--color-vocabulary) 25%, #0000 75%) }
+    .sitemap__section-header--vocabulary[data-expanded="true"],.sitemap__section-header--vocabulary:focus {
+        border-color: var(--color-vocabulary) }
+}
+.sitemap__expandable-chunk--radicals, .sitemap__expandable-chunk--radicals:before {
+    background: var(--color-radical) }
+
+.sitemap__expandable-chunk--kanji, .sitemap__expandable-chunk--kanji:before {
+    background: var(--color-kanji) }
+
+.sitemap__expandable-chunk--vocabulary, .sitemap__expandable-chunk--vocabulary:before {
+    background: var(--color-vocabulary) }
+    
+.sitemap__page span {
+    color: var(--color-text-dark) !important }
+    
+.search-form form .search-query {
+    background-color: var(--color-dashboard-panel-background);
+    color: var(--color-text);
+    border: 1px solid var(--color-tertiary);
+}
+.search-form button {
+    color: var(--color-text);
+    background-color: var(--color-dashboard-panel-background);
+}
+    .search-form button:hover {
+        border: 1px solid var(--color-tertiary);
+    }
+    #search__trigger:hover { border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%)}
+    #search__trigger:focus { border-color: transparent}
 
 /* Lessons / reviews buttons */
 .lessons-and-reviews__button {
@@ -163,26 +235,68 @@ section.srs-progress ul li {
     section.srs-progress ul li:nth-child(4) span { color: var(--color-enlightened); }
     section.srs-progress ul li:nth-child(5) span { color: var(--color-burned); }
 
+/* Item lists (new, critical, burned) */
+@media (min-width: 767px){ /* Make sections all reach the bottom of the row area */
+    .dashboard .row .span12 .row {
+        display: flex;
+        align-items: stretch;
+        margin-bottom: 30px;
+    }
+    .kotoba-table-list {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        position: relative ;
+        border-radius: 5px;
+    }
+    .kotoba-table-list .see-more {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+    }
+}
+    
+.kotoba-table-list table a span { /* Correct all the colours */
+    color: var(--color-text-dark) !important;
+}
+ul.single-character-grid li[class|=kanji],ul.single-character-grid tr[class|=kanji],ul.multi-character-grid li[class|=kanji],ul.multi-character-grid tr[class|=kanji],.kotoba-table-list li[class|=kanji],.kotoba-table-list tr[class|=kanji] {
+    background-color: var(--color-kanji);
+    background-image: linear-gradient(to bottom, var(--color-kanji), var(--color-kanji-dark));
+}
+ul.single-character-grid li[class|=radical],ul.single-character-grid tr[class|=radical],ul.multi-character-grid li[class|=radical],ul.multi-character-grid tr[class|=radical],.kotoba-table-list li[class|=radical],.kotoba-table-list tr[class|=radical] {
+    background-color: var(--color-radical);;
+    background-image: linear-gradient(to bottom, var(--color-radical);, var(--color-radical-dark););
+}
+ul.single-character-grid li[class|=vocabulary],ul.single-character-grid tr[class|=vocabulary],ul.multi-character-grid li[class|=vocabulary],ul.multi-character-grid tr[class|=vocabulary],.kotoba-table-list li[class|=vocabulary],.kotoba-table-list tr[class|=vocabulary] {
+    background-color: var(--color-vocabulary);
+    background-image: linear-gradient(to bottom, var(--color-vocabulary), var(--color-vocabulary-dark));
+}
+.fa-clock {
+    color: var(--color-tertiary);
+}
+    
 /* Footers */
 .community-banner {
     background-color: var(--color-dashboard-panel-background);
     border: none;
 }
+    .community-banner__image-wrapper img {
+        filter: saturate(0%) invert(14%) sepia(20%) saturate(290%) hue-rotate(173deg) brightness(86%) contrast(102%);
+    }
 
 
-/*------ Multiple ------*/
+/*-------- Multiple --------*/
 h1, html#public-profile div.wall-of-shame div.title, .community-banner__content p, h2, h3, h4, h5, h6 {
     color: var(--color-text);
-    text-shadow: none;
 }
 
-[class|=account-subscription] h3, [class|=account-billing] h3, .kotoba-table-list h3, .forum-topics-list h3, .blog h3 {
+[class|=account-subscription] h3, [class|=account-billing] h3, .kotoba-table-list, .kotoba-table-list h3, .kotoba-table-list div, .kotoba-table-list tr {
     background-color: var(--color-dashboard-panel-background) !important;
-    color: var(--color-text) !important;
+    color: var(--color-text);
 }
 
-.dashboard section.forecast, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
-    box-shadow: none;
+.dashboard section.forecast, .kotoba-table-list div, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
+    box-shadow: none !important;
 }
 
 }
