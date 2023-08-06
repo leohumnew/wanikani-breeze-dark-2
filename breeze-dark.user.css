@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.2.0
+@version      0.2.1
 @author       leohumnew
 
 @var          color    settings-color-text          "Text Color"         #e3e3e3
@@ -10,6 +10,8 @@
 @var          color    settings-color-background1   "Background 1 Color" #232629
 @var          color    settings-color-background2   "Background 2 Color" #31363b
 @var          color    settings-color-tertiary      "Highlight Color"    #B3C8DD
+@var          color    settings-color-correct       "Correct Color"      #45a426
+@var          color    settings-color-incorrect     "Incorrect Color"    #b31e3b
 @var          color    settings-color-radical       "Radical Color"      #3DAEE9
 @var          color    settings-color-kanji         "Kanji Color"        #fdbc4b
 @var          color    settings-color-vocabulary    "Vocab Color"        #2ecc71
@@ -17,14 +19,14 @@
 @var          color    settings-color-guru          "Guru Color"         #2ecc71
 @var          color    settings-color-master        "Master Color"       #c9ce3b
 @var          color    settings-color-enlightened   "Enlightened Color"  #f17607
-@var          color    settings-color-burned        "Burned Color"       #87232d
+@var          color    settings-color-burned        "Burned Color"       #555
 @var          color    settings-color-locked        "Locked Color"       #aeaeae
 ==/UserStyle== */
 @charset "UTF-8";
 
 @-moz-document domain("wanikani.com") {
 
-    /*-------------- Root variables --------------*/
+/*-------------- Root variables --------------*/
     :root {
         color-scheme: dark;
         --color-tertiary: var(--settings-color-tertiary);
@@ -68,16 +70,14 @@
         /* Reviews */
         --color-quiz-input-background: var(--color-dashboard-panel-background);
         --color-quiz-input-focus: var(--color-tertiary);
-        --color-quiz-incorrect-background: #b31e3b;
+        --color-quiz-incorrect-background: var(--settings-color-incorrect);
         --color-quiz-incorrect-text-color: var(--color-text);
-        --color-quiz-correct-background: #45a426;
+        --color-quiz-correct-background: var(--settings-color-correct);
         --color-quiz-correct-text-color: var(--color-text);
-        --color-quiz-srs-correct-background: #39aa0b;
-        --color-quiz-srs-correct-text-color: var(--color-white);
-        --color-quiz-srs-correct-text-shadow: 1px 1px 0 var(--color-text-shadow-dark);
-        --color-quiz-srs-incorrect-background: var(--color-red);
-        --color-quiz-srs-incorrect-text-color: var(--color-white);
-        --color-quiz-srs-incorrect-text-shadow: 1px 1px 0 var(--color-text-shadow-dark);
+        --color-quiz-srs-correct-background: var(--settings-color-correct);
+        --color-quiz-srs-correct-text-color: var(--color-text);
+        --color-quiz-srs-incorrect-background: var(--settings-color-incorrect);
+        --color-quiz-srs-incorrect-text-color: var(--color-text);
         --color-button-default-border: var(--color-tertiary);
         --color-button-default-hover-border: var(--color-tertiary);
         --color-button-default-text: var(--color-text);
@@ -92,14 +92,6 @@
         --color-button-synonym-hover-text: var(--color-tertiary);
         --color-button-icon-only-hover-text: var(--color-tertiary);
         --color-button-icon-only-hover-background: #0000;
-        
-        /* Temp */
-        --color-button-quiz-background: #34D399;
-        --color-button-quiz-text: #ff0000;
-        --color-button-quiz-text-shadow: 0 1px 0 var(--color-text-shadow-dark);
-        --color-button-modal-primary-background: #0efe0e;
-        --color-button-modal-secondary-border: #af0aa1;
-        --color-text-shadow-light: #0efe0e;
 
         /*---- Extra style variables ----*/
         --color-text-dark: var(--settings-color-text-dark);;
@@ -245,7 +237,11 @@
         border-radius: 5px;
         color: var(--color-text-dark);
     }
-    .components-list .component-character--burned span:first-child { color: var(--color-text) }
+    .components-list .component-character--burned span:first-child {
+        background-color: var(--color-burned);
+        background-image: none;
+        color: var(--color-text)
+    }
         
     .subject-hint, .subject-hint h3 {
         border-radius: 5px;
@@ -293,7 +289,7 @@
     }
 
     @media (min-width: 1400px) { /* Better review info layout on larger screens */
-        .quiz .subject-section--meaning .subject-section__content:not(.subject-section__content--collapsed), .quiz .subject-section--reading .subject-section__content:not(.subject-section__content--collapsed) {
+        .quiz .subject-section--meaning .subject-section__content:not([hidden]), .quiz .subject-section--reading .subject-section__content:not([hidden]) {
             display: grid;
             grid-template-columns: 0.5fr 1fr;
             grid-template-rows: auto;
@@ -345,6 +341,9 @@
         box-shadow: 0 0 5px rgba(0, 0, 0, .89) }
     .subject-info .subject-collocations__pattern-name[aria-selected=true]:after {
         background-color: var(--color-dashboard-panel-background);box-shadow: 0 0 5px rgba(0, 0, 0, .89) }
+    
+    /* Info - Found in Vocabulary */
+    #section-amalgamations a:not(.character-item--burned) li, #section-amalgamations a:not(.character-item--burned) span { color: var(--color-text-dark)}
         
     /* Kana Chart */
     .kana-chart__character, .kana-chart__backspace {background-color: var(--color-dashboard-panel-content-background); color: var(--color-text)}
@@ -387,6 +386,9 @@
     .navigation-shortcut__count {
         background: var(--color-tertiary);
         color: var(--color-text-dark);
+    }
+    .navigation-shortcut a.fcr_burn {
+        background-color: transparent;
     }
         
     @media only screen and (min-width: 1024px) { /* Navigation menu buttons hover colours */
@@ -454,6 +456,8 @@
             background-color: transparent;
             color: var(--color-tertiary);
         }
+        .lessons-and-reviews__button span.fcr_burn {
+            background-color: var(--color-burned) }
 
     /* Review forecasts */
     .bg-white {
@@ -546,8 +550,9 @@
         background-image: linear-gradient(to bottom, var(--color-vocabulary), var(--color-vocabulary-dark));
     }
     .dashboard .fa-clock {
-        color: var(--color-tertiary);
-    }
+        color: var(--color-tertiary) }
+    .dashboard table tr.none-available div {
+        border-color: var(--color-tertiary) }
         
     /* Footers */
     .community-banner {
@@ -576,5 +581,36 @@
     .item-info-injector-accordion > button {
         border-bottom: 1px solid var(--color-dashboard-panel-content-background);
     }
-
+    
+    /* Scripts Menu */
+    #scripts-menu ul.dropdown-menu {
+        background-color: var(--color-menu);
+    }
+    #scripts-menu ul.dropdown-menu > li, #scripts-menu ul.dropdown-menu > li a {
+        color: var(--color-text)}
+    #scripts-menu ul.dropdown-menu > li:hover:not(.scripts-header) a:hover {
+        background-color: transparent}
+    
+    /* WKOF UI Dialog */
+    #wkof_ds .ui-dialog, #wkof_ds .ui-dialog div {
+        background-color: var(--color-menu);
+        border: none;
+        background-image: none;
+        color: var(--color-text);
+    }
+    #wkof_ds .ui-dialog .ui-dialog-buttonpane {
+        background-color: var(--color-menu);
+        border: none;
+    }
+    #wkof_ds .wkof_settings .ui-tabs .ui-tabs-nav li a, #wkof_ds .ui-button {
+        background-color: var(--color-menu);
+        color: var(--color-text);
+    }
+    #wkof_ds .wkof_settings .ui-tabs .ui-tabs-nav li a:hover, #wkof_ds .ui-button:hover {
+        color: var(--color-tertiary) }
+    #wkof_ds .wkof_settings .ui-tabs .ui-tabs-nav li.ui-tabs-active, #wkof_ds .ui-button:hover { 
+        background-color: var(--color-menu) }
+    
+    /* Audio Quiz */
+    label.switch::before { background-color: var(--color-dashboard-panel-content-background)}
 }
