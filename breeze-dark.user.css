@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.3.0
+@version      0.3.1
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -11,7 +11,7 @@
 @var          color    settings-color-background1   "Background 1 Color" #232629
 @var          color    settings-color-background2   "Background 2 Color" #31363b
 @var          color    settings-color-tertiary      "Highlight Color"    #B3C8DD
-@var          color    settings-color-correct       "Correct Color"      #45a426
+@var          color    settings-color-correct       "Correct Color"      #245a12
 @var          color    settings-color-incorrect     "Incorrect Color"    #b31e3b
 @var          color    settings-color-menu          "Menu Dropdown Color" #4d4d4d
 @var          color    settings-color-radical       "Radical Color"      #3DAEE9
@@ -105,7 +105,7 @@
         --color-button-modal-primary-text: var(--color-text);
         --color-button-modal-secondary-border: var(--color-tertiary);
         --color-button-modal-secondary-hover-border: var(--color-tertiary);
-    --color-button-modal-secondary-hover-text: var(--color-tertiary);
+        --color-button-modal-secondary-hover-text: var(--color-tertiary);
 
         /*---- Extra style variables ----*/
         --color-text-dark: var(--settings-color-text-dark);
@@ -145,6 +145,28 @@
     }
     .subject-slides__navigation-link[aria-selected=true]:after { border-bottom-color: var(--color-dashboard-panel-background) }
     .subject-slides__navigation { box-shadow: 2px 2px 3px #000 }
+    
+    /*---- Settings ----*/
+    .page-list ul {
+        background-color: var(--color-dashboard-panel-content-background) }
+    .page-list ul li a{
+        background-color: var(--color-dashboard-panel-background);
+        border: none;
+        margin-left: 3px;
+    }
+    .wk-modal__window {
+        background-color: var(--color-menu);
+        color: var(--color-text);
+    }
+    .personal-access-token-permission__description {
+        color: var(--color-text) }
+    
+    .account div div div {
+        background-color: var(--color-dashboard-panel-background) }
+    .account dl {
+        color: var(--color-text) }
+    .account a:hover {
+        background-color: var(--color-dashboard-panel-content-background) }
 
     /*---- Profile Page ----*/
     html#public-profile div.wall-of-shame { background-color: var(--color-dashboard-panel-content-background)}
@@ -684,4 +706,9 @@
     
     /* Audio Quiz */
     label.switch::before { background-color: var(--color-dashboard-panel-content-background)}
+    
+    /* Forecast details */
+    .review-forecast__bar.fcr_radical { background: var(--color-radical)}
+    .review-forecast__bar.fcr_kanji { background: var(--color-kanji)}
+    .review-forecast__bar.fcr_vocab { background: var(--color-vocabulary)}
 }
