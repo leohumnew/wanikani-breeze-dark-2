@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.3.1
+@version      0.3.3
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -26,7 +26,7 @@
 ==/UserStyle== */
 @charset "UTF-8";
 
-@-moz-document domain("wanikani.com") {
+@-moz-document domain("www.wanikani.com") {
 
 /*-------------- Root variables --------------*/
     :root {
@@ -711,4 +711,72 @@
     .review-forecast__bar.fcr_radical { background: var(--color-radical)}
     .review-forecast__bar.fcr_kanji { background: var(--color-kanji)}
     .review-forecast__bar.fcr_vocab { background: var(--color-vocabulary)}
+    
+    /* Ultimate Timeline */
+    #timeline, timeline .review_info .inner {
+        background-color: var(--color-dashboard-panel-background);
+        margin-bottom: 30px;
+        border-radius: 5px;
+        padding: 0.5rem;
+        border: none;
+    }
+    #timeline .graph_panel {
+      overflow: hidden !important; }
+    #timeline .graph .bkgd {
+        fill: transparent; }
+    #timeline .graph .label-x > text, #timeline .graph .label-y > text, #timeline .graph .markers > path {
+        fill: var(--color-text) }
+    #timeline > .link:hover { color: var(--color-tertiary) }
+    #timeline .graph .markers > .bur {
+        fill: var(--color-burned);
+        stroke: var(--color-tertiary);
+    }
+    #timeline .graph .rad, #timeline .review_info[data-mode="item_type"] .rad {
+        fill: var(--color-radical) !important;
+        background-color: var(--color-radical) }
+    #timeline .graph .kan, #timeline .review_info[data-mode="item_type"] .kan {
+        fill: var(--color-kanji) !important;
+        background-color: var(--color-kanji) }
+    #timeline .graph .voc, #timeline .review_info[data-mode="item_type"] .voc {
+        background-color: var(--color-vocabulary);
+        fill: var(--color-vocabulary) !important }
+    #timeline .review_info[data-mode="srs_stage"] .summary div {
+        background-image: none !important;
+        color: var(--color-text-dark) }
+    #timeline .review_info[data-mode="srs_stage"] .appr, #timeline .graph .appr {
+        background-color: var(--color-apprentice);
+        fill: var(--color-apprentice) }
+    #timeline .review_info[data-mode="srs_stage"] .guru, #timeline .graph .guru {
+        background-color: var(--color-guru);
+        fill: var(--color-guru) }
+    #timeline .review_info[data-mode="srs_stage"] .mast, #timeline .graph .mast {
+        background-color: var(--color-master);
+        fill: var(--color-master) }
+    #timeline .review_info[data-mode="srs_stage"] .enli, #timeline .graph .enli {
+        background-color: var(--color-enlightened);
+        fill: var(--color-enlightened) }
+    #timeline .bar_style select, #timeline > .link, #timeline .review_info .summary .tot, #timeline .detail_buttons button, #timeline .review_info button.item_type {
+        background-color: var(--color-dashboard-panel-background);
+        color: var(--color-text) !important;
+    }
+    #timeline .review_info .inner {
+        box-shadow: 0px 2px 4px #111 }
+    #timeline .review_info .inner, #timeline .review_info .bur, #timeline .review_info .summary .tot {
+        background-color: var(--color-menu) !important;
+        background-image: none !important;
+    }
+    #timeline .review_info .summary .item_type:first-child, #timeline .review_info .summary .srs_stage:nth-child(4), #timeline .review_info .summary .level:nth-child(8) {
+        border-top-left-radius: 0.3em;
+        border-top-right-radius: 0.3em;
+    }
+    #timeline .review_info .summary .item_type:nth-child(3), #timeline .review_info .summary .srs_stage:nth-child(7), #timeline .review_info .summary .level:nth-child(13) {
+        border-bottom-left-radius: 0.3em;
+        border-bottom-right-radius: 0.3em;
+    }
+    #timeline .review_info .item_type, #timeline .review_info .item_type > span, #timeline .item_list > li {
+        color: var(--color-text-dark) !important;
+        background-image: none !important;
+    }
+    #timeline .review_info .rad svg {
+        stroke: var(--color-text-dark); }
 }
