@@ -2,7 +2,8 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.2.1
+@version      0.3.0
+@supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
 @var          color    settings-color-text          "Text Color"         #e3e3e3
@@ -12,6 +13,7 @@
 @var          color    settings-color-tertiary      "Highlight Color"    #B3C8DD
 @var          color    settings-color-correct       "Correct Color"      #45a426
 @var          color    settings-color-incorrect     "Incorrect Color"    #b31e3b
+@var          color    settings-color-menu          "Menu Dropdown Color" #4d4d4d
 @var          color    settings-color-radical       "Radical Color"      #3DAEE9
 @var          color    settings-color-kanji         "Kanji Color"        #fdbc4b
 @var          color    settings-color-vocabulary    "Vocab Color"        #2ecc71
@@ -30,6 +32,7 @@
     :root {
         color-scheme: dark;
         --color-tertiary: var(--settings-color-tertiary);
+        --color-text-mid: #999;
         
         /*---- WaniKani style variables ----*/
         /* General colors */
@@ -78,7 +81,7 @@
         --color-quiz-srs-correct-text-color: var(--color-text);
         --color-quiz-srs-incorrect-background: var(--settings-color-incorrect);
         --color-quiz-srs-incorrect-text-color: var(--color-text);
-        --color-button-default-border: var(--color-tertiary);
+        --color-button-default-border: var(--color-text-mid);
         --color-button-default-hover-border: var(--color-tertiary);
         --color-button-default-text: var(--color-text);
         --color-button-default-hover-text: var(--color-tertiary);
@@ -92,10 +95,21 @@
         --color-button-synonym-hover-text: var(--color-tertiary);
         --color-button-icon-only-hover-text: var(--color-tertiary);
         --color-button-icon-only-hover-background: #0000;
+        
+        /* lessons */
+        --color-subject-slide-navigation-button-hover: var(--color-menu);
+        --color-subject-slide-navigation-background: var(--color-dashboard-panel-content-background);
+        --color-button-quiz-text: var(--color-text-dark);
+        --color-button-quiz-background: var(--color-vocabulary);
+        --color-button-modal-primary-background: var(--color-dashboard-panel-content-background);
+        --color-button-modal-primary-text: var(--color-text);
+        --color-button-modal-secondary-border: var(--color-tertiary);
+        --color-button-modal-secondary-hover-border: var(--color-tertiary);
+    --color-button-modal-secondary-hover-text: var(--color-tertiary);
 
         /*---- Extra style variables ----*/
-        --color-text-dark: var(--settings-color-text-dark);;
-        --color-menu: #4d4d4d;
+        --color-text-dark: var(--settings-color-text-dark);
+        --color-menu: var(--settings-color-menu);
         --color-page-background: var(--color-dashboard-panel-content-background);
     }
 
@@ -122,6 +136,52 @@
     a {
         color: var(--color-link);
     }
+    
+    /*---- Lessons ----*/
+    .subject-slide {
+        background-color: var(--color-dashboard-panel-background);
+        border: none;
+        box-shadow: 2px 2px 3px #000;
+    }
+    .subject-slides__navigation-link[aria-selected=true]:after { border-bottom-color: var(--color-dashboard-panel-background) }
+    .subject-slides__navigation { box-shadow: 2px 2px 3px #000 }
+
+    /*---- Profile Page ----*/
+    html#public-profile div.wall-of-shame { background-color: var(--color-dashboard-panel-content-background)}
+    html#public-profile div.wall-of-shame h3 span {color: var(--color-text-dark)}
+    .kanji-progress, .vocabulary-progress {
+        background-color: var(--color-dashboard-panel-background);
+        padding: 10px 25px;
+    }
+    .kanji-progress { border-radius: 5px 5px 0 0}
+    .vocabulary-progress { border-radius: 0 0 5px 5px}
+    
+    /*---- Item Page ----*/
+    .page-nav__item-link {
+        background-color: var(--color-dashboard-panel-content-background);;
+        color: var(--color-text-mid);
+        border: 1px solid var(--color-dashboard-panel-background);;
+    }
+    
+    div.site-content-container:not(.dashboard) .container {
+        background-color: var(--color-dashboard-panel-background);
+        padding: 25px;
+        box-shadow: 3px 3px 3px #171717;
+        border-radius: 0 0 5px 5px;
+        margin-bottom: 25px;
+    }
+    .search--open { margin-top: 0 }
+    .page-header__icon--level { color: var(--color-text-dark) }
+    .page-header__icon { box-shadow: none }
+    
+    .progress, .progress-bar { background-color: var(--color-dashboard-panel-content-background)}
+    .progress-bar__bar { box-shadow: 2px 0px 3px #000}
+    .progress-bar__label {
+        color: var(--color-text-dark);
+        background-color: var(--color-tertiary);
+    }
+    .progress-bar__label:after { border-top-color: var(--color-tertiary)}
+    .subject-progress__streak-value { background-color: var(--color-dashboard-panel-content-background)}
         
     /*---- Reviews ----*/
     /* Header */
@@ -165,15 +225,22 @@
     }
         
     /* Advice Popup */
-    .answer-exception {
+    .answer-exception, .quiz-input__exception {
         background-color: var(--color-menu);
         color: var(--color-text);
         box-shadow: 2px 2px 3px 0 #000;
         border-radius: 5px;
         top: 55px;
     }
-    .answer-exception:before {
+    .answer-exception:before, .quiz-input__exception:before {
         border-color: rgba(0,0,0,0) rgba(0,0,0,0) var(--color-menu) rgba(0,0,0,0) }
+    .quiz-input__exception {
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7), 2px 2px 2px rgba(0, 0, 0, 0.7) !important;
+        position: fixed;
+        top: 190px;
+    }
+    .quiz-input__exception-container { padding: 0 }
         
     /* Info Box General */
     .subject-info[busy]:after {
@@ -339,8 +406,11 @@
     }
     .subject-collocations__patterns:after {
         box-shadow: 0 0 5px rgba(0, 0, 0, .89) }
-    .subject-info .subject-collocations__pattern-name[aria-selected=true]:after {
-        background-color: var(--color-dashboard-panel-background);box-shadow: 0 0 5px rgba(0, 0, 0, .89) }
+     .subject-info .subject-collocations__pattern-name[aria-selected=true]:after, .subject-collocations__pattern-name[aria-selected=true]:after {
+        background-color: var(--color-dashboard-panel-background);
+        box-shadow: 0 0 5px rgba(0, 0, 0, .89);
+        background-image: none;
+    }
     
     /* Info - Found in Vocabulary */
     #section-amalgamations a:not(.character-item--burned) li, #section-amalgamations a:not(.character-item--burned) span { color: var(--color-text-dark)}
@@ -371,15 +441,15 @@
     .sitemap__section-header {
         color: var(--text-color) }
         
-    .navigation-shortcut__button {
+    .navigation-shortcut__button, .navigation-shortcut__link {
         color: var(--text-color);
         border-color: var(--color-dashboard-panel-content-background);
     }
-    .navigation-shortcut__button:hover {
+    .navigation-shortcut__button:hover, .navigation-shortcut__link:hover {
         color: var(--text-color);
         border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%);
     }
-    .navigation-shortcut__button:focus {
+    .navigation-shortcut__button:focus, .navigation-shortcut__link:focus {
         color: var(--text-color);
         border-color: var(--color-tertiary);
     }
@@ -429,20 +499,21 @@
     .sitemap__page span {
         color: var(--color-text-dark) !important }
         
-    .search-form form .search-query {
+    .search-form form .search-query, #query {
         background-color: var(--color-dashboard-panel-background);
         color: var(--color-text);
         border: 1px solid var(--color-tertiary);
     }
-    .search-form button {
+    .search-form button, .search__button {
         color: var(--color-text);
         background-color: var(--color-dashboard-panel-background);
+        border: 1px solid transparent;
     }
-        .search-form button:hover {
+        .search-form button:hover, .search__button:hover {
             border: 1px solid var(--color-tertiary);
         }
-        #search__trigger:hover { border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%)}
-        #search__trigger:focus { border-color: transparent}
+        #search__trigger:hover, .search-button:hover { border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%)}
+        #search__trigger:focus, .search-button:focus { border-color: transparent }
 
     /* Lessons / reviews buttons */
     .lessons-and-reviews__button {
