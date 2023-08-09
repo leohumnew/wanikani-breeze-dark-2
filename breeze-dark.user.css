@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.3.3
+@version      0.3.5
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -32,7 +32,7 @@
     :root {
         color-scheme: dark;
         --color-tertiary: var(--settings-color-tertiary);
-        --color-text-mid: #999;
+        --color-text-mid: #9e9e9e;
         
         /*---- WaniKani style variables ----*/
         /* General colors */
@@ -47,6 +47,8 @@
         --color-extra-study-tooltip-background: var(--color-dashboard-panel-background);
         --color-extra-study-button-border: var(--color-tertiary);
         --color-extra-study-button-hover: var(--color-extra-study-button-border);
+        --color-extra-study-button-active: var(--color-tertiary);
+        --color-extra-study-button-disabled: var(--color-text-mid);
 
         /* Character colors */
         --color-kanji: var(--settings-color-kanji);
@@ -110,7 +112,6 @@
         /*---- Extra style variables ----*/
         --color-text-dark: var(--settings-color-text-dark);
         --color-menu: var(--settings-color-menu);
-        --color-page-background: var(--color-dashboard-panel-content-background);
     }
 
     /*-------------- Image inversion --------------*/
@@ -130,11 +131,19 @@
     }
 
     body {
-        background: var(--color-page-background);
-    }
+        background: var(--color-dashboard-panel-content-background) }
 
     a {
-        color: var(--color-link);
+        color: var(--color-link) }
+    
+    select {
+        background-color: var(--color-dashboard-panel-content-background);
+        color: var(--color-text);
+    }
+    
+    textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+        background-color: var(--color-dashboard-panel-content-background);
+        color: var(--color-text);
     }
     
     /*---- Lessons ----*/
@@ -329,6 +338,7 @@
     .components-list .component-character--burned span:first-child {
         background-color: var(--color-burned);
         background-image: none;
+        box-shadow: none;
         color: var(--color-text)
     }
         
@@ -338,7 +348,7 @@
         color: var(--color-text);
     }
 
-    .character-item { color: var(--color-text) }
+    .character-item { color: var(--color-text-dark) }
     .character-item--radical {
         background-color: var(--color-radical);
         background-image: linear-gradient(to bottom, var(--color-radical), var(--color-radical-dark));
@@ -435,7 +445,7 @@
     }
     
     /* Info - Found in Vocabulary */
-    #section-amalgamations a:not(.character-item--burned) li, #section-amalgamations a:not(.character-item--burned) span { color: var(--color-text-dark)}
+    #section-amalgamations a.character-item--burned li, #section-amalgamations a.character-item--burned span { color: var(--color-text)}
         
     /* Kana Chart */
     .kana-chart__character, .kana-chart__backspace {background-color: var(--color-dashboard-panel-content-background); color: var(--color-text)}
@@ -462,6 +472,11 @@
     }
     .sitemap__section-header {
         color: var(--text-color) }
+    .sitemap { /* Mobile-size menu */
+        background-color: var(--color-dashboard-panel-background);
+    }
+    .navigation__toggle[data-expanded="true"] {
+        background-color: var(--color-dashboard-panel-background) }
         
     .navigation-shortcut__button, .navigation-shortcut__link {
         color: var(--text-color);
@@ -685,7 +700,7 @@
         background-color: transparent}
     
     /* WKOF UI Dialog */
-    #wkof_ds .ui-dialog, #wkof_ds .ui-dialog div {
+    #wkof_ds .ui-dialog, #wkof_ds .ui-dialog div, #wkofs_ss_quiz .filters .row.checked {
         background-color: var(--color-menu);
         border: none;
         background-image: none;
@@ -704,6 +719,45 @@
     #wkof_ds .wkof_settings .ui-tabs .ui-tabs-nav li.ui-tabs-active, #wkof_ds .ui-button:hover { 
         background-color: var(--color-menu) }
     
+    /* Extra study */
+    #wkof_ds #ss_quiz .answer input {
+        background-color: var(--color-dashboard-panel-content-background);
+        border: none;
+    }
+    #wkof_ds #ss_quiz .answer input:focus {
+        box-shadow: 0 0 2px 2px var(--color-tertiary);
+    }
+    #wkof_ds #ss_quiz .answer {
+        background-color: var(--color-dashboard-panel-background) }
+    #ss_quiz[data-itype="radical"] .qwrap, #ss_quiz .summary .que[title~="Radical"] {
+        background-color: var(--color-radical) }
+    #ss_quiz[data-itype="kanji"] .qwrap, #ss_quiz .summary .que[title~="Kanji"] {
+        background-color: var(--color-kanji) }
+    #ss_quiz[data-itype="vocabulary"] .qwrap, #ss_quiz .summary .que[title~="Vocabulary"], #ss_quiz[data-itype="kana_vocabulary"] .qwrap {
+        background-color: var(--color-vocabulary) }
+    #ss_quiz[data-atype="meaning"] .atype {
+        background-color: var(--color-dashboard-panel-content-background);
+        background-image: none;
+        color: var(--color-text-mid);
+        border: none;
+    }
+    #wkof_ds #ss_quiz[data-result="correct"] .answer input {
+        background-color: var(--color-quiz-correct-background) }
+    #wkof_ds #ss_quiz[data-result="incorrect"] .answer input {
+        background-color: var(--color-quiz-incorrect-background) }
+    #ss_quiz[data-atype="reading"] .atype {
+        background-color: var(--color-menu);
+        background-image: none;
+        color: var(--color-text-mid);
+        border: none;
+    }
+    #ss_quiz .help, #ss_quiz .message {
+        background-color: var(--color-menu);
+        color: var(--color-text);
+        border: none;
+        box-shadow: 0 0 2px 2px #222;
+    }
+    
     /* Audio Quiz */
     label.switch::before { background-color: var(--color-dashboard-panel-content-background)}
     
@@ -711,6 +765,31 @@
     .review-forecast__bar.fcr_radical { background: var(--color-radical)}
     .review-forecast__bar.fcr_kanji { background: var(--color-kanji)}
     .review-forecast__bar.fcr_vocab { background: var(--color-vocabulary)}
+    
+    /* CIDWWA */
+    .cidwwa-modal {
+        background-color: var(--color-menu) !important;
+        border: none !important;
+        box-shadow: 3px 3px 4px #111;
+    }
+    .cidwwa-modal button {
+        background-color: var(--color-menu);
+        background-image: none;
+        color: var(--color-text);
+        border-color: var(--color-tertiary);
+    }
+    .cidwwa-modal button:hover {
+        background-color: var(--color-menu);
+        color: var(--color-tertiary);
+    }
+    .wk-custom-button {
+        --focus-color: var(--color-tertiary) !important;
+        --hover-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%) !important;
+    }
+    .wk-custom-button + .sitemap__expandable-chunk, .wk-custom-button + .sitemap__expandable-chunk:before {
+        --dropdown-background: var(--color-menu) !important;
+    }
+    .es-mover-settings { color: var(--color-text) !important}
     
     /* Ultimate Timeline */
     #timeline, timeline .review_info .inner {
