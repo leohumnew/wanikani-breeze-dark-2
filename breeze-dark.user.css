@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.3.5
+@version      0.3.8
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -141,10 +141,24 @@
         color: var(--color-text);
     }
     
-    textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    textarea, input[name^="user["], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
         background-color: var(--color-dashboard-panel-content-background);
         color: var(--color-text);
     }
+    .btn {
+        background: transparent;
+        color: var(--color-text);
+        border-color: var(--color-tertiary);
+    }
+    .btn:hover {
+        background: transparent;
+        border-color: var(--color-tertiary);
+        color: var(--color-tertiary);
+    }
+    
+    ul.multi-character-grid li[class|=radical] { border-color: var(--color-radical) }
+    ul.multi-character-grid li[class|=kanji] { border-color: var(--color-kanji) }
+    ul.multi-character-grid li[class|=vocabulary] { border-color: var(--color-vocabulary) }
     
     /*---- Lessons ----*/
     .subject-slide {
@@ -155,7 +169,18 @@
     .subject-slides__navigation-link[aria-selected=true]:after { border-bottom-color: var(--color-dashboard-panel-background) }
     .subject-slides__navigation { box-shadow: 2px 2px 3px #000 }
     
+    .lesson-container .subject-character__meaning { color: var(--color-text) }
+    
+    .lesson-container .wk-hint, .lesson-container .wk-hint h3 {
+        border-radius: 5px;
+        background-color: var(--color-dashboard-panel-content-background);;
+        color: var(--color-text);
+    }
+    
     /*---- Settings ----*/
+    .settings-section {
+        box-shadow: none;
+        background-color: var(--color-dashboard-panel-background); }
     .page-list ul {
         background-color: var(--color-dashboard-panel-content-background) }
     .page-list ul li a{
@@ -186,6 +211,10 @@
     }
     .kanji-progress { border-radius: 5px 5px 0 0}
     .vocabulary-progress { border-radius: 0 0 5px 5px}
+    
+    /* Item lists */
+    .subject-legend, .character-grid__header {
+        background-color: var(--color-dashboard-panel-background) }
     
     /*---- Item Page ----*/
     .page-nav__item-link {
@@ -369,6 +398,7 @@
         background-color: var(--color-burned);
         background-image: linear-gradient(to bottom, var(--color-burned), var(--color-burned-dark));
         border-color: var(--color-burned) rgba(0,0,0,0) var(--color-burned-dark) var(--color-burned);
+        color: var(--color-text);
     }
         
     /* Info - Meanings / Synonyms */
@@ -443,9 +473,6 @@
         box-shadow: 0 0 5px rgba(0, 0, 0, .89);
         background-image: none;
     }
-    
-    /* Info - Found in Vocabulary */
-    #section-amalgamations a.character-item--burned li, #section-amalgamations a.character-item--burned span { color: var(--color-text)}
         
     /* Kana Chart */
     .kana-chart__character, .kana-chart__backspace {background-color: var(--color-dashboard-panel-content-background); color: var(--color-text)}
@@ -686,7 +713,7 @@
         
     /* -------------- Scripts --------------*/
     /* ---- Item Info Injector ----*/
-    .item-info-injector-accordion > button {
+    .item-info-injector-accordion > button, .item-info-injector > h2:not(.subject-section__meanings-title) {
         border-bottom: 1px solid var(--color-dashboard-panel-content-background);
     }
     
@@ -729,12 +756,6 @@
     }
     #wkof_ds #ss_quiz .answer {
         background-color: var(--color-dashboard-panel-background) }
-    #ss_quiz[data-itype="radical"] .qwrap, #ss_quiz .summary .que[title~="Radical"] {
-        background-color: var(--color-radical) }
-    #ss_quiz[data-itype="kanji"] .qwrap, #ss_quiz .summary .que[title~="Kanji"] {
-        background-color: var(--color-kanji) }
-    #ss_quiz[data-itype="vocabulary"] .qwrap, #ss_quiz .summary .que[title~="Vocabulary"], #ss_quiz[data-itype="kana_vocabulary"] .qwrap {
-        background-color: var(--color-vocabulary) }
     #ss_quiz[data-atype="meaning"] .atype {
         background-color: var(--color-dashboard-panel-content-background);
         background-image: none;
