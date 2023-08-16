@@ -2,13 +2,14 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.3.9
+@version      0.4.0
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
 @var          select   grid-location-rm             "Location of recent mistakes" {'Top*':'2 / 3', 'Middle':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
 @var          select   grid-location-es             "Location of extra study" {'Top':'2 / 3', 'Middle*':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
 @var          select   grid-location-lp             "Location of level progress" {'Top':'2 / 3', 'Middle':'3 / 4', 'Bottom*':'4 / 5', 'Hide': 'none'}
+@var          checkbox settings-swap-colors         "Swap Quiz Header and Character Colours" 0
 @var          color    settings-color-text          "Text Color"         #e3e3e3
 @var          color    settings-color-text-dark     "Inverse Text Color" #222
 @var          color    settings-color-background1   "Background 1 Color" #232629
@@ -24,7 +25,7 @@
 @var          color    settings-color-guru          "Guru Color"         #2ecc71
 @var          color    settings-color-master        "Master Color"       #c9ce3b
 @var          color    settings-color-enlightened   "Enlightened Color"  #f17607
-@var          color    settings-color-burned        "Burned Color"       #555
+@var          color    settings-color-burned        "Burned Color"       #3c3c3c
 @var          color    settings-color-locked        "Locked Color"       #aeaeae
 ==/UserStyle== */
 @charset "UTF-8";
@@ -252,16 +253,21 @@
     .subject-progress__streak-value { background-color: var(--color-dashboard-panel-content-background)}
         
     /*---- Reviews ----*/
-    /* Header */
+    /* Header - takes into account settings boolean to swap background and character colours */
     .character-header div, .character-header div i {
-        color: var(--color-text) }
+        color: color-mix(in srgb, var(--color-text) calc(100% * (1 - var(--settings-swap-colors))), var(--color-text-dark) calc(100% * var(--settings-swap-colors))) }
     .character-header--radical, .character-header--kanji, .character-header--vocabulary {
-        background-color: var(--color-dashboard-panel-background);
-        background-image: none;
-    }
-    .character-header--radical .character-header__characters { color: var(--color-radical) }
-    .character-header--kanji .character-header__characters { color: var(--color-kanji) }
-    .character-header--vocabulary .character-header__characters { color: var(--color-vocabulary) }
+        background-image: none }
+    .character-header--radical .character-header__characters { color: color-mix(in srgb, var(--color-radical) calc(100% * (1 - var(--settings-swap-colors))), var(--color-text-dark) calc(100% * var(--settings-swap-colors))) }
+    .character-header--kanji .character-header__characters { color: color-mix(in srgb, var(--color-kanji) calc(100% * (1 - var(--settings-swap-colors))), var(--color-text-dark) calc(100% * var(--settings-swap-colors))) }
+    .character-header--vocabulary .character-header__characters { color: color-mix(in srgb, var(--color-vocabulary) calc(100% * (1 - var(--settings-swap-colors))), var(--color-text-dark) calc(100% * var(--settings-swap-colors))) }
+
+    .character-header--radical {
+        background-color: color-mix(in srgb, var(--color-dashboard-panel-background) calc(100% * (1 - var(--settings-swap-colors))), var(--color-radical) calc(100% * var(--settings-swap-colors))) }
+    .character-header--kanji {
+        background-color: color-mix(in srgb, var(--color-dashboard-panel-background) calc(100% * (1 - var(--settings-swap-colors))), var(--color-kanji) calc(100% * var(--settings-swap-colors))) }
+    .character-header--vocabulary {
+        background-color: color-mix(in srgb, var(--color-dashboard-panel-background) calc(100% * (1 - var(--settings-swap-colors))), var(--color-vocabulary) calc(100% * var(--settings-swap-colors))) }
 
     /* Quiz input */
     .quiz-input__question-type-container[data-question-type=meaning] {
