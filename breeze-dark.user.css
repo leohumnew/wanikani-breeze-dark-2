@@ -2,10 +2,13 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.3.8
+@version      0.3.9
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
+@var          select   grid-location-rm             "Location of recent mistakes" {'Top*':'2 / 3', 'Middle':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
+@var          select   grid-location-es             "Location of extra study" {'Top':'2 / 3', 'Middle*':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
+@var          select   grid-location-lp             "Location of level progress" {'Top':'2 / 3', 'Middle':'3 / 4', 'Bottom*':'4 / 5', 'Hide': 'none'}
 @var          color    settings-color-text          "Text Color"         #e3e3e3
 @var          color    settings-color-text-dark     "Inverse Text Color" #222
 @var          color    settings-color-background1   "Background 1 Color" #232629
@@ -239,8 +242,13 @@
     .progress-bar__label {
         color: var(--color-text-dark);
         background-color: var(--color-tertiary);
+        box-shadow: none;
     }
-    .progress-bar__label:after { border-top-color: var(--color-tertiary)}
+    .progress-bar__label:before { display: none }
+    .progress-bar__label:after {
+        border-top-color: var(--color-tertiary);
+        transform: translateX(-45%);
+    }
     .subject-progress__streak-value { background-color: var(--color-dashboard-panel-content-background)}
         
     /*---- Reviews ----*/
@@ -399,6 +407,11 @@
         background-image: linear-gradient(to bottom, var(--color-burned), var(--color-burned-dark));
         border-color: var(--color-burned) rgba(0,0,0,0) var(--color-burned-dark) var(--color-burned);
         color: var(--color-text);
+    }
+    .character-item--locked {
+        background-image: url(https://assets.wanikani.com/assets/stripes-b1fe3954592c3890ba1c7f411696ba17e267470fee29b9eafd83a4b50950a66f.png);
+        filter: brightness(70%);
+        background-repeat: repeat;
     }
         
     /* Info - Meanings / Synonyms */
@@ -625,6 +638,17 @@
 
     .dashboard section.forecast {
         background-color: var(--color-dashboard-panel-background);
+    }
+    
+    /* Moving divs */
+    .dashboard .progress-and-forecast .recent-mistakes-dashboard { grid-row: var(--grid-location-rm); display: var(--grid-location-rm);}
+    .dashboard .progress-and-forecast .extra-study { grid-row: var(--grid-location-es); display: var(--grid-location-es);}
+    .dashboard .progress-and-forecast .level-progress-dashboard { grid-row: var(--grid-location-lp); display: var(--grid-location-lp);}
+    @media (min-width: 768px) {
+        .dashboard .progress-and-forecast .level-progress-dashboard, .dashboard .progress-and-forecast .recent-mistakes-dashboard, .dashboard .progress-and-forecast .forecast {
+            margin: 0;
+        }
+        .dashboard .progress-and-forecast { margin-bottom: 30px; }
     }
 
     /* Level progress */
@@ -879,4 +903,17 @@
     }
     #timeline .review_info .rad svg {
         stroke: var(--color-text-dark); }
+    
+    /* Level Progress Dashboard Detail */
+    .level-progress-dashboard {
+        background-color: var(--color-dashboard-panel-background);
+        border-radius: 8px;
+    }
+    .level-progress-dashboard .vocab-progress {
+        margin: 0 20px;
+        margin-top: 20px;
+    }
+    .level-progress-dashboard .vocab-progress ~ .vocab-progress {
+        margin-top: 0 }
+    
 }
