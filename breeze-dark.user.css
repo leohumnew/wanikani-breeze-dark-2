@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.4.3
+@version      0.4.4
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -997,16 +997,16 @@
         background-image: none !important;
     }
     [data-type="kanji"] .dpp-progress .subject-character--locked .subject-character__characters {
-        background-color: var(--color-kanji) !important;
-        background-repeat: repeat;
+        background-color: var(--color-locked) !important;
+        background-image: none;
     }
     [data-type="radical"] .dpp-progress .subject-character:not(.subject-character--locked) .subject-character__characters {
         background-color: var(--color-radical) !important;
         background-image: none !important;
     }
     [data-type="radical"] .dpp-progress .subject-character--locked .subject-character__characters {
-        background-color: var(--color-radical) !important;
-        background-repeat: repeat;
+        background-color: var(--color-locked) !important;
+        background-image: none;
     }
     .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="5"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="6"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="7"] > a {
         filter: brightness(0.85) }
