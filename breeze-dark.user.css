@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.4.1
+@version      0.4.2
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -27,6 +27,8 @@
 @var          color    settings-color-enlightened   "Enlightened Color"  #f17607
 @var          color    settings-color-burned        "Burned Color"       #3c3c3c
 @var          color    settings-color-locked        "Locked Color"       #aeaeae
+@var          color    settings-color-reading       "Reading Banner Color" #4d4d4d
+@var          color    settings-color-meaning       "Meaning Banner Color" #31363b
 ==/UserStyle== */
 @charset "UTF-8";
 
@@ -304,14 +306,14 @@
     /* Quiz input */
     .quiz-input__question-type-container[data-question-type=meaning] {
         background-image: none;
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--settings-color-meaning);
         color: var(--color-text);
         border: none;
         box-shadow: 2px 2px 3px #000;
     }
     .quiz-input__question-type-container[data-question-type=reading] {
         background-image: none;
-        background-color: var(--color-menu);
+        background-color: var(--settings-color-reading);
         color: var(--color-text);
         border: none;
         box-shadow: 2px 2px 3px #000;
@@ -382,13 +384,13 @@
         box-shadow: none;
     }
     .reading-highlight { 
-        background-color: var(--color-menu);
+        background-color: var(--settings-color-reading);
         background-image: none;
         color: var(--color-text);
         box-shadow: none;
     }
     .meaning-highlight { 
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--settings-color-meaning);
         background-image: none;
         color: var(--color-text);
         box-shadow: none;
@@ -603,7 +605,7 @@
         .sitemap__section-header--vocabulary[data-expanded="true"],.sitemap__section-header--vocabulary:focus {
             border-color: var(--color-vocabulary) }
     }
-    .sitemap__expandable-chunk, .sitemap__expandable-chunk--levels, .sitemap__expandable-chunk--levels:before {
+    .sitemap__expandable-chunk, .sitemap__expandable-chunk--levels, .sitemap__expandable-chunk--levels:before, .sitemap__expandable-chunk:before {
         background: var(--color-menu) }
     .sitemap__expandable-chunk--radicals, .sitemap__expandable-chunk--radicals:before {
         background: var(--color-radical) }
@@ -821,7 +823,7 @@
     #wkof_ds #ss_quiz .answer {
         background-color: var(--color-dashboard-panel-background) }
     #ss_quiz[data-atype="meaning"] .atype {
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--settings-color-meaning);
         background-image: none;
         color: var(--color-text-mid);
         border: none;
@@ -831,7 +833,7 @@
     #wkof_ds #ss_quiz[data-result="incorrect"] .answer input {
         background-color: var(--color-quiz-incorrect-background) }
     #ss_quiz[data-atype="reading"] .atype {
-        background-color: var(--color-menu);
+        background-color: var(--settings-color-reading);
         background-image: none;
         color: var(--color-text-mid);
         border: none;
@@ -956,4 +958,38 @@
     .level-progress-dashboard .vocab-progress ~ .vocab-progress {
         margin-top: 0 }
     
+    /* Lesson Hover Details and Dashboard Progress Plus */
+    .popover, .level-progress-dashboard__items .popover {
+        background-color: var(--color-menu);
+        border-color: var(--color-menu);
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        color: var(--color-text);
+    }
+    .popover.bottom .arrow:after {
+        border-bottom-color: var(--color-menu) }
+    .level-progress-dashboard__content .popover.left .arrow::after {
+        border-left-color: var(--color-menu) }
+    .level-progress-dashboard__content .popover.right .arrow::after {
+        border-right-color: var(--color-menu) }
+
+    .level-progress-dashboard__items .level-progress-dashboard__item.pct90 {
+        background-color: var(--color-dashboard-panel-background) }
+    
+    [data-type="kanji"] .dpp-progress .subject-character:not(.subject-character--locked) .subject-character__characters {
+        background-color: var(--color-kanji) !important;
+        background-image: none !important;
+    }
+    [data-type="kanji"] .dpp-progress .subject-character--locked .subject-character__characters {
+        background-color: var(--color-kanji) !important }
+    [data-type="radical"] .dpp-progress .subject-character:not(.subject-character--locked) .subject-character__characters {
+        background-color: var(--color-radical) !important;
+        background-image: none !important;
+    }
+    [data-type="radical"] .dpp-progress .subject-character--locked .subject-character__characters {
+        background-color: var(--color-radical) !important }
+    .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="5"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="6"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="7"] > a {
+        filter: brightness(0.85) }
+      .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="8"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="9"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="10"] > a {
+        filter: brightness(0.7) }
 }
