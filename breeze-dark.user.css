@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.4.0
+@version      0.4.1
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -216,9 +216,34 @@
     .kanji-progress { border-radius: 5px 5px 0 0}
     .vocabulary-progress { border-radius: 0 0 5px 5px}
     
-    /* Item lists */
+    /*---- Item lists ----*/
     .subject-legend, .character-grid__header {
         background-color: var(--color-dashboard-panel-background) }
+    
+    .subject-legend__item-badge--all,
+    .subject-legend__item-badge--radicals {
+        background-color: var(--color-radical);
+        color: var(--color-text-dark);
+        box-shadow: none;
+    }
+    .subject-legend__item-badge--kanji {
+        color: var(--color-text-dark);
+        background-color: var(--color-kanji);
+        box-shadow: none;
+    }
+    .subject-legend__item-badge--vocabulary {
+        color: var(--color-text-dark);
+        background-color: var(--color-vocabulary);
+        box-shadow: none;
+    }
+    .subject-legend__item-badge--burned {
+        background-color: var(--color-burned);
+        box-shadow: none;
+    }
+    .subject-legend__item-badge--recently-unlocked {
+        box-shadow: none }
+    .subject-legend__item-badge--locked {
+        filter: brightness(80%) }
     
     /*---- Item Page ----*/
     .page-nav__item-link {
@@ -236,7 +261,14 @@
     }
     .search--open { margin-top: 0 }
     .page-header__icon--level { color: var(--color-text-dark) }
-    .page-header__icon { box-shadow: none }
+    .page-header__icon {
+        box-shadow: none;
+        background-image: none;
+        color: var(--color-text-dark);
+    }
+    .page-header__icon--radical { background-color: var(--color-radical) }
+    .page-header__icon--kanji { background-color: var(--color-kanji) }
+    .page-header__icon--vocabulary { background-color: var(--color-vocabulary) }
     
     .progress, .progress-bar { background-color: var(--color-dashboard-panel-content-background)}
     .progress-bar__bar { box-shadow: 2px 0px 3px #000}
@@ -663,6 +695,8 @@
         border-radius: 5px !important;
         box-shadow: none !important;
     }
+    .subject-character__character-image, .radical-image {
+        filter: invert(90%) }
     .level-progress-dashboard__content-title h3 {
         border-color: var(--color-text);
     }
