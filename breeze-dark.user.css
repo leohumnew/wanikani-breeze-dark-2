@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.4.4
+@version      0.4.5
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -10,6 +10,7 @@
 @var          select   grid-location-es             "Location of extra study" {'Top':'2 / 3', 'Middle*':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
 @var          select   grid-location-lp             "Location of level progress" {'Top':'2 / 3', 'Middle':'3 / 4', 'Bottom*':'4 / 5', 'Hide': 'none'}
 @var          checkbox settings-swap-colors         "Swap Quiz Header and Character Colours" 0
+@var          checkbox settings-srs-swap-colors     "Invert SRS Popup Colours" 0
 @var          color    settings-color-text          "Text Color"         #e3e3e3
 @var          color    settings-color-text-dark     "Inverse Text Color" #222
 @var          color    settings-color-background1   "Background 1 Color" #232629
@@ -85,10 +86,10 @@
         --color-quiz-incorrect-text-color: var(--color-text);
         --color-quiz-correct-background: var(--settings-color-correct);
         --color-quiz-correct-text-color: var(--color-text);
-        --color-quiz-srs-correct-background: var(--settings-color-correct);
-        --color-quiz-srs-correct-text-color: var(--color-text);
-        --color-quiz-srs-incorrect-background: var(--settings-color-incorrect);
-        --color-quiz-srs-incorrect-text-color: var(--color-text);
+        --color-quiz-srs-correct-background: color-mix(in srgb, var(--settings-color-correct) calc(100% * (1 - var(--settings-srs-swap-colors))), var(--color-dashboard-panel-background) calc(100% * var(--settings-srs-swap-colors)));
+        --color-quiz-srs-correct-text-color: color-mix(in srgb, var(--color-text) calc(100% * (1 - var(--settings-srs-swap-colors))), var(--settings-color-correct) calc(100% * var(--settings-srs-swap-colors)));
+        --color-quiz-srs-incorrect-background: color-mix(in srgb, var(--settings-color-incorrect) calc(100% * (1 - var(--settings-srs-swap-colors))), var(--color-dashboard-panel-background) calc(100% * var(--settings-srs-swap-colors)));
+        --color-quiz-srs-incorrect-text-color: color-mix(in srgb, var(--color-text) calc(100% * (1 - var(--settings-srs-swap-colors))), var(--settings-color-incorrect) calc(100% * var(--settings-srs-swap-colors)));
         --color-button-default-border: var(--color-text-mid);
         --color-button-default-hover-border: var(--color-tertiary);
         --color-button-default-text: var(--color-text);
@@ -290,7 +291,7 @@
         
     /*---- Reviews ----*/
     /* Header - takes into account settings boolean to swap background and character colours */
-    .character-header div, .character-header div i {
+    .character-header .character-header__menu div, .character-header .character-header__menu div i {
         color: color-mix(in srgb, var(--color-text) calc(100% * (1 - var(--settings-swap-colors))), var(--color-text-dark) calc(100% * var(--settings-swap-colors))) }
     .character-header--radical, .character-header--kanji, .character-header--vocabulary {
         background-image: none }
@@ -1008,8 +1009,12 @@
         background-color: var(--color-locked) !important;
         background-image: none;
     }
-    .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="5"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="6"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="7"] > a {
+    .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="4"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="5"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="6"] > a {
         filter: brightness(0.85) }
-      .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="8"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="9"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="10"] > a {
+      .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="7"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="8"] > a {
         filter: brightness(0.7) }
+    .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="9"] > a > .subject-character > .subject-character__characters {
+        background-color: var(--color-burned) !important;
+        color: var(--color-text);
+    }
 }
