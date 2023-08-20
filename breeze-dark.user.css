@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.4.5
+@version      0.4.6
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -540,6 +540,20 @@
     }
     .kana-chart__tab:not(.kana-chart__tab--selected) { border-bottom-color: var(--color-dashboard-panel-content-background)}
     .kana-chart__tab--selected { border-color: var(--color-dashboard-panel-content-background) var(--color-dashboard-panel-content-background) rgba(0,0,0,0) var(--color-dashboard-panel-content-background)}
+    
+    /* Last 10 */
+    .last-item {
+        background-color: var(--color-dashboard-panel-content-background);
+        box-shadow: none;
+    }
+    .last-item span:not(.last-item__label) {
+        color: var(--color-text) }
+    .last-item .last-item__label {
+        color: var(--color-text-mid) }
+    .last-item span.last-item__characters { color: var(--color-text-dark) }
+    .last-item__characters--radical { background-color: var(--color-radical) }
+    .last-item__characters--kanji { background-color: var(--color-kanji) }
+    .last-item__characters--vocabulary { background-color: var(--color-vocabulary) }
         
     /* Footer Buttons */
     .quiz-footer a, .quiz-footer a div {
