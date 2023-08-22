@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.4.6
+@version      0.4.8
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -124,6 +124,9 @@
     /*-------------- Image inversion --------------*/
     .extra-study img {
         filter: invert(81%) sepia(9%) saturate(582%) hue-rotate(169deg) brightness(96%) contrast(93%);
+    }
+    .review-forecast__empty-image {
+        filter: invert(89%) sepia(11%) saturate(526%) hue-rotate(169deg) brightness(99%) contrast(90%);
     }
     .global-header .logo {
         filter: brightness(80%) hue-rotate(226deg);
@@ -650,6 +653,13 @@
         }
         #search__trigger:hover, .search-button:hover { border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%)}
         #search__trigger:focus, .search-button:focus { border-color: transparent }
+    
+    /* Alerts */
+    .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
+        background-color: var(--color-menu);
+        background-image: none;
+        border: 2px solid var(--color-dashboard-panel-background);
+    }
 
     /* Lessons / reviews buttons */
     .lessons-and-reviews__button {
@@ -1030,5 +1040,10 @@
     .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="9"] > a > .subject-character > .subject-character__characters {
         background-color: var(--color-burned) !important;
         color: var(--color-text);
+    }
+    
+    /* Summary Page */
+    .summary-popup li a img {
+        filter: invert(1);
     }
 }
