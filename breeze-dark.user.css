@@ -2,15 +2,51 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.4.8
+@version      0.4.9
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
 @var          select   grid-location-rm             "Location of recent mistakes" {'Top*':'2 / 3', 'Middle':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
 @var          select   grid-location-es             "Location of extra study" {'Top':'2 / 3', 'Middle*':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
 @var          select   grid-location-lp             "Location of level progress" {'Top':'2 / 3', 'Middle':'3 / 4', 'Bottom*':'4 / 5', 'Hide': 'none'}
-@var          checkbox settings-swap-colors         "Swap Quiz Header and Character Colours" 0
-@var          checkbox settings-srs-swap-colors     "Invert SRS Popup Colours" 0
+@advanced     dropdown settings-dashboard-colors    "Dashboard Colours" {
+    bg-dark "Default" <<<EOT
+    EOT;
+    bg-colored "Colourful" <<<EOT
+        .lessons-and-reviews__lessons-button { background-color: color-mix(in srgb, var(--color-vocabulary) 50%, #000 50%); }
+        .lessons-and-reviews__lessons-button:hover { background-color: color-mix(in srgb, var(--color-vocabulary) 60%, #000 40%); }
+        .lessons-and-reviews__reviews-button { background-color: color-mix(in srgb, var(--color-radical) 50%, #000 50%); }
+        .lessons-and-reviews__reviews-button:hover { background-color: color-mix(in srgb, var(--color-radical) 60%, #000 40%); }
+        section.srs-progress ul li, section.srs-progress ul li span { color: var(--color-text-dark) !important; }
+        section.srs-progress ul li:first-child { background-color: var(--color-apprentice) !important; }
+        section.srs-progress ul li:nth-child(2) { background-color: var(--color-guru) !important; }
+        section.srs-progress ul li:nth-child(3) { background-color: var(--color-master) !important; }
+        section.srs-progress ul li:nth-child(4) { background-color: var(--color-enlightened) !important; }
+        section.srs-progress ul li:nth-child(5), section.srs-progress ul li:nth-child(5) span { background-color: var(--color-burned) !important; color: var(--color-text) !important; }
+    EOT;
+}
+@advanced     dropdown settings-swap-quiz-colors    "Quiz Header and Character Colours" {
+    bg-dark "Default" <<<EOT
+    EOT;
+    bg-colored "Colourful" <<<EOT
+        .character-header--radical { background-color: var(--color-radical) }
+        .character-header--kanji { background-color: var(--color-kanji) }
+        .character-header--vocabulary { background-color: var(--color-vocabulary) }
+        .character-header--radical .character-header__characters, .character-header--kanji .character-header__characters, .character-header--vocabulary .character-header__characters, .character-header .character-header__menu div, .character-header .character-header__menu div i {
+            color: var(--color-text-dark);
+        }
+    EOT;
+}
+@advanced     dropdown settings-swap-srs-colors    "Invert SRS Popup Colours" {
+    bg-coloured "Colourful" <<<EOT
+    EOT;
+    bg-dark "Dark" <<<EOT
+        --color-quiz-srs-correct-background: var(--color-dashboard-panel-background);
+        --color-quiz-srs-correct-text-color: var(--color-correct);
+        --color-quiz-srs-incorrect-background: var(--color-dashboard-panel-background);
+        --color-quiz-srs-incorrect-text-color: var(--color-incorrect);
+    EOT;
+}
 @var          color    settings-color-text          "Text Color"         #e3e3e3
 @var          color    settings-color-text-dark     "Inverse Text Color" #222
 @var          color    settings-color-background1   "Background 1 Color" #232629
@@ -38,17 +74,19 @@
 /*-------------- Root variables --------------*/
     :root {
         color-scheme: dark;
-        --color-tertiary: var(--settings-color-tertiary);
+        --color-tertiary: /*[[settings-color-tertiary]]*/;
         --color-text-mid: #9e9e9e;
+        --color-correct: /*[[settings-color-correct]]*/;
+        --color-incorrect: /*[[settings-color-incorrect]]*/;
         
         /*---- WaniKani style variables ----*/
         /* General colors */
-        --color-text: var(--settings-color-text);;
+        --color-text: /*[[settings-color-text]]*/;
         --color-link: #e6e6e6;
         --color-link-active: var(--color-tertiary);
 
-        --color-dashboard-panel-background: var(--settings-color-background1);
-        --color-dashboard-panel-content-background: var(--settings-color-background2);
+        --color-dashboard-panel-background: /*[[settings-color-background1]]*/;
+        --color-dashboard-panel-content-background: /*[[settings-color-background2]]*/;
 
         /* Extra study colors */
         --color-extra-study-tooltip-background: var(--color-dashboard-panel-background);
@@ -58,19 +96,19 @@
         --color-extra-study-button-disabled: var(--color-text-mid);
 
         /* Character colors */
-        --color-kanji: var(--settings-color-kanji);
+        --color-kanji: /*[[settings-color-kanji]]*/;
         --color-kanji-dark: color-mix(in srgb, var(--color-kanji) 90%, #000 10%);
-        --color-radical: var(--settings-color-radical);
+        --color-radical: /*[[settings-color-radical]]*/;
         --color-radical-dark: color-mix(in srgb, var(--color-radical) 90%, #000 10%);
-        --color-vocabulary: var(--settings-color-vocabulary);
+        --color-vocabulary: /*[[settings-color-vocabulary]]*/;
         --color-vocabulary-dark: color-mix(in srgb, var(--color-vocabulary) 90%, #000 10%);
-        --color-locked: var(--settings-color-locked);
+        --color-locked: /*[[settings-color-locked]]*/;
         --color-locked-dark: color-mix(in srgb, var(--color-locked) 90%, #000 10%);
-        --color-apprentice: var(--settings-color-apprentice);
-        --color-guru: var(--settings-color-guru);
-        --color-master: var(--settings-color-master);
-        --color-enlightened: var(--settings-color-enlightened);
-        --color-burned: var(--settings-color-burned);
+        --color-apprentice: /*[[settings-color-apprentice]]*/;
+        --color-guru: /*[[settings-color-guru]]*/;
+        --color-master: /*[[settings-color-master]]*/;
+        --color-enlightened: /*[[settings-color-enlightened]]*/;
+        --color-burned: /*[[settings-color-burned]]*/;
         --color-burned-dark: color-mix(in srgb, var(--color-burned) 90%, #000 10%);
         
         /* Level progress bar colors */
@@ -82,14 +120,14 @@
         /* Reviews */
         --color-quiz-input-background: var(--color-dashboard-panel-background);
         --color-quiz-input-focus: var(--color-tertiary);
-        --color-quiz-incorrect-background: var(--settings-color-incorrect);
+        --color-quiz-incorrect-background: var(--color-incorrect);
         --color-quiz-incorrect-text-color: var(--color-text);
-        --color-quiz-correct-background: var(--settings-color-correct);
+        --color-quiz-correct-background: var(--color-correct);
         --color-quiz-correct-text-color: var(--color-text);
-        --color-quiz-srs-correct-background: color-mix(in srgb, var(--settings-color-correct) calc(100% * (1 - var(--settings-srs-swap-colors))), var(--color-dashboard-panel-background) calc(100% * var(--settings-srs-swap-colors)));
-        --color-quiz-srs-correct-text-color: color-mix(in srgb, var(--color-text) calc(100% * (1 - var(--settings-srs-swap-colors))), var(--settings-color-correct) calc(100% * var(--settings-srs-swap-colors)));
-        --color-quiz-srs-incorrect-background: color-mix(in srgb, var(--settings-color-incorrect) calc(100% * (1 - var(--settings-srs-swap-colors))), var(--color-dashboard-panel-background) calc(100% * var(--settings-srs-swap-colors)));
-        --color-quiz-srs-incorrect-text-color: color-mix(in srgb, var(--color-text) calc(100% * (1 - var(--settings-srs-swap-colors))), var(--settings-color-incorrect) calc(100% * var(--settings-srs-swap-colors)));
+        --color-quiz-srs-correct-background: var(--color-correct);
+        --color-quiz-srs-correct-text-color: var(--color-text);
+        --color-quiz-srs-incorrect-background: var(--color-incorrect);
+        --color-quiz-srs-incorrect-text-color: var(--color-text);
         --color-button-default-border: var(--color-text-mid);
         --color-button-default-hover-border: var(--color-tertiary);
         --color-button-default-text: var(--color-text);
@@ -117,8 +155,11 @@
         --color-button-modal-secondary-hover-text: var(--color-tertiary);
 
         /*---- Extra style variables ----*/
-        --color-text-dark: var(--settings-color-text-dark);
-        --color-menu: var(--settings-color-menu);
+        --color-text-dark: /*[[settings-color-text-dark]]*/;
+        --color-menu: /*[[settings-color-menu]]*/;
+        --color-meaning: /*[[settings-color-meaning]]*/;
+        --color-reading: /*[[settings-color-reading]]*/;
+        /*[[settings-swap-srs-colors]]*/
     }
 
     /*-------------- Image inversion --------------*/
@@ -295,31 +336,27 @@
     /*---- Reviews ----*/
     /* Header - takes into account settings boolean to swap background and character colours */
     .character-header .character-header__menu div, .character-header .character-header__menu div i {
-        color: color-mix(in srgb, var(--color-text) calc(100% * (1 - var(--settings-swap-colors))), var(--color-text-dark) calc(100% * var(--settings-swap-colors))) }
+        color: var(--color-text) }
     .character-header--radical, .character-header--kanji, .character-header--vocabulary {
         background-image: none }
-    .character-header--radical .character-header__characters { color: color-mix(in srgb, var(--color-radical) calc(100% * (1 - var(--settings-swap-colors))), var(--color-text-dark) calc(100% * var(--settings-swap-colors))) }
-    .character-header--kanji .character-header__characters { color: color-mix(in srgb, var(--color-kanji) calc(100% * (1 - var(--settings-swap-colors))), var(--color-text-dark) calc(100% * var(--settings-swap-colors))) }
-    .character-header--vocabulary .character-header__characters { color: color-mix(in srgb, var(--color-vocabulary) calc(100% * (1 - var(--settings-swap-colors))), var(--color-text-dark) calc(100% * var(--settings-swap-colors))) }
+    .character-header--radical .character-header__characters { color: var(--color-radical) }
+    .character-header--kanji .character-header__characters { color: var(--color-kanji) }
+    .character-header--vocabulary .character-header__characters { color: var(--color-vocabulary) }
 
-    .character-header--radical {
-        background-color: color-mix(in srgb, var(--color-dashboard-panel-background) calc(100% * (1 - var(--settings-swap-colors))), var(--color-radical) calc(100% * var(--settings-swap-colors))) }
-    .character-header--kanji {
-        background-color: color-mix(in srgb, var(--color-dashboard-panel-background) calc(100% * (1 - var(--settings-swap-colors))), var(--color-kanji) calc(100% * var(--settings-swap-colors))) }
-    .character-header--vocabulary {
-        background-color: color-mix(in srgb, var(--color-dashboard-panel-background) calc(100% * (1 - var(--settings-swap-colors))), var(--color-vocabulary) calc(100% * var(--settings-swap-colors))) }
+    .character-header--vocabulary, .character-header--kanji, .character-header--radical {
+        background-color: var(--color-dashboard-panel-background) }
 
     /* Quiz input */
     .quiz-input__question-type-container[data-question-type=meaning] {
         background-image: none;
-        background-color: var(--settings-color-meaning);
+        background-color: var(--color-meaning);
         color: var(--color-text);
         border: none;
         box-shadow: 2px 2px 3px #000;
     }
     .quiz-input__question-type-container[data-question-type=reading] {
         background-image: none;
-        background-color: var(--settings-color-reading);
+        background-color: var(--color-reading);
         color: var(--color-text);
         border: none;
         box-shadow: 2px 2px 3px #000;
@@ -390,17 +427,24 @@
         box-shadow: none;
     }
     .reading-highlight { 
-        background-color: var(--settings-color-reading);
+        background-color: var(--color-reading);
         background-image: none;
         color: var(--color-text);
         box-shadow: none;
     }
     .meaning-highlight { 
-        background-color: var(--settings-color-meaning);
+        background-color: var(--color-meaning);
         background-image: none;
         color: var(--color-text);
         box-shadow: none;
     }
+    
+    .reading-highlight:hover:before, .meaning-highlight:hover:before, .vocabulary-highlight:hover:before, .kanji-highlight:hover:before, .radical-highlight:hover:before {
+        color: var(--color-text);
+        background-color: var(--color-menu);
+    }
+    .reading-highlight:hover:after, .meaning-highlight:hover:after, .vocabulary-highlight:hover:after, .kanji-highlight:hover:after, .radical-highlight:hover:after {
+        border-top-color: var(--color-menu) }
         
     .subject-section__title { border-color: var(--color-dashboard-panel-content-background) }
 
@@ -662,16 +706,16 @@
     }
 
     /* Lessons / reviews buttons */
-    .lessons-and-reviews__button {
+    .lessons-and-reviews__lessons-button, .lessons-and-reviews__reviews-button {
         background-color: var(--color-dashboard-panel-background);
-        }
+        transition: 0.2s;
+    }
         .lessons-and-reviews__button:hover {
-            background-color: var(--color-tertiary);
-            background-color: color-mix(in srgb, var(--color-tertiary) 10%, #2f2f2f 90%);
+            background-color: color-mix(in srgb, var(--color-tertiary) 15%, #2f2f2f 85%);
         }
         .lessons-and-reviews__button span {
             background-color: transparent;
-            color: var(--color-tertiary);
+            color: var(--color-text);
         }
         .lessons-and-reviews__button span.fcr_burn {
             background-color: var(--color-burned) }
@@ -710,9 +754,9 @@
     }
     
     /* Moving divs */
-    .dashboard .progress-and-forecast .recent-mistakes-dashboard { grid-row: var(--grid-location-rm); display: var(--grid-location-rm);}
-    .dashboard .progress-and-forecast .extra-study { grid-row: var(--grid-location-es); display: var(--grid-location-es);}
-    .dashboard .progress-and-forecast .level-progress-dashboard { grid-row: var(--grid-location-lp); display: var(--grid-location-lp);}
+    .dashboard .progress-and-forecast .recent-mistakes-dashboard { grid-row: /*[[grid-location-rm]]*/; display: /*[[grid-location-rm]]*/;}
+    .dashboard .progress-and-forecast .extra-study { grid-row: /*[[grid-location-es]]*/; display: /*[[grid-location-es]]*/;}
+    .dashboard .progress-and-forecast .level-progress-dashboard { grid-row: /*[[grid-location-lp]]*/; display: /*[[grid-location-lp]]*/;}
     @media (min-width: 768px) {
         .dashboard .progress-and-forecast .level-progress-dashboard, .dashboard .progress-and-forecast .recent-mistakes-dashboard, .dashboard .progress-and-forecast .forecast {
             margin: 0;
@@ -728,6 +772,8 @@
     }
     .subject-character__character-image, .radical-image {
         filter: invert(90%) }
+    .component-character--burned .radical-image {
+        filter: invert(0%) }
     .level-progress-dashboard__content-title h3 {
         border-color: var(--color-text);
     }
@@ -816,10 +862,13 @@
     .dashboard section.forecast, .kotoba-table-list div, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
         box-shadow: none !important;
     }
+    
+    /* -------------- Settings -------------- */
+    /*[[settings-dashboard-colors]]*/
+    /*[[settings-swap-quiz-colors]]*/
         
-        
-    /* -------------- Scripts --------------*/
-    /* ---- Item Info Injector ----*/
+    /* -------------- Scripts -------------- */
+    /* ---- Item Info Injector ---- */
     .item-info-injector-accordion > button, .item-info-injector > h2:not(.subject-section__meanings-title) {
         border-bottom: 1px solid var(--color-dashboard-panel-content-background);
     }
@@ -864,7 +913,7 @@
     #wkof_ds #ss_quiz .answer {
         background-color: var(--color-dashboard-panel-background) }
     #ss_quiz[data-atype="meaning"] .atype {
-        background-color: var(--settings-color-meaning);
+        background-color: var(--color-meaning);
         background-image: none;
         color: var(--color-text-mid);
         border: none;
@@ -874,7 +923,7 @@
     #wkof_ds #ss_quiz[data-result="incorrect"] .answer input {
         background-color: var(--color-quiz-incorrect-background) }
     #ss_quiz[data-atype="reading"] .atype {
-        background-color: var(--settings-color-reading);
+        background-color: var(--color-reading);
         background-image: none;
         color: var(--color-text-mid);
         border: none;
