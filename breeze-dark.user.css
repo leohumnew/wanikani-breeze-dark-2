@@ -2,21 +2,30 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.4.9
+@version      0.5.0
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
 @var          select   grid-location-rm             "Location of recent mistakes" {'Top*':'2 / 3', 'Middle':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
 @var          select   grid-location-es             "Location of extra study" {'Top':'2 / 3', 'Middle*':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
 @var          select   grid-location-lp             "Location of level progress" {'Top':'2 / 3', 'Middle':'3 / 4', 'Bottom*':'4 / 5', 'Hide': 'none'}
+@advanced     dropdown settings-minimize-rm    "Recent Mistakes Size" {
+    bg-coloured "Default" <<<EOT
+    EOT;
+    bg-dark "Reduced" <<<EOT
+        .recent-mistakes-dashboard__content { display: none }
+        .recent-mistakes-dashboard .dashboard-panel__title { float: left }
+        .recent-mistakes-dashboard__buttons { margin-top: 0 }
+    EOT;
+}
 @advanced     dropdown settings-dashboard-colors    "Dashboard Colours" {
     bg-dark "Default" <<<EOT
     EOT;
     bg-colored "Colourful" <<<EOT
-        .lessons-and-reviews__lessons-button { background-color: color-mix(in srgb, var(--color-vocabulary) 50%, #000 50%); }
-        .lessons-and-reviews__lessons-button:hover { background-color: color-mix(in srgb, var(--color-vocabulary) 60%, #000 40%); }
-        .lessons-and-reviews__reviews-button { background-color: color-mix(in srgb, var(--color-radical) 50%, #000 50%); }
-        .lessons-and-reviews__reviews-button:hover { background-color: color-mix(in srgb, var(--color-radical) 60%, #000 40%); }
+        .lessons-and-reviews__lessons-button { background-color: color-mix(in srgb, var(--color-kanji) 60%, #000 40%); }
+        .lessons-and-reviews__lessons-button:hover { background-color: color-mix(in srgb, var(--color-kanji) 70%, #000 30%); }
+        .lessons-and-reviews__reviews-button { background-color: color-mix(in srgb, var(--color-radical) 60%, #000 40%); }
+        .lessons-and-reviews__reviews-button:hover { background-color: color-mix(in srgb, var(--color-radical) 70%, #000 30%); }
         section.srs-progress ul li, section.srs-progress ul li span { color: var(--color-text-dark) !important; }
         section.srs-progress ul li:first-child { background-color: var(--color-apprentice) !important; }
         section.srs-progress ul li:nth-child(2) { background-color: var(--color-guru) !important; }
@@ -713,6 +722,9 @@
         .lessons-and-reviews__button:hover {
             background-color: color-mix(in srgb, var(--color-tertiary) 15%, #2f2f2f 85%);
         }
+        .lessons-and-reviews__button:active {
+            color: var(--color-text);
+        }
         .lessons-and-reviews__button span {
             background-color: transparent;
             color: var(--color-text);
@@ -866,6 +878,7 @@
     /* -------------- Settings -------------- */
     /*[[settings-dashboard-colors]]*/
     /*[[settings-swap-quiz-colors]]*/
+    /*[[settings-minimize-rm]]*/
         
     /* -------------- Scripts -------------- */
     /* ---- Item Info Injector ---- */
