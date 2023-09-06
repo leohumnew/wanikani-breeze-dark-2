@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.5.0
+@version      0.5.1
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -273,6 +273,23 @@
     }
     .kanji-progress { border-radius: 5px 5px 0 0}
     .vocabulary-progress { border-radius: 0 0 5px 5px}
+    html#public-profile div.wall-of-shame .progress {
+        background-color: var(--color-dashboard-panel-background);
+        background-image: none;
+    }
+    html#public-profile div.wall-of-shame span.kanji-icon, html#public-profile div.wall-of-shame span.vocabulary-icon {
+        box-shadow: none;
+        color: var(--color-text-dark);
+        background-image: none;
+    }
+    html#public-profile div.wall-of-shame span.kanji-icon { background-color: var(--color-kanji) }
+    html#public-profile div.wall-of-shame span.vocabulary-icon { background-color: var(--color-vocabulary) }
+    html#public-profile .progress .bar span { color: var(--color-text-dark) }
+    html#public-profile div.wall-of-shame h3 span {
+        background-color: var(--color-dashboard-panel-background);
+        color: var(--color-text);
+        box-shadow: none;
+    }
     
     /*---- Item lists ----*/
     .subject-legend, .character-grid__header {
@@ -328,7 +345,7 @@
     .page-header__icon--kanji { background-color: var(--color-kanji) }
     .page-header__icon--vocabulary { background-color: var(--color-vocabulary) }
     
-    .progress, .progress-bar { background-color: var(--color-dashboard-panel-content-background)}
+    .progress, .progress-bar { background-color: var(--color-dashboard-panel-content-background) }
     .progress-bar__bar { box-shadow: 2px 0px 3px #000}
     .progress-bar__label {
         color: var(--color-text-dark);
@@ -680,6 +697,8 @@
         .sitemap__section-header--vocabulary[data-expanded="true"],.sitemap__section-header--vocabulary:focus {
             border-color: var(--color-vocabulary) }
     }
+    .sitemap__section-header--subsection { color: var(--color-text-mid) }
+    .sitemap__section-header--subsection:hover { border-color: transparent; }
     .sitemap__expandable-chunk, .sitemap__expandable-chunk--levels, .sitemap__expandable-chunk--levels:before, .sitemap__expandable-chunk:before {
         background: var(--color-menu) }
     .sitemap__expandable-chunk--radicals, .sitemap__expandable-chunk--radicals:before {
