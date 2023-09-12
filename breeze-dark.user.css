@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.5.2
+@version      0.5.3
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -14,7 +14,9 @@
     EOT;
     bg-dark "Reduced" <<<EOT
         .recent-mistakes-dashboard__content { display: none }
-        .recent-mistakes-dashboard__buttons { margin-top: 0; float: right }
+        .recent-mistakes-dashboard__buttons { margin-top: 0 }
+        .recent-mistakes-dashboard .dashboard-panel { min-height: 4em }
+        .recent-mistakes-dashboard .dashboard-panel .dashboard-panel__title { float: left }
     EOT;
 }
 @advanced     dropdown settings-dashboard-colors    "Dashboard Colours" {
@@ -359,7 +361,15 @@
         transform: translateX(-45%);
     }
     .subject-progress__streak-value { background-color: var(--color-dashboard-panel-content-background)}
-        
+
+    /*---- Terms ----*/
+    .terms-of-service .short-version {
+        background-color: var(--color-dashboard-panel-background);
+        color: var(--color-text);
+    }
+    h2::before {
+        background-color: var(--color-text-mid) }
+
     /*---- Reviews ----*/
     /* Header - takes into account settings boolean to swap background and character colours */
     .character-header .character-header__menu div, .character-header .character-header__menu div i {
@@ -742,8 +752,9 @@
         .lessons-and-reviews__button:hover {
             background-color: color-mix(in srgb, var(--color-tertiary) 15%, #2f2f2f 85%);
         }
-        .lessons-and-reviews__button:active {
+        .lessons-and-reviews__button:focus {
             color: var(--color-text);
+            text-decoration: none;
         }
         .lessons-and-reviews__button span {
             background-color: transparent;
