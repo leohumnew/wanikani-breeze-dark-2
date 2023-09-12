@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.5.1
+@version      0.5.2
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -14,8 +14,7 @@
     EOT;
     bg-dark "Reduced" <<<EOT
         .recent-mistakes-dashboard__content { display: none }
-        .recent-mistakes-dashboard .dashboard-panel__title { float: left }
-        .recent-mistakes-dashboard__buttons { margin-top: 0 }
+        .recent-mistakes-dashboard__buttons { margin-top: 0; float: right }
     EOT;
 }
 @advanced     dropdown settings-dashboard-colors    "Dashboard Colours" {
@@ -26,6 +25,8 @@
         .lessons-and-reviews__lessons-button:hover { background-color: color-mix(in srgb, var(--color-kanji) 70%, #000 30%); }
         .lessons-and-reviews__reviews-button { background-color: color-mix(in srgb, var(--color-radical) 60%, #000 40%); }
         .lessons-and-reviews__reviews-button:hover { background-color: color-mix(in srgb, var(--color-radical) 70%, #000 30%); }
+        .lessons-and-reviews__reviews-button--0, .lessons-and-reviews__lessons-button--0 { background-color: var(--color-dashboard-panel-background); }
+        .lessons-and-reviews__reviews-button--0:hover, .lessons-and-reviews__lessons-button--0:hover { background-color: var(--color-dashboard-panel-background); }
         section.srs-progress ul li, section.srs-progress ul li span { color: var(--color-text-dark) !important; }
         section.srs-progress ul li:first-child { background-color: var(--color-apprentice) !important; }
         section.srs-progress ul li:nth-child(2) { background-color: var(--color-guru) !important; }
