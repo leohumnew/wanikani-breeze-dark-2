@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.5.3
+@version      0.5.4
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -15,8 +15,8 @@
     bg-dark "Reduced" <<<EOT
         .recent-mistakes-dashboard__content { display: none }
         .recent-mistakes-dashboard__buttons { margin-top: 0 }
-        .recent-mistakes-dashboard .dashboard-panel { min-height: 4em }
-        .recent-mistakes-dashboard .dashboard-panel .dashboard-panel__title { float: left }
+        .dashboard-panel--recent-mistakes { min-height: 4em }
+        .dashboard-panel--recent-mistakes { flex-direction: row }
     EOT;
 }
 @advanced     dropdown settings-dashboard-colors    "Dashboard Colours" {
@@ -128,6 +128,11 @@
         --color-level-progress-bar-background: var(--color-dashboard-panel-content-background);
         --color-level-progress-bar-text: var(--color-text);
         --color-level-progress-bar-progress-text: var(--color-text-dark);
+
+        /* Other dashboard colors */
+        --color-review-forecast-divider: var(--color-dashboard-panel-content-background);
+        --color-review-forecast-bar: var(--color-tertiary);
+        --color-review-forecast-increase-sign: var(--color-text);
         
         /* Reviews */
         --color-quiz-input-background: var(--color-dashboard-panel-background);
@@ -764,44 +769,22 @@
             background-color: var(--color-burned) }
 
     /* Review forecasts */
-    .bg-white {
-        background-color: inherit;
+    @media (min-width: 768px) {
+        .dashboard .progress-and-forecast .dashboard-panel--review-forecast .dashboard-panel__content {
+            overflow-y: auto;
+        }
     }
-    .review-forecast__day {
-        border-bottom: 1px solid var(--color-dashboard-panel-content-background);
-    }
-        .review-forecast__day-header::before,
-        .review-forecast__day-header::after {
-            display: none;
-        }
-        .review-forecast__day.is-collapsed {
-            border-radius: 0;
-        }
-        .review-forecast__hour {
-            background-color: var(--color-dashboard-panel-content-background) !important;
-            padding-bottom: 0;
-        }
-        .review-forecast__hour th,
-        .review-forecast__hour td {
-            border-color: var(--color-dashboard-panel-content-background);
-        }
-        .review-forecast__change {
-            border-right-color: var(--color-dashboard-panel-content-background);
-        }
-        .review-forecast__bar {
-            background: var(--color-tertiary);
-        }
-
-    .dashboard section.forecast {
+    #review-forecast::after {
+        background-image: none;
         background-color: var(--color-dashboard-panel-background);
     }
     
     /* Moving divs */
-    .dashboard .progress-and-forecast .recent-mistakes-dashboard { grid-row: /*[[grid-location-rm]]*/; display: /*[[grid-location-rm]]*/;}
-    .dashboard .progress-and-forecast .extra-study { grid-row: /*[[grid-location-es]]*/; display: /*[[grid-location-es]]*/;}
-    .dashboard .progress-and-forecast .level-progress-dashboard { grid-row: /*[[grid-location-lp]]*/; display: /*[[grid-location-lp]]*/;}
+    .dashboard .progress-and-forecast .dashboard-panel--recent-mistakes { grid-row: /*[[grid-location-rm]]*/; display: /*[[grid-location-rm]]*/;}
+    .dashboard .progress-and-forecast .dashboard-panel--extra-study { grid-row: /*[[grid-location-es]]*/; display: /*[[grid-location-es]]*/;}
+    .dashboard .progress-and-forecast .dashboard-panel--level-progress { grid-row: /*[[grid-location-lp]]*/; display: /*[[grid-location-lp]]*/;}
     @media (min-width: 768px) {
-        .dashboard .progress-and-forecast .level-progress-dashboard, .dashboard .progress-and-forecast .recent-mistakes-dashboard, .dashboard .progress-and-forecast .forecast {
+        .dashboard .progress-and-forecast .dashboard-panel--level-progress, .dashboard .progress-and-forecast .dashboard-panel--recent-mistakes, .dashboard .progress-and-forecast .dashboard-panel--review-forecast {
             margin: 0;
         }
         .dashboard .progress-and-forecast { margin-bottom: 30px; }
@@ -902,7 +885,7 @@
         color: var(--color-text);
     }
 
-    .dashboard section.forecast, .kotoba-table-list div, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
+    .dashboard div.dashboard-panel--review-forecast, .kotoba-table-list div, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
         box-shadow: none !important;
     }
     
@@ -982,7 +965,7 @@
     /* Audio Quiz */
     label.switch::before { background-color: var(--color-dashboard-panel-content-background)}
     
-    /* Forecast details */
+    /* Forecast details: TODO */
     .review-forecast__bar.fcr_radical { background: var(--color-radical)}
     .review-forecast__bar.fcr_kanji { background: var(--color-kanji)}
     .review-forecast__bar.fcr_vocab { background: var(--color-vocabulary)}
