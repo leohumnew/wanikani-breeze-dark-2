@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.5.4
+@version      0.5.5
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -186,7 +186,7 @@
     .review-forecast__empty-image {
         filter: invert(89%) sepia(11%) saturate(526%) hue-rotate(169deg) brightness(99%) contrast(90%);
     }
-    .global-header .logo {
+    .global-header .logo, footer ul li:last-child {
         filter: brightness(80%) hue-rotate(226deg);
     }
     .community-banner__image-wrapper img {
@@ -209,7 +209,7 @@
         color: var(--color-text);
     }
     
-    textarea, input[name^="user["], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    textarea, textarea[disabled], input[name^="user["], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
         background-color: var(--color-dashboard-panel-content-background);
         color: var(--color-text);
     }
@@ -416,6 +416,8 @@
         color: var(--color-text);
         border: none;
     }
+    .additional-content__item--disabled i {
+        opacity: 0.3; }
         
     /* Advice Popup */
     .answer-exception, .quiz-input__exception {
@@ -540,6 +542,8 @@
         border-color: var(--color-burned) rgba(0,0,0,0) var(--color-burned-dark) var(--color-burned);
         color: var(--color-text);
     }
+    .character-item--burned .radical-image {
+        opacity: 1 }
     .character-item--locked {
         background-image: url(https://assets.wanikani.com/assets/stripes-b1fe3954592c3890ba1c7f411696ba17e267470fee29b9eafd83a4b50950a66f.png);
         filter: brightness(70%);
@@ -778,7 +782,19 @@
         background-image: none;
         background-color: var(--color-dashboard-panel-background);
     }
-    
+    /* Entrance fade in animation */
+    @keyframes fadeIn {  
+        from {  
+            opacity:0; }  
+        to {  
+            opacity:1; }  
+    }
+    /* Fade in each day in forecast to avoid pop-in */
+    .review-forecast__day {
+        opacity: 0;
+        animation: fadeIn 0.1s ease-in-out forwards;
+    }
+
     /* Moving divs */
     .dashboard .progress-and-forecast .dashboard-panel--recent-mistakes { grid-row: /*[[grid-location-rm]]*/; display: /*[[grid-location-rm]]*/;}
     .dashboard .progress-and-forecast .dashboard-panel--extra-study { grid-row: /*[[grid-location-es]]*/; display: /*[[grid-location-es]]*/;}
@@ -848,7 +864,7 @@
         }
     }
         
-    .kotoba-table-list table a span { /* Fix all the colours */
+    .kotoba-table-list table a span, .kotoba-table-list table { /* Fix all the colours */
         color: var(--color-text-dark) !important;
     }
     ul.single-character-grid li[class|=kanji],ul.single-character-grid tr[class|=kanji],ul.multi-character-grid li[class|=kanji],ul.multi-character-grid tr[class|=kanji],.kotoba-table-list li[class|=kanji],.kotoba-table-list tr[class|=kanji] {
@@ -880,13 +896,18 @@
         color: var(--color-text);
     }
 
-    [class|=account-subscription] h3, [class|=account-billing] h3, .kotoba-table-list, .kotoba-table-list h3, .kotoba-table-list div, .kotoba-table-list tr {
+    [class|=account-subscription] h3, [class|=account-billing] h3, .kotoba-table-list, .kotoba-table-list h3, .kotoba-table-list div, .kotoba-table-list tr.none-available {
         background-color: var(--color-dashboard-panel-background) !important;
         color: var(--color-text);
     }
 
     .dashboard div.dashboard-panel--review-forecast, .kotoba-table-list div, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
         box-shadow: none !important;
+    }
+
+    /*-------- About page --------*/
+    .about img.spotlight {
+        border-color: var(--color-dashboard-panel-background);
     }
     
     /* -------------- Settings -------------- */
@@ -897,8 +918,9 @@
     /* -------------- Scripts -------------- */
     /* ---- Item Info Injector ---- */
     .item-info-injector-accordion > button, .item-info-injector > h2:not(.subject-section__meanings-title) {
-        border-bottom: 1px solid var(--color-dashboard-panel-content-background);
-    }
+        border-bottom: 1px solid var(--color-dashboard-panel-content-background) }
+    .item-info-injector-accordion > button {
+        color: var(--color-text) }
     
     /* Scripts Menu */
     #scripts-menu ul.dropdown-menu {
@@ -910,7 +932,7 @@
         background-color: transparent}
     
     /* WKOF UI Dialog */
-    #wkof_ds .ui-dialog, #wkof_ds .ui-dialog div, #wkofs_ss_quiz .filters .row.checked {
+    #wkof_ds .ui-dialog, #wkof_ds .ui-dialog div:not(.color-label), #wkofs_ss_quiz .filters .row.checked {
         background-color: var(--color-menu);
         border: none;
         background-image: none;
@@ -996,15 +1018,17 @@
     .es-mover-settings { color: var(--color-text) !important}
     
     /* Ultimate Timeline */
-    #timeline, timeline .review_info .inner {
+    #timeline, #timeline .review_info .inner {
         background-color: var(--color-dashboard-panel-background);
         margin-bottom: 30px;
         border-radius: 5px;
         padding: 0.5rem;
         border: none;
     }
+    #timeline .review_info .item_list wk-character-image {
+        --color-text: var(--color-text-dark); }
     #timeline .graph_panel {
-      overflow: hidden !important; }
+        overflow: hidden !important; }
     #timeline .graph .bkgd {
         fill: transparent; }
     #timeline .graph .label-x > text, #timeline .graph .label-y > text, #timeline .graph .markers > path {
@@ -1117,9 +1141,12 @@
         background-color: var(--color-burned) !important;
         color: var(--color-text);
     }
-    
-    /* Summary Page */
-    .summary-popup li a img {
-        filter: invert(1);
-    }
+
+    /* Stroke order diagram */
+    .stroke_order_diagram--current_path {
+        stroke: var(--color-tertiary) }
+    .stroke_order_diagram--path_start {
+        fill: var(--color-tertiary) }
+    .stroke_order_diagram--guide_line, .stroke_order_diagram--bounding_box {
+        stroke: var(--color-text-dark) }
 }
