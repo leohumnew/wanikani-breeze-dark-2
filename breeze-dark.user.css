@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.5.5
+@version      0.5.6
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -44,7 +44,7 @@
         .character-header--radical { background-color: var(--color-radical) }
         .character-header--kanji { background-color: var(--color-kanji) }
         .character-header--vocabulary { background-color: var(--color-vocabulary) }
-        .character-header--radical .character-header__characters, .character-header--kanji .character-header__characters, .character-header--vocabulary .character-header__characters, .character-header .character-header__menu div, .character-header .character-header__menu div i {
+        .character-header--radical .character-header__characters, .character-header--radical .character-header__character-image, .character-header--kanji .character-header__characters, .character-header--vocabulary .character-header__characters, .character-header .character-header__menu div, .character-header .character-header__menu div i {
             color: var(--color-text-dark);
         }
     EOT;
@@ -381,7 +381,7 @@
         color: var(--color-text) }
     .character-header--radical, .character-header--kanji, .character-header--vocabulary {
         background-image: none }
-    .character-header--radical .character-header__characters { color: var(--color-radical) }
+    .character-header--radical .character-header__characters, .character-header--radical .character-header__character-image { color: var(--color-radical) }
     .character-header--kanji .character-header__characters { color: var(--color-kanji) }
     .character-header--vocabulary .character-header__characters { color: var(--color-vocabulary) }
 
@@ -748,10 +748,12 @@
     
     /* Alerts */
     .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
-        background-color: var(--color-menu);
+        background-color: var(--color-dashboard-panel-background);
         background-image: none;
-        border: 2px solid var(--color-dashboard-panel-background);
+        border: 2px solid var(--color-tertiary);
     }
+    .dashboard section.system-alert time, .dashboard section.alert-where-user-scripts-cant-ignore time, .dashboard section.system-alert .close-alert, .dashboard section.alert-where-user-scripts-cant-ignore .close-alert {
+        color: var(--color-tertiary) }
 
     /* Lessons / reviews buttons */
     .lessons-and-reviews__lessons-button, .lessons-and-reviews__reviews-button {
