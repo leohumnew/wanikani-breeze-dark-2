@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.5.7
+@version      0.5.8
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -10,13 +10,34 @@
 @var          select   grid-location-es             "Location of extra study" {'Top':'2 / 3', 'Middle*':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
 @var          select   grid-location-lp             "Location of level progress" {'Top':'2 / 3', 'Middle':'3 / 4', 'Bottom*':'4 / 5', 'Hide': 'none'}
 @advanced     dropdown settings-minimize-rm    "Recent Mistakes Size" {
-    bg-coloured "Default" <<<EOT
+    rm-def "Default" <<<EOT
     EOT;
-    bg-dark "Reduced" <<<EOT
+    rm-min "Reduced" <<<EOT
         .recent-mistakes-dashboard__content { display: none }
         .recent-mistakes-dashboard__buttons { margin-top: 0 }
         .dashboard-panel--recent-mistakes { min-height: 4em }
         .dashboard-panel--recent-mistakes { flex-direction: row }
+        .recent-mistakes-dashboard__button a { font-size: var(--font-size-xsmall) }
+    EOT;
+}
+@advanced     dropdown settings-minimize-es    "Extra Study Size" {
+    es-def "Default" <<<EOT
+    EOT;
+    es-min "Reduced" <<<EOT
+        .extra-study__image-wrapper, .extra-study__info .wk-text, .extra-study-button__tooltip-button { display: none }
+        .extra-study-button { margin: 0 0 0 10px }
+        .extra-study__buttons {
+            display: flex;
+            flex-direction: row;
+        }
+        .dashboard-panel--extra-study { flex-direction: row }
+        .extra-study {
+            padding: 0;
+            justify-content: flex-end;
+            background-color: var(--color-dashboard-panel-background);
+        }
+        .extra-study__info {
+            flex: inherit; }
     EOT;
 }
 @advanced     dropdown settings-dashboard-colors    "Dashboard Colours" {
@@ -102,8 +123,8 @@
 
         /* Extra study colors */
         --color-extra-study-tooltip-background: var(--color-dashboard-panel-background);
-        --color-extra-study-button-border: var(--color-tertiary);
-        --color-extra-study-button-hover: var(--color-extra-study-button-border);
+        --color-extra-study-button-border: var(--color-button-default-border);
+        --color-extra-study-button-hover: var(--color-tertiary);
         --color-extra-study-button-active: var(--color-tertiary);
         --color-extra-study-button-disabled: var(--color-text-mid);
 
@@ -149,6 +170,7 @@
         --color-button-default-hover-border: var(--color-tertiary);
         --color-button-default-text: var(--color-text);
         --color-button-default-hover-text: var(--color-tertiary);
+        --color-button-default-active-text: var(--color-tertiary);
         --color-modal-background: var(--color-dashboard-panel-background); /* v New WaniKani variables, used in synonyms box */
         --color-input-background: var(--color-dashboard-panel-content-background);
         --color-input-focus-border: var(--color-tertiary);
@@ -822,6 +844,10 @@
         border-color: var(--color-text);
     }
 
+    /* Extra Study */
+    .extra-study-button:hover {
+        border-color: var(--color-tertiary) }
+
     /* Item levels */
     section.srs-progress ul li {
         background-image: none !important;
@@ -955,12 +981,17 @@
         background: var(--color-dashboard-panel-content-background);
     }
     .supporting-text__toggle[aria-expanded=true]:hover {
+        color: var(--color-tertiary);
+        background: var(--color-menu);
+    }
+    .reader__nav-action .reader-completion__link:hover {
         color: var(--color-tertiary); }
     
     /* -------------- Settings -------------- */
     /*[[settings-dashboard-colors]]*/
     /*[[settings-swap-quiz-colors]]*/
     /*[[settings-minimize-rm]]*/
+    /*[[settings-minimize-es]]*/
         
     /* -------------- Scripts -------------- */
     /* ---- Item Info Injector ---- */
