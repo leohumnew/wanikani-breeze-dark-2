@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.5.6
+@version      0.5.7
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -911,6 +911,51 @@
     .about img.spotlight {
         border-color: var(--color-dashboard-panel-background);
     }
+
+    /*-------- Readers page --------*/
+    .readers-list {
+        background: var(--color-dashboard-panel-background) }
+    .readers-list li {
+        background-color: var(--color-dashboard-panel-content-background); }
+    .reader-summary__title, .reader-summary__title:visited {
+        color: var(--color-text) }
+    .reader-summary__title:hover {
+        color: var(--color-tertiary) }
+    .info-popover__button, .info-popover__button:focus, .info-popover__message {
+        color: var(--color-text);
+        background-color: var(--color-menu);
+    }
+    .info-popover__button:hover {
+        color: var(--color-tertiary);
+    }
+    .info-popover__message a, .info-popover__message a:visited {
+        color: var(--color-tertiary) }
+    .reader {
+        background-color: var(--color-dashboard-panel-content-background) }
+    .reader__story {
+        background-color: var(--color-dashboard-panel-background);
+        padding: 30px;
+        border-radius: 7px;
+        max-width: 80ch;
+    }
+    .reader__content {
+        color: var(--color-text) }
+    .reader__nav-action--close .reader__nav-action-link {
+        color: var(--color-text);
+        background-color: var(--color-dashboard-panel-content-background);
+    }
+    .reader__nav-action--close .reader__nav-action-link:hover {
+        color: var(--color-tertiary);
+        background-color: var(--color-dashboard-panel-content-background);
+    }
+    .supporting-text__content, .supporting-text__toggle[aria-expanded=true] {
+        background-color: var(--color-menu); }
+    .supporting-text__toggle:hover {
+        color: var(--color-tertiary);
+        background: var(--color-dashboard-panel-content-background);
+    }
+    .supporting-text__toggle[aria-expanded=true]:hover {
+        color: var(--color-tertiary); }
     
     /* -------------- Settings -------------- */
     /*[[settings-dashboard-colors]]*/
