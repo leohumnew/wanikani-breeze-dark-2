@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.5.8
+@version      0.5.9
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -65,9 +65,10 @@
         .character-header--radical { background-color: var(--color-radical) }
         .character-header--kanji { background-color: var(--color-kanji) }
         .character-header--vocabulary { background-color: var(--color-vocabulary) }
-        .character-header--radical .character-header__characters, .character-header--radical .character-header__character-image, .character-header--kanji .character-header__characters, .character-header--vocabulary .character-header__characters, .character-header .character-header__menu div, .character-header .character-header__menu div i {
-            color: var(--color-text-dark);
-        }
+        .character-header--radical .character-header__characters, .character-header--kanji .character-header__characters, .character-header--vocabulary .character-header__characters, .character-header .character-header__menu div, .character-header .character-header__menu div i {
+            color: var(--color-text-dark); }
+        .character-header--radical .character-header__character-image {
+            --color-text: var(--color-text-dark); }
     EOT;
 }
 @advanced     dropdown settings-swap-srs-colors    "Invert SRS Popup Colours" {
@@ -403,7 +404,8 @@
         color: var(--color-text) }
     .character-header--radical, .character-header--kanji, .character-header--vocabulary {
         background-image: none }
-    .character-header--radical .character-header__characters, .character-header--radical .character-header__character-image { color: var(--color-radical) }
+    .character-header--radical .character-header__characters { color: var(--color-radical) }
+    .character-header--radical .character-header__character-image { --color-text: var(--color-radical) }
     .character-header--kanji .character-header__characters { color: var(--color-kanji) }
     .character-header--vocabulary .character-header__characters { color: var(--color-vocabulary) }
 
@@ -942,7 +944,9 @@
     .readers-list {
         background: var(--color-dashboard-panel-background) }
     .readers-list li {
-        background-color: var(--color-dashboard-panel-content-background); }
+        background-color: var(--color-dashboard-panel-content-background) }
+    .readers-list__item {
+        box-shadow: none }
     .reader-summary__title, .reader-summary__title:visited {
         color: var(--color-text) }
     .reader-summary__title:hover {
