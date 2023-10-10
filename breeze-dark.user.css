@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.5.9
+@version      0.6.0
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -375,6 +375,8 @@
     .page-header__icon--radical { background-color: var(--color-radical) }
     .page-header__icon--kanji { background-color: var(--color-kanji) }
     .page-header__icon--vocabulary { background-color: var(--color-vocabulary) }
+    .page-header__icon--radical:hover, .page-header__icon--kanji:hover, .page-header__icon--vocabulary:hover {
+        box-shadow: 0 -2px 0 rgba(0,0,0,0.2) inset, 0 0 10px rgba(0,0,0,0.5); }
     
     .progress, .progress-bar { background-color: var(--color-dashboard-panel-content-background) }
     .progress-bar__bar { box-shadow: 2px 0px 3px #000}
@@ -544,6 +546,10 @@
     }
 
     .character-item { color: var(--color-text-dark) }
+    .character-item--radical:not(.character-item--burned) .radical-image {
+        --color-text: var(--color-text-dark) }
+    .character-item:hover .radical-image {
+        filter: none }
     .character-item--radical {
         background-color: var(--color-radical);
         background-image: linear-gradient(to bottom, var(--color-radical), var(--color-radical-dark));
@@ -717,28 +723,28 @@
     @media only screen and (min-width: 1024px) { /* Navigation menu buttons hover colours */
         .sitemap__section-header:hover {
             border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%) }
-        .sitemap__section-header:focus {
+        .sitemap__section-header:focus, .sitemap__section--open .sitemap__section-header {
             border-color: var(--color-tertiary) }
         
-        .sitemap__section-header--radicals:hover,.sitemap__section-header--radicals:focus,.sitemap__section-header--radicals[data-expanded="true"] {
+        .sitemap__section-header--radicals:hover, .sitemap__section-header--radicals:focus, .sitemap__section-header--radicals[data-expanded="true"], .sitemap__section--open .sitemap__section-header--radicals {
             color: var(--color-radical) }
         .sitemap__section-header--radicals:hover {
             border-color: color-mix(in srgb, var(--color-radical) 25%, #0000 75%) }
-        .sitemap__section-header--radicals[data-expanded="true"],.sitemap__section-header--radicals:focus {
+        .sitemap__section-header--radicals[data-expanded="true"],.sitemap__section-header--radicals:focus, .sitemap__section--open .sitemap__section-header--radicals {
             border-color: var(--color-radical) }
 
-        .sitemap__section-header--kanji:hover,.sitemap__section-header--kanji:focus,.sitemap__section-header--kanji[data-expanded="true"] {
+        .sitemap__section-header--kanji:hover, .sitemap__section-header--kanji:focus, .sitemap__section-header--kanji[data-expanded="true"], .sitemap__section--open .sitemap__section-header--kanji {
             color: var(--color-kanji) }
         .sitemap__section-header--kanji:hover {
             border-color: color-mix(in srgb, var(--color-kanji) 25%, #0000 75%) }
-        .sitemap__section-header--kanji[data-expanded="true"],.sitemap__section-header--kanji:focus {
+        .sitemap__section-header--kanji[data-expanded="true"], .sitemap__section-header--kanji:focus, .sitemap__section--open .sitemap__section-header--kanji {
             border-color: var(--color-kanji) }
 
-        .sitemap__section-header--vocabulary:hover,.sitemap__section-header--vocabulary:focus,.sitemap__section-header--vocabulary[data-expanded="true"] {
+        .sitemap__section-header--vocabulary:hover, .sitemap__section-header--vocabulary:focus, .sitemap__section-header--vocabulary[data-expanded="true"], .sitemap__section--open .sitemap__section-header--vocabulary {
             color: var(--color-vocabulary) }
         .sitemap__section-header--vocabulary:hover {
             border-color: color-mix(in srgb, var(--color-vocabulary) 25%, #0000 75%) }
-        .sitemap__section-header--vocabulary[data-expanded="true"],.sitemap__section-header--vocabulary:focus {
+        .sitemap__section-header--vocabulary[data-expanded="true"], .sitemap__section-header--vocabulary:focus, .sitemap__section--open .sitemap__section-header--vocabulary {
             border-color: var(--color-vocabulary) }
     }
     .sitemap__section-header--subsection { color: var(--color-text-mid) }
@@ -948,14 +954,14 @@
     .readers-list__item {
         box-shadow: none }
     .reader-summary__title, .reader-summary__title:visited {
-        color: var(--color-text) }
+        color: var(--color-tertiary) }
     .reader-summary__title:hover {
         color: var(--color-tertiary) }
     .info-popover__button, .info-popover__button:focus, .info-popover__message {
         color: var(--color-text);
         background-color: var(--color-menu);
     }
-    .info-popover__button:hover {
+    .info-popover__button:hover, .reader-bookmark:hover {
         color: var(--color-tertiary);
     }
     .info-popover__message a, .info-popover__message a:visited {
