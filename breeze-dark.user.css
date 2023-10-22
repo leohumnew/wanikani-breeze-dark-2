@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.6.1
+@version      0.6.2
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -193,6 +193,9 @@
         --color-button-modal-secondary-border: var(--color-tertiary);
         --color-button-modal-secondary-hover-border: var(--color-tertiary);
         --color-button-modal-secondary-hover-text: var(--color-tertiary);
+
+        /* About */
+        --color-about-page-image-focus-border: 5px solid var(--color-dashboard-panel-content-background);
 
         /*---- Extra style variables ----*/
         --color-text-dark: /*[[settings-color-text-dark]]*/;
@@ -850,10 +853,10 @@
         border-radius: 5px !important;
         box-shadow: none !important;
     }
-    .subject-character__character-image, .radical-image {
-        filter: invert(90%) }
+    .subject-character__character-image, .radical-image, .kotoba-table-list .radical-image {
+        filter: invert(90%) !important }
     .component-character--burned .radical-image {
-        filter: invert(0%) }
+        filter: invert(0%) !important }
     .level-progress-dashboard__content-title h3 {
         border-color: var(--color-text);
     }
@@ -945,11 +948,6 @@
 
     .dashboard div.dashboard-panel--review-forecast, .kotoba-table-list div, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
         box-shadow: none !important;
-    }
-
-    /*-------- About page --------*/
-    .about img.spotlight {
-        border-color: var(--color-dashboard-panel-background);
     }
 
     /*-------- Readers page --------*/

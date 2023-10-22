@@ -164,4 +164,7 @@
     --color-review-forecast-increase-sign: #E3E3E3;
     --color-review-forecast-bar: #59C274;
     --color-review-forecast-empty-expand-icon: #BDBDBD;
+    --color-about-page-image-focus-border: 5px solid var(--color-white);
+    --color-about-page-image-focus-shadow-background: rgba(0, 0, 0, 0.2);
+    --color-about-page-image-focus-shadow: 0 0 20px var(--color-about-page-image-focus-shadow-background);
 }
