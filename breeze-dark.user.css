@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.6.2
+@version      0.6.5
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -15,8 +15,8 @@
     rm-min "Reduced" <<<EOT
         .recent-mistakes-dashboard__content { display: none }
         .recent-mistakes-dashboard__buttons { margin-top: 0 }
-        .dashboard-panel--recent-mistakes { min-height: 4em }
-        .dashboard-panel--recent-mistakes { flex-direction: row }
+        .wk-panel--recent-mistakes { min-height: 4em }
+        .wk-panel--recent-mistakes { flex-direction: row }
         .recent-mistakes-dashboard__button a { font-size: var(--font-size-xsmall) }
     EOT;
 }
@@ -30,11 +30,11 @@
             display: flex;
             flex-direction: row;
         }
-        .dashboard-panel--extra-study { flex-direction: row }
+        .wk-panel--extra-study { flex-direction: row }
         .extra-study {
             padding: 0;
             justify-content: flex-end;
-            background-color: var(--color-dashboard-panel-background);
+            background-color: var(--color-wk-panel-background);
         }
         .extra-study__info {
             flex: inherit; }
@@ -48,8 +48,8 @@
         .lessons-and-reviews__lessons-button:hover { background-color: color-mix(in srgb, var(--color-kanji) 70%, #000 30%); }
         .lessons-and-reviews__reviews-button { background-color: color-mix(in srgb, var(--color-radical) 60%, #000 40%); }
         .lessons-and-reviews__reviews-button:hover { background-color: color-mix(in srgb, var(--color-radical) 70%, #000 30%); }
-        .lessons-and-reviews__reviews-button--0, .lessons-and-reviews__lessons-button--0 { background-color: var(--color-dashboard-panel-background); }
-        .lessons-and-reviews__reviews-button--0:hover, .lessons-and-reviews__lessons-button--0:hover { background-color: var(--color-dashboard-panel-background); }
+        .lessons-and-reviews__reviews-button--0, .lessons-and-reviews__lessons-button--0 { background-color: var(--color-wk-panel-background); }
+        .lessons-and-reviews__reviews-button--0:hover, .lessons-and-reviews__lessons-button--0:hover { background-color: var(--color-wk-panel-background); }
         section.srs-progress ul li, section.srs-progress ul li span { color: var(--color-text-dark) !important; }
         section.srs-progress ul li:first-child { background-color: var(--color-apprentice) !important; }
         section.srs-progress ul li:nth-child(2) { background-color: var(--color-guru) !important; }
@@ -75,9 +75,9 @@
     bg-coloured "Colourful" <<<EOT
     EOT;
     bg-dark "Dark" <<<EOT
-        --color-quiz-srs-correct-background: var(--color-dashboard-panel-background);
+        --color-quiz-srs-correct-background: var(--color-wk-panel-background);
         --color-quiz-srs-correct-text-color: var(--color-correct);
-        --color-quiz-srs-incorrect-background: var(--color-dashboard-panel-background);
+        --color-quiz-srs-incorrect-background: var(--color-wk-panel-background);
         --color-quiz-srs-incorrect-text-color: var(--color-incorrect);
     EOT;
 }
@@ -119,11 +119,14 @@
         --color-link: #e6e6e6;
         --color-link-active: var(--color-tertiary);
 
-        --color-dashboard-panel-background: /*[[settings-color-background1]]*/;
-        --color-dashboard-panel-content-background: /*[[settings-color-background2]]*/;
+        --color-wk-panel-background: /*[[settings-color-background1]]*/;
+        --color-wk-panel-content-background: /*[[settings-color-background2]]*/;
+        /* Compatibility */
+        --color-dashboard-panel-background: var(--color-wk-panel-background);
+        --color-dashboard-panel-content-background: var(--color-wk-panel-content-background);
 
         /* Extra study colors */
-        --color-extra-study-tooltip-background: var(--color-dashboard-panel-background);
+        --color-extra-study-tooltip-background: var(--color-wk-panel-background);
         --color-extra-study-button-border: var(--color-button-default-border);
         --color-extra-study-button-hover: var(--color-tertiary);
         --color-extra-study-button-active: var(--color-tertiary);
@@ -147,17 +150,17 @@
         
         /* Level progress bar colors */
         --color-level-progress-bar-progress: var(--color-tertiary);
-        --color-level-progress-bar-background: var(--color-dashboard-panel-content-background);
+        --color-level-progress-bar-background: var(--color-wk-panel-content-background);
         --color-level-progress-bar-text: var(--color-text);
         --color-level-progress-bar-progress-text: var(--color-text-dark);
 
         /* Other dashboard colors */
-        --color-review-forecast-divider: var(--color-dashboard-panel-content-background);
+        --color-review-forecast-divider: var(--color-wk-panel-content-background);
         --color-review-forecast-bar: var(--color-tertiary);
         --color-review-forecast-increase-sign: var(--color-text);
         
         /* Reviews */
-        --color-quiz-input-background: var(--color-dashboard-panel-background);
+        --color-quiz-input-background: var(--color-wk-panel-background);
         --color-quiz-input-focus: var(--color-tertiary);
         --color-quiz-incorrect-background: var(--color-incorrect);
         --color-quiz-incorrect-text-color: var(--color-text);
@@ -172,12 +175,12 @@
         --color-button-default-text: var(--color-text);
         --color-button-default-hover-text: var(--color-tertiary);
         --color-button-default-active-text: var(--color-tertiary);
-        --color-modal-background: var(--color-dashboard-panel-background); /* v New WaniKani variables, used in synonyms box */
-        --color-input-background: var(--color-dashboard-panel-content-background);
+        --color-modal-background: var(--color-wk-panel-background); /* v New WaniKani variables, used in synonyms box */
+        --color-input-background: var(--color-wk-panel-content-background);
         --color-input-focus-border: var(--color-tertiary);
-        --color-button-synonym-background: var(--color-dashboard-panel-content-background);
+        --color-button-synonym-background: var(--color-wk-panel-content-background);
         --color-button-synonym-text: var(--color-text);
-        --color-button-synonym-hover-background: var(--color-dashboard-panel-content-background);
+        --color-button-synonym-hover-background: var(--color-wk-panel-content-background);
         --color-button-synonym-hover-border: var(--color-tertiary);
         --color-button-synonym-hover-text: var(--color-tertiary);
         --color-button-icon-only-hover-text: var(--color-tertiary);
@@ -185,17 +188,17 @@
         
         /* lessons */
         --color-subject-slide-navigation-button-hover: var(--color-menu);
-        --color-subject-slide-navigation-background: var(--color-dashboard-panel-content-background);
+        --color-subject-slide-navigation-background: var(--color-wk-panel-content-background);
         --color-button-quiz-text: var(--color-text-dark);
         --color-button-quiz-background: var(--color-vocabulary);
-        --color-button-modal-primary-background: var(--color-dashboard-panel-content-background);
+        --color-button-modal-primary-background: var(--color-wk-panel-content-background);
         --color-button-modal-primary-text: var(--color-text);
         --color-button-modal-secondary-border: var(--color-tertiary);
         --color-button-modal-secondary-hover-border: var(--color-tertiary);
         --color-button-modal-secondary-hover-text: var(--color-tertiary);
 
         /* About */
-        --color-about-page-image-focus-border: 5px solid var(--color-dashboard-panel-content-background);
+        --color-about-page-image-focus-border: 5px solid var(--color-wk-panel-content-background);
 
         /*---- Extra style variables ----*/
         --color-text-dark: /*[[settings-color-text-dark]]*/;
@@ -225,18 +228,18 @@
     }
 
     body {
-        background: var(--color-dashboard-panel-content-background) }
+        background: var(--color-wk-panel-content-background) }
 
     a {
         color: var(--color-link) }
     
     select {
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--color-wk-panel-content-background);
         color: var(--color-text);
     }
     
     textarea, textarea[disabled], input[name^="user["], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--color-wk-panel-content-background);
         color: var(--color-text);
     }
     .btn {
@@ -256,18 +259,18 @@
     
     /*---- Lessons ----*/
     .subject-slide {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         border: none;
         box-shadow: 2px 2px 3px #000;
     }
-    .subject-slides__navigation-link[aria-selected=true]:after { border-bottom-color: var(--color-dashboard-panel-background) }
+    .subject-slides__navigation-link[aria-selected=true]:after { border-bottom-color: var(--color-wk-panel-background) }
     .subject-slides__navigation { box-shadow: 2px 2px 3px #000 }
     
     .lesson-container .subject-character__meaning { color: var(--color-text) }
     
     .lesson-container .wk-hint, .lesson-container .wk-hint h3 {
         border-radius: 5px;
-        background-color: var(--color-dashboard-panel-content-background);;
+        background-color: var(--color-wk-panel-content-background);;
         color: var(--color-text);
     }
     #user_synonyms .wk-button {
@@ -276,11 +279,11 @@
     /*---- Settings ----*/
     .settings-section {
         box-shadow: none;
-        background-color: var(--color-dashboard-panel-background); }
+        background-color: var(--color-wk-panel-background); }
     .page-list ul {
-        background-color: var(--color-dashboard-panel-content-background) }
+        background-color: var(--color-wk-panel-content-background) }
     .page-list ul li a{
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         border: none;
         margin-left: 3px;
     }
@@ -292,23 +295,23 @@
         color: var(--color-text) }
     
     .account div div div {
-        background-color: var(--color-dashboard-panel-background) }
+        background-color: var(--color-wk-panel-background) }
     .account dl {
         color: var(--color-text) }
     .account a:hover {
-        background-color: var(--color-dashboard-panel-content-background) }
+        background-color: var(--color-wk-panel-content-background) }
 
     /*---- Profile Page ----*/
-    html#public-profile div.wall-of-shame { background-color: var(--color-dashboard-panel-content-background)}
+    html#public-profile div.wall-of-shame { background-color: var(--color-wk-panel-content-background)}
     html#public-profile div.wall-of-shame h3 span {color: var(--color-text-dark)}
     .kanji-progress, .vocabulary-progress {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         padding: 10px 25px;
     }
     .kanji-progress { border-radius: 5px 5px 0 0}
     .vocabulary-progress { border-radius: 0 0 5px 5px}
     html#public-profile div.wall-of-shame .progress {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         background-image: none;
     }
     html#public-profile div.wall-of-shame span.kanji-icon, html#public-profile div.wall-of-shame span.vocabulary-icon {
@@ -320,14 +323,14 @@
     html#public-profile div.wall-of-shame span.vocabulary-icon { background-color: var(--color-vocabulary) }
     html#public-profile .progress .bar span { color: var(--color-text-dark) }
     html#public-profile div.wall-of-shame h3 span {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         color: var(--color-text);
         box-shadow: none;
     }
     
     /*---- Item lists ----*/
     .subject-legend, .character-grid__header {
-        background-color: var(--color-dashboard-panel-background) }
+        background-color: var(--color-wk-panel-background) }
     
     .subject-legend__item-badge--all,
     .subject-legend__item-badge--radicals {
@@ -356,7 +359,7 @@
     
     /*---- Item Page ----*/
     .wk-nav__item-link, .wk-nav__item-link:visited {
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--color-wk-panel-content-background);
         color: var(--color-text-mid);
         border: none;
         text-decoration: none;
@@ -368,7 +371,7 @@
     }
     
     div.site-content-container:not(.dashboard) .container {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         padding: 25px;
         box-shadow: 3px 3px 3px #171717;
         border-radius: 0 0 5px 5px;
@@ -387,7 +390,7 @@
     .page-header__icon--radical:hover, .page-header__icon--kanji:hover, .page-header__icon--vocabulary:hover {
         box-shadow: 0 -2px 0 rgba(0,0,0,0.2) inset, 0 0 10px rgba(0,0,0,0.5); }
     
-    .progress, .progress-bar { background-color: var(--color-dashboard-panel-content-background) }
+    .progress, .progress-bar { background-color: var(--color-wk-panel-content-background) }
     .progress-bar__bar { box-shadow: 2px 0px 3px #000}
     .progress-bar__label {
         color: var(--color-text-dark);
@@ -399,11 +402,11 @@
         border-top-color: var(--color-tertiary);
         transform: translateX(-45%);
     }
-    .subject-progress__streak-value { background-color: var(--color-dashboard-panel-content-background)}
+    .subject-progress__streak-value { background-color: var(--color-wk-panel-content-background)}
 
     /*---- Terms ----*/
     .terms-of-service .short-version {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         color: var(--color-text);
     }
     h2::before {
@@ -421,7 +424,7 @@
     .character-header--vocabulary .character-header__characters { color: var(--color-vocabulary) }
 
     .character-header--vocabulary, .character-header--kanji, .character-header--radical {
-        background-color: var(--color-dashboard-panel-background) }
+        background-color: var(--color-wk-panel-background) }
 
     /* Quiz input */
     .quiz-input__question-type-container[data-question-type=meaning] {
@@ -446,7 +449,7 @@
         
     /* Section Buttons */
     .additional-content__item {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         box-shadow: 2px 2px 3px #000;
         color: var(--color-text);
         border: none;
@@ -474,16 +477,16 @@
         
     /* Info Box General */
     .subject-info[busy]:after {
-        background-color: var(--color-dashboard-panel-background) }
+        background-color: var(--color-wk-panel-background) }
     .additional-content__content {
         margin-top: 16px;
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         border-radius: 5px;
         box-shadow: 2px 2px 3px #000;
         border: none;
     }
     .additional-content__item--open:after {
-        border-color: rgba(0,0,0,0) rgba(0,0,0,0) var(--color-dashboard-panel-background) rgba(0,0,0,0);
+        border-color: rgba(0,0,0,0) rgba(0,0,0,0) var(--color-wk-panel-background) rgba(0,0,0,0);
         bottom: -20px
     }
 
@@ -525,7 +528,7 @@
     .reading-highlight:hover:after, .meaning-highlight:hover:after, .vocabulary-highlight:hover:after, .kanji-highlight:hover:after, .radical-highlight:hover:after {
         border-top-color: var(--color-menu) }
         
-    .subject-section__title { border-color: var(--color-dashboard-panel-content-background) }
+    .subject-section__title { border-color: var(--color-wk-panel-content-background) }
 
     /* Info - Components */
     .component-character span {
@@ -550,7 +553,7 @@
         
     .subject-hint, .subject-hint h3 {
         border-radius: 5px;
-        background-color: var(--color-dashboard-panel-content-background);;
+        background-color: var(--color-wk-panel-content-background);;
         color: var(--color-text);
     }
 
@@ -617,14 +620,14 @@
             margin-top: 5px;
         }
         .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(1), .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(1) {
-            border-right: 1px solid var(--color-dashboard-panel-content-background);
+            border-right: 1px solid var(--color-wk-panel-content-background);
             margin-right: 30px;
             margin-bottom: 20px;
         }
         .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(3), .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(3) {
             grid-column: 1 / span 2;
             grid-row: 2 / 2;
-            background-color: var(--color-dashboard-panel-content-background);
+            background-color: var(--color-wk-panel-content-background);
             padding: 8px;
             padding-left: 15px;
             border-radius:5px;
@@ -643,39 +646,39 @@
         color: var(--color-text) }
     .user-note__fields, .user-note__fields textarea, .user-note__button, .user-note__button:visited {
         color: var(--color-text);
-        background-color: var(--color-dashboard-panel-content-background)
+        background-color: var(--color-wk-panel-content-background)
     }
     .user-note__button:hover {
         color: var(--color-tertiary) }
         
     /* Info - Patterns of Use */
     .subject-collocations__pattern-name {
-        background-color: var(--color-dashboard-panel-content-background) }
+        background-color: var(--color-wk-panel-content-background) }
     .subject-collocations__pattern-name[aria-selected=true] {
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--color-wk-panel-content-background);
         border: 1px solid var(--color-tertiary);
         border-right: none;
     }
     .subject-collocations__patterns:after {
         box-shadow: 0 0 5px rgba(0, 0, 0, .89) }
      .subject-info .subject-collocations__pattern-name[aria-selected=true]:after, .subject-collocations__pattern-name[aria-selected=true]:after {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         box-shadow: 0 0 5px rgba(0, 0, 0, .89);
         background-image: none;
     }
         
     /* Kana Chart */
-    .kana-chart__character, .kana-chart__backspace {background-color: var(--color-dashboard-panel-content-background); color: var(--color-text)}
+    .kana-chart__character, .kana-chart__backspace {background-color: var(--color-wk-panel-content-background); color: var(--color-text)}
     .kana-chart__character:hover, .kana-chart__backspace:hover, .kana-chart__tab:not(.kana-chart__tab--selected):hover {
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--color-wk-panel-content-background);
         color: var(--color-tertiary);
     }
-    .kana-chart__tab:not(.kana-chart__tab--selected) { border-bottom-color: var(--color-dashboard-panel-content-background)}
-    .kana-chart__tab--selected { border-color: var(--color-dashboard-panel-content-background) var(--color-dashboard-panel-content-background) rgba(0,0,0,0) var(--color-dashboard-panel-content-background)}
+    .kana-chart__tab:not(.kana-chart__tab--selected) { border-bottom-color: var(--color-wk-panel-content-background)}
+    .kana-chart__tab--selected { border-color: var(--color-wk-panel-content-background) var(--color-wk-panel-content-background) rgba(0,0,0,0) var(--color-wk-panel-content-background)}
     
     /* Last 10 */
     .last-item {
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--color-wk-panel-content-background);
         box-shadow: none;
     }
     .last-item span:not(.last-item__label) {
@@ -689,7 +692,7 @@
         
     /* Footer Buttons */
     .quiz-footer a, .quiz-footer a div {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         color: var(--color-text);
     }
 
@@ -697,21 +700,21 @@
     /* Header */
     .global-header {
         background: none;
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         border-bottom: 0;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.7);
     }
     .sitemap__section-header {
         color: var(--text-color) }
     .sitemap { /* Mobile-size menu */
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
     }
     .navigation__toggle[data-expanded="true"] {
-        background-color: var(--color-dashboard-panel-background) }
+        background-color: var(--color-wk-panel-background) }
         
     .navigation-shortcut__button, .navigation-shortcut__link {
         color: var(--text-color);
-        border-color: var(--color-dashboard-panel-content-background);
+        border-color: var(--color-wk-panel-content-background);
     }
     .navigation-shortcut__button:hover, .navigation-shortcut__link:hover {
         color: var(--text-color);
@@ -770,13 +773,13 @@
         color: var(--color-text-dark) !important }
         
     .search-form form .search-query, #query {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         color: var(--color-text);
         border: 1px solid var(--color-tertiary);
     }
     .search-form button, .search__button {
         color: var(--color-text);
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         border: 1px solid transparent;
     }
         .search-form button:hover, .search__button:hover {
@@ -787,7 +790,7 @@
     
     /* Alerts */
     .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         background-image: none;
         border: 2px solid var(--color-tertiary);
     }
@@ -796,7 +799,7 @@
 
     /* Lessons / reviews buttons */
     .lessons-and-reviews__lessons-button, .lessons-and-reviews__reviews-button {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         transition: 0.2s;
     }
         .lessons-and-reviews__button:hover {
@@ -813,15 +816,20 @@
         .lessons-and-reviews__button span.fcr_burn {
             background-color: var(--color-burned) }
 
+    /* Panels */
+    .wk-panel {
+        border-radius: 7px;
+    }
+
     /* Review forecasts */
     @media (min-width: 768px) {
-        .dashboard .progress-and-forecast .dashboard-panel--review-forecast .dashboard-panel__content {
+        .dashboard .progress-and-forecast .wk-panel--review-forecast .wk-panel__content {
             overflow-y: auto;
         }
     }
     #review-forecast::after {
         background-image: none;
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
     }
     /* Entrance fade in animation */
     @keyframes fadeIn {  
@@ -837,11 +845,11 @@
     }
 
     /* Moving divs */
-    .dashboard .progress-and-forecast .dashboard-panel--recent-mistakes { grid-row: /*[[grid-location-rm]]*/; display: /*[[grid-location-rm]]*/;}
-    .dashboard .progress-and-forecast .dashboard-panel--extra-study { grid-row: /*[[grid-location-es]]*/; display: /*[[grid-location-es]]*/;}
-    .dashboard .progress-and-forecast .dashboard-panel--level-progress { grid-row: /*[[grid-location-lp]]*/; display: /*[[grid-location-lp]]*/;}
+    .dashboard .progress-and-forecast .wk-panel--recent-mistakes { grid-row: /*[[grid-location-rm]]*/; display: /*[[grid-location-rm]]*/;}
+    .dashboard .progress-and-forecast .wk-panel--extra-study { grid-row: /*[[grid-location-es]]*/; display: /*[[grid-location-es]]*/;}
+    .dashboard .progress-and-forecast .wk-panel--level-progress { grid-row: /*[[grid-location-lp]]*/; display: /*[[grid-location-lp]]*/;}
     @media (min-width: 768px) {
-        .dashboard .progress-and-forecast .dashboard-panel--level-progress, .dashboard .progress-and-forecast .dashboard-panel--recent-mistakes, .dashboard .progress-and-forecast .dashboard-panel--review-forecast {
+        .dashboard .progress-and-forecast .wk-panel--level-progress, .dashboard .progress-and-forecast .wk-panel--recent-mistakes, .dashboard .progress-and-forecast .wk-panel--review-forecast {
             margin: 0;
         }
         .dashboard .progress-and-forecast { margin-bottom: 30px; }
@@ -868,7 +876,7 @@
     /* Item levels */
     section.srs-progress ul li {
         background-image: none !important;
-        background-color: var(--color-dashboard-panel-background) !important;
+        background-color: var(--color-wk-panel-background) !important;
     }
         section.srs-progress ul li:first-child span { color: var(--color-apprentice); }
         section.srs-progress ul li:nth-child(2) span { color: var(--color-guru); }
@@ -931,7 +939,7 @@
         
     /* Footers */
     .community-banner {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         border: none;
     }
 
@@ -942,19 +950,19 @@
     }
 
     [class|=account-subscription] h3, [class|=account-billing] h3, .kotoba-table-list, .kotoba-table-list h3, .kotoba-table-list div, .kotoba-table-list tr.none-available {
-        background-color: var(--color-dashboard-panel-background) !important;
+        background-color: var(--color-wk-panel-background) !important;
         color: var(--color-text);
     }
 
-    .dashboard div.dashboard-panel--review-forecast, .kotoba-table-list div, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
+    .dashboard div.wk-panel--review-forecast, .kotoba-table-list div, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
         box-shadow: none !important;
     }
 
     /*-------- Readers page --------*/
     .readers-list {
-        background: var(--color-dashboard-panel-background) }
+        background: var(--color-wk-panel-background) }
     .readers-list li {
-        background-color: var(--color-dashboard-panel-content-background) }
+        background-color: var(--color-wk-panel-content-background) }
     .readers-list__item {
         box-shadow: none }
     .reader-summary__title, .reader-summary__title:visited {
@@ -971,9 +979,9 @@
     .info-popover__message a, .info-popover__message a:visited {
         color: var(--color-tertiary) }
     .reader {
-        background-color: var(--color-dashboard-panel-content-background) }
+        background-color: var(--color-wk-panel-content-background) }
     .reader__story {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         padding: 30px;
         border-radius: 7px;
         max-width: 80ch;
@@ -982,17 +990,17 @@
         color: var(--color-text) }
     .reader__nav-action--close .reader__nav-action-link {
         color: var(--color-text);
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--color-wk-panel-content-background);
     }
     .reader__nav-action--close .reader__nav-action-link:hover {
         color: var(--color-tertiary);
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--color-wk-panel-content-background);
     }
     .supporting-text__content, .supporting-text__toggle[aria-expanded=true] {
         background-color: var(--color-menu); }
     .supporting-text__toggle:hover {
         color: var(--color-tertiary);
-        background: var(--color-dashboard-panel-content-background);
+        background: var(--color-wk-panel-content-background);
     }
     .supporting-text__toggle[aria-expanded=true]:hover {
         color: var(--color-tertiary);
@@ -1010,7 +1018,7 @@
     /* -------------- Scripts -------------- */
     /* ---- Item Info Injector ---- */
     .item-info-injector-accordion > button, .item-info-injector > h2:not(.subject-section__meanings-title) {
-        border-bottom: 1px solid var(--color-dashboard-panel-content-background) }
+        border-bottom: 1px solid var(--color-wk-panel-content-background) }
     .item-info-injector-accordion > button {
         color: var(--color-text) }
     
@@ -1045,14 +1053,14 @@
     
     /* Extra study */
     #wkof_ds #ss_quiz .answer input {
-        background-color: var(--color-dashboard-panel-content-background);
+        background-color: var(--color-wk-panel-content-background);
         border: none;
     }
     #wkof_ds #ss_quiz .answer input:focus {
         box-shadow: 0 0 2px 2px var(--color-tertiary);
     }
     #wkof_ds #ss_quiz .answer {
-        background-color: var(--color-dashboard-panel-background) }
+        background-color: var(--color-wk-panel-background) }
     #ss_quiz[data-atype="meaning"] .atype {
         background-color: var(--color-meaning);
         background-image: none;
@@ -1077,7 +1085,7 @@
     }
     
     /* Audio Quiz */
-    label.switch::before { background-color: var(--color-dashboard-panel-content-background)}
+    label.switch::before { background-color: var(--color-wk-panel-content-background)}
     
     /* Forecast details: TODO */
     .review-forecast__bar.fcr_radical { background: var(--color-radical)}
@@ -1111,7 +1119,7 @@
     
     /* Ultimate Timeline */
     #timeline, #timeline .review_info .inner {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         margin-bottom: 30px;
         border-radius: 5px;
         padding: 0.5rem;
@@ -1155,7 +1163,7 @@
         background-color: var(--color-enlightened);
         fill: var(--color-enlightened) }
     #timeline .bar_style select, #timeline > .link, #timeline .review_info .summary .tot, #timeline .detail_buttons button, #timeline .review_info button.item_type {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         color: var(--color-text) !important;
     }
     #timeline .review_info .inner {
@@ -1181,7 +1189,7 @@
     
     /* Level Progress Dashboard Detail */
     .level-progress-dashboard {
-        background-color: var(--color-dashboard-panel-background);
+        background-color: var(--color-wk-panel-background);
         border-radius: 8px;
     }
     .level-progress-dashboard .vocab-progress {
@@ -1207,7 +1215,7 @@
         border-right-color: var(--color-menu) }
 
     .level-progress-dashboard__items .level-progress-dashboard__item.pct90 {
-        background-color: var(--color-dashboard-panel-background) }
+        background-color: var(--color-wk-panel-background) }
     
     [data-type="kanji"] .dpp-progress .subject-character:not(.subject-character--locked) .subject-character__characters {
         background-color: var(--color-kanji) !important;
