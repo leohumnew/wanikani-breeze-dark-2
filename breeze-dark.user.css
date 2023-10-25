@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.6.5
+@version      0.6.6
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -197,8 +197,13 @@
         --color-button-modal-secondary-hover-border: var(--color-tertiary);
         --color-button-modal-secondary-hover-text: var(--color-tertiary);
 
-        /* About */
+        /* About and other settings pages */
         --color-about-page-image-focus-border: 5px solid var(--color-wk-panel-content-background);
+        --color-billing-plan-background: var(--color-wk-panel-content-background);
+        --color-subscription-plan-background: var(--color-wk-panel-content-background);
+        --color-billing-plan-border: var(--color-wk-panel-content-background);
+        --color-subscription-plan-border: var(--color-wk-panel-content-background);
+        --color-billing-receipt-background-hover: var(--color-wk-panel-content-background);
 
         /*---- Extra style variables ----*/
         --color-text-dark: /*[[settings-color-text-dark]]*/;
@@ -1093,29 +1098,13 @@
     .review-forecast__bar.fcr_vocab { background: var(--color-vocabulary)}
     
     /* CIDWWA */
-    .cidwwa-modal {
-        background-color: var(--color-menu) !important;
-        border: none !important;
-        box-shadow: 3px 3px 4px #111;
-    }
-    .cidwwa-modal button {
-        background-color: var(--color-menu);
-        background-image: none;
-        color: var(--color-text);
-        border-color: var(--color-tertiary);
-    }
-    .cidwwa-modal button:hover {
-        background-color: var(--color-menu);
-        color: var(--color-tertiary);
-    }
     .wk-custom-button {
         --focus-color: var(--color-tertiary) !important;
         --hover-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%) !important;
     }
-    .wk-custom-button + .sitemap__expandable-chunk, .wk-custom-button + .sitemap__expandable-chunk:before {
-        --dropdown-background: var(--color-menu) !important;
+    .wk-custom-button:hover, .wk-custom-button:focus {
+        color: var(--color-text) !important;
     }
-    .es-mover-settings { color: var(--color-text) !important}
     
     /* Ultimate Timeline */
     #timeline, #timeline .review_info .inner {
