@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.6.6
+@version      0.6.7
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -204,6 +204,14 @@
         --color-billing-plan-border: var(--color-wk-panel-content-background);
         --color-subscription-plan-border: var(--color-wk-panel-content-background);
         --color-billing-receipt-background-hover: var(--color-wk-panel-content-background);
+        --color-alert-background: var(--color-wk-panel-content-background);
+        --color-button-subscribe-background: var(--color-dashboard-panel-content-background);
+        --color-button-subscribe-hover-background: var(--color-dashboard-panel-content-background);
+        --color-button-subscribe-active-background: var(--color-dashboard-panel-content-background);
+        --color-button-subscribe-hover-text: var(--color-tertiary);
+        --color-button-subscribe-border: var(--color-tertiary);
+        --color-button-subscribe-hover-border: var(--color-tertiary);
+        --color-button-subscribe-active-border: var(--color-tertiary);
 
         /*---- Extra style variables ----*/
         --color-text-dark: /*[[settings-color-text-dark]]*/;
@@ -394,6 +402,8 @@
     .page-header__icon--vocabulary { background-color: var(--color-vocabulary) }
     .page-header__icon--radical:hover, .page-header__icon--kanji:hover, .page-header__icon--vocabulary:hover {
         box-shadow: 0 -2px 0 rgba(0,0,0,0.2) inset, 0 0 10px rgba(0,0,0,0.5); }
+    wk-character-image {
+        --color-text: var(--color-text-dark) }
     
     .progress, .progress-bar { background-color: var(--color-wk-panel-content-background) }
     .progress-bar__bar { box-shadow: 2px 0px 3px #000}
@@ -408,6 +418,7 @@
         transform: translateX(-45%);
     }
     .subject-progress__streak-value { background-color: var(--color-wk-panel-content-background)}
+    .subject-progress__button { background: transparent; color: var(--color-text);}
 
     /*---- Terms ----*/
     .terms-of-service .short-version {
@@ -562,8 +573,8 @@
         color: var(--color-text);
     }
 
-    .character-item { color: var(--color-text-dark) }
-    .character-item--radical:not(.character-item--burned) .radical-image {
+    .character-item, ul.single-character-grid li.character-item, ul.multi-character-grid li.character-item { color: var(--color-text-dark) }
+    .character-item--radical:not(.character-item--burned) .radical-image, ul.multi-character-grid li.character-item .radical-image {
         --color-text: var(--color-text-dark) }
     .character-item:hover .radical-image {
         filter: none }
@@ -866,7 +877,7 @@
         border-radius: 5px !important;
         box-shadow: none !important;
     }
-    .subject-character__character-image, .radical-image, .kotoba-table-list .radical-image {
+    .subject-character__character-image, .kotoba-table-list .radical-image {
         filter: invert(90%) !important }
     .component-character--burned .radical-image {
         filter: invert(0%) !important }
