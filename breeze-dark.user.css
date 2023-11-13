@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.6.7
+@version      0.6.8
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -112,15 +112,21 @@
         --color-text-mid: #9e9e9e;
         --color-correct: /*[[settings-color-correct]]*/;
         --color-incorrect: /*[[settings-color-incorrect]]*/;
+        --color-text-dark: /*[[settings-color-text-dark]]*/;
+        --color-menu: /*[[settings-color-menu]]*/;
+        --color-meaning: /*[[settings-color-meaning]]*/;
+        --color-reading: /*[[settings-color-reading]]*/;
         
         /*---- WaniKani style variables ----*/
         /* General colors */
         --color-text: /*[[settings-color-text]]*/;
+        --color-character-text: var(--color-text-dark);
         --color-link: #e6e6e6;
         --color-link-active: var(--color-tertiary);
 
         --color-wk-panel-background: /*[[settings-color-background1]]*/;
         --color-wk-panel-content-background: /*[[settings-color-background2]]*/;
+        --color-character-grid-header-background: var(--color-wk-panel-background);
         /* Compatibility */
         --color-dashboard-panel-background: var(--color-wk-panel-background);
         --color-dashboard-panel-content-background: var(--color-wk-panel-content-background);
@@ -214,10 +220,6 @@
         --color-button-subscribe-active-border: var(--color-tertiary);
 
         /*---- Extra style variables ----*/
-        --color-text-dark: /*[[settings-color-text-dark]]*/;
-        --color-menu: /*[[settings-color-menu]]*/;
-        --color-meaning: /*[[settings-color-meaning]]*/;
-        --color-reading: /*[[settings-color-reading]]*/;
         /*[[settings-swap-srs-colors]]*/
     }
 
@@ -342,9 +344,8 @@
     }
     
     /*---- Item lists ----*/
-    .subject-legend, .character-grid__header {
+    .subject-legend {
         background-color: var(--color-wk-panel-background) }
-    
     .subject-legend__item-badge--all,
     .subject-legend__item-badge--radicals {
         background-color: var(--color-radical);
@@ -402,8 +403,8 @@
     .page-header__icon--vocabulary { background-color: var(--color-vocabulary) }
     .page-header__icon--radical:hover, .page-header__icon--kanji:hover, .page-header__icon--vocabulary:hover {
         box-shadow: 0 -2px 0 rgba(0,0,0,0.2) inset, 0 0 10px rgba(0,0,0,0.5); }
-    wk-character-image {
-        --color-text: var(--color-text-dark) }
+    a:not(.component-character--burned) > .component-character__characters > wk-character-image {
+        --color-text: var(--color-text-dark) !important }
     
     .progress, .progress-bar { background-color: var(--color-wk-panel-content-background) }
     .progress-bar__bar { box-shadow: 2px 0px 3px #000}
@@ -873,14 +874,16 @@
 
     /* Level progress */
     span.subject-character__characters {
-        color: var(--color-text-dark);
         border-radius: 5px !important;
         box-shadow: none !important;
     }
-    .subject-character__character-image, .kotoba-table-list .radical-image {
+    .subject-character--burned .subject-character__characters, .subject-character--burned .subject-character__meaning, .subject-character--burned .subject-character__reading {
+        color: inherit !important;
+    }
+    .subject-character--grid:after {
+        border: 0 !important }
+    .subject-character--burned wk-character-image, .component-character--burned wk-character-image {
         filter: invert(90%) !important }
-    .component-character--burned .radical-image {
-        filter: invert(0%) !important }
     .level-progress-dashboard__content-title h3 {
         border-color: var(--color-text);
     }
