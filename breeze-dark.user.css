@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.6.8
+@version      0.6.9
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -237,6 +237,16 @@
         filter: saturate(0%) invert(14%) sepia(20%) saturate(290%) hue-rotate(173deg) brightness(86%) contrast(102%);
     }
 
+    /* Character colors */
+    wk-character-image, .subject-character__characters {
+        --color-text: var(--color-character-text);
+        color: var(--color-character-text);
+    }
+    .subject-character--burned .subject-character__characters, .subject-character--burned .subject-character__meaning, .subject-character--burned .subject-character__reading, .subject-character--burned wk-character-image {
+        --color-text: /*[[settings-color-text]]*/ !important;
+        color: var(--color-text);
+    }
+
     /*-------------- Other CSS --------------*/
     * {
         text-shadow: none !important;
@@ -366,7 +376,7 @@
         background-color: var(--color-burned);
         box-shadow: none;
     }
-    .subject-legend__item-badge--recently-unlocked {
+    .subject-legend__item-badge--recently-unlocked, .subject-character__badge {
         box-shadow: none }
     .subject-legend__item-badge--locked {
         filter: brightness(80%) }
@@ -396,16 +406,14 @@
     .page-header__icon {
         box-shadow: none;
         background-image: none;
-        color: var(--color-text-dark);
+        color: var(--color-character-text);
     }
     .page-header__icon--radical { background-color: var(--color-radical) }
     .page-header__icon--kanji { background-color: var(--color-kanji) }
     .page-header__icon--vocabulary { background-color: var(--color-vocabulary) }
     .page-header__icon--radical:hover, .page-header__icon--kanji:hover, .page-header__icon--vocabulary:hover {
         box-shadow: 0 -2px 0 rgba(0,0,0,0.2) inset, 0 0 10px rgba(0,0,0,0.5); }
-    a:not(.component-character--burned) > .component-character__characters > wk-character-image {
-        --color-text: var(--color-text-dark) !important }
-    
+
     .progress, .progress-bar { background-color: var(--color-wk-panel-content-background) }
     .progress-bar__bar { box-shadow: 2px 0px 3px #000}
     .progress-bar__label {
@@ -577,8 +585,6 @@
     .character-item, ul.single-character-grid li.character-item, ul.multi-character-grid li.character-item { color: var(--color-text-dark) }
     .character-item--radical:not(.character-item--burned) .radical-image, ul.multi-character-grid li.character-item .radical-image {
         --color-text: var(--color-text-dark) }
-    .character-item:hover .radical-image {
-        filter: none }
     .character-item--radical {
         background-color: var(--color-radical);
         background-image: linear-gradient(to bottom, var(--color-radical), var(--color-radical-dark));
@@ -627,31 +633,34 @@
         border-radius: 5px;
     }
 
+    .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:last-child, .quiz .subject-section--reading .subject-section__content .subject-section__subsection:last-child {
+        background-color: var(--color-wk-panel-content-background);
+        padding: 8px;
+        padding-left: 15px;
+        border-radius:5px;
+        box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, 0.7);
+        margin-bottom: 0;
+    }
+
     @media (min-width: 1400px) { /* Better review info layout on larger screens */
         .quiz .subject-section--meaning .subject-section__content:not([hidden]), .quiz .subject-section--reading .subject-section__content:not([hidden]) {
             display: grid;
             grid-template-columns: 0.5fr 1fr;
             grid-template-rows: auto;
         }
-        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(2), .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(2) {
-            margin-top: 5px;
-        }
         .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(1), .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(1) {
             border-right: 1px solid var(--color-wk-panel-content-background);
             margin-right: 30px;
             margin-bottom: 20px;
         }
-        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(3), .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(3) {
-            grid-column: 1 / span 2;
-            grid-row: 2 / 2;
-            background-color: var(--color-wk-panel-content-background);
-            padding: 8px;
-            padding-left: 15px;
-            border-radius:5px;
-            box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, 0.7);
-            margin-bottom: 0;
+        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(2), .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(2) {
+            margin-top: 5px;
         }
-        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(3) h3, .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(3) h3 {
+        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:last-child, .quiz .subject-section--reading .subject-section__content .subject-section__subsection:last-child {
+            grid-column: 1 / span 2;
+            grid-row: 2;
+        }
+        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:last-child h3, .quiz .subject-section--reading .subject-section__content .subject-section__subsection:last-child h3 {
             font-variant-caps: all-small-caps;
             font-weight: bold;
         }
@@ -877,13 +886,13 @@
         border-radius: 5px !important;
         box-shadow: none !important;
     }
-    .subject-character--burned .subject-character__characters, .subject-character--burned .subject-character__meaning, .subject-character--burned .subject-character__reading {
-        color: inherit !important;
+    .character-item:hover .radical-image, .subject-character--grid:hover .subject-character__character-image {
+        filter: none;
     }
     .subject-character--grid:after {
-        border: 0 !important }
-    .subject-character--burned wk-character-image, .component-character--burned wk-character-image {
-        filter: invert(90%) !important }
+        border: 1px solid;
+        border-color: #0000 #0000 #3336 #3336;
+    }
     .level-progress-dashboard__content-title h3 {
         border-color: var(--color-text);
     }
@@ -1040,6 +1049,16 @@
         border-bottom: 1px solid var(--color-wk-panel-content-background) }
     .item-info-injector-accordion > button {
         color: var(--color-text) }
+    .item-info-injector-accordion > div {
+        padding-left: 0px;
+    }
+    @media (min-width: 1400px) {
+        .quiz .subject-section--meaning .subject-section__content .item-info-injector,
+        .quiz .subject-section--reading .subject-section__content .item-info-injector {
+            grid-column: 1 / span 2;
+            grid-row: 3;
+        }
+    }
     
     /* Scripts Menu */
     #scripts-menu ul.dropdown-menu {
@@ -1252,4 +1271,16 @@
         fill: var(--color-tertiary) }
     .stroke_order_diagram--guide_line, .stroke_order_diagram--bounding_box {
         stroke: var(--color-text-dark) }
+
+    /* Keisei Phonetic-Semantic Composition */
+    .wk_keisei .recently-unlocked-badge::before {
+        box-shadow: none;
+    }
+    .wk_keisei .keisei_phonetic_grid {
+        border-bottom: none}
+
+    /* Niai Similar Kanji */
+    #niai_section .delete-badge::before {
+        box-shadow: none;
+    }
 }
