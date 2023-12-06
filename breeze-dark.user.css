@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.7.0
+@version      0.7.1
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -202,6 +202,17 @@
         --color-button-modal-secondary-border: var(--color-tertiary);
         --color-button-modal-secondary-hover-border: var(--color-tertiary);
         --color-button-modal-secondary-hover-text: var(--color-tertiary);
+
+        --color-lesson-picker-footer-background: var(--color-wk-panel-content-background);
+        --color-button-lesson-picker-background: var(--color-wk-panel-background);
+        --color-button-lesson-picker-border: transparent;
+        --color-button-lesson-picker-box-shadow: inset 0 -3px 1px rgba(0,0,0,0.2), inset 0 3px 1px rgba(0,0,0,0);
+        --color-button-lesson-picker-hover-background: color-mix(in srgb, var(--color-tertiary) 15%, var(--color-wk-panel-background) 85%);
+        --color-button-lesson-picker-hover-border: transparent;
+        --color-button-lesson-picker-active-background: color-mix(in srgb, var(--color-tertiary) 30%, var(--color-wk-panel-background) 70%);
+        --color-button-lesson-picker-active-border: transparent;
+        --color-button-lesson-picker-disabled-hover-background: var(--color-button-lesson-picker-disabled-background);
+        --color-button-lesson-picker-disabled-box-shadow: var(--color-button-lesson-picker-box-shadow);
 
         /* About and other settings pages */
         --color-about-page-image-focus-border: 5px solid var(--color-wk-panel-content-background);
