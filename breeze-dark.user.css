@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.7.1
+@version      0.7.4
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -274,7 +274,7 @@
         color: var(--color-text);
     }
     
-    textarea, textarea[disabled], input[name^="user["], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    textarea, textarea[disabled], input[name^="user["], input[type="text"]:not(.quiz-input__input), input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
         background-color: var(--color-wk-panel-content-background);
         color: var(--color-text);
     }
@@ -1056,6 +1056,18 @@
     }
     .reader__nav-action .reader-completion__link:hover {
         color: var(--color-tertiary); }
+    
+    /*-------- Sale page --------*/
+    .message-from-the-crabigator, .question-section, .testimonial-section__description, h1.global-title--dark {
+        color: var(--color-text) }
+    .global-header__illo.global-header__illo--mask {
+        filter: invert(84%) sepia(10%) saturate(616%) hue-rotate(169deg) brightness(104%) contrast(87%) }
+    .testimonial {
+        background-color: var(--color-wk-panel-background);
+        color: var(--color-text);
+    }
+    .testimonial-section__title, .question-section__title {
+        border-bottom-color: var(--color-text-mid) }
     
     /* -------------- Settings -------------- */
     /*[[settings-dashboard-colors]]*/
