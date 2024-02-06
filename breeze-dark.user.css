@@ -2,13 +2,20 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.7.4
+@version      0.7.7
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
 @var          select   grid-location-rm             "Location of recent mistakes" {'Top*':'2 / 3', 'Middle':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
 @var          select   grid-location-es             "Location of extra study" {'Top':'2 / 3', 'Middle*':'3 / 4', 'Bottom':'4 / 5', 'Hide': 'none'}
 @var          select   grid-location-lp             "Location of level progress" {'Top':'2 / 3', 'Middle':'3 / 4', 'Bottom*':'4 / 5', 'Hide': 'none'}
+@advanced     dropdown settings-minimize-le-re      "Lessons/Reviews Button Size" {
+    lr-def "Default" <<<EOT
+    EOT;
+    lr-min "Reduced" <<<EOT
+        .reviews-dashboard__text, .todays-lessons__text, .todays-lessons__subtitle { display: none }
+    EOT;
+}
 @advanced     dropdown settings-minimize-rm    "Recent Mistakes Size" {
     rm-def "Default" <<<EOT
     EOT;
@@ -44,12 +51,14 @@
     bg-dark "Default" <<<EOT
     EOT;
     bg-colored "Colourful" <<<EOT
-        .lessons-and-reviews__lessons-button { background-color: color-mix(in srgb, var(--color-kanji) 60%, #000 40%); }
-        .lessons-and-reviews__lessons-button:hover { background-color: color-mix(in srgb, var(--color-kanji) 70%, #000 30%); }
-        .lessons-and-reviews__reviews-button { background-color: color-mix(in srgb, var(--color-radical) 60%, #000 40%); }
-        .lessons-and-reviews__reviews-button:hover { background-color: color-mix(in srgb, var(--color-radical) 70%, #000 30%); }
-        .lessons-and-reviews__reviews-button--0, .lessons-and-reviews__lessons-button--0 { background-color: var(--color-wk-panel-background); }
-        .lessons-and-reviews__reviews-button--0:hover, .lessons-and-reviews__lessons-button--0:hover { background-color: var(--color-wk-panel-background); }
+        :root {
+            --color-todays-lessons-background: color-mix(in srgb, var(--color-kanji) 60%, #000 40%);
+            --color-reviews-dashboard-background: color-mix(in srgb, var(--color-radical) 60%, #000 40%);
+        }
+        .todays-lessons__button--start, .reviews-dashboard__button--start {
+            --color-button-modal-primary-background: transparent;
+            --color-button-modal-primary-hover-background: transparent;
+        }
         section.srs-progress ul li, section.srs-progress ul li span { color: var(--color-text-dark) !important; }
         section.srs-progress ul li:first-child { background-color: var(--color-apprentice) !important; }
         section.srs-progress ul li:nth-child(2) { background-color: var(--color-guru) !important; }
@@ -164,6 +173,29 @@
         --color-review-forecast-divider: var(--color-wk-panel-content-background);
         --color-review-forecast-bar: var(--color-tertiary);
         --color-review-forecast-increase-sign: var(--color-text);
+        --color-lesson-and-review-count-text: var(--color-character-text);
+        --color-lesson-and-review-count-background: var(--color-tertiary);
+        --color-reviews-dashboard-background: var(--color-wk-panel-background);
+        --color-todays-lessons-background: var(--color-wk-panel-background);
+        --color-todays-lessons-completed-background: var(--color-wk-panel-background);
+        --color-todays-lessons-loading-background: var(--color-wk-panel-background);
+        --color-placeholder-background-stop-1: var(--color-wk-panel-content-background);
+        --color-placeholder-background-stop-2: var(--color-wk-panel-content-background);
+
+        --color-lesson-and-review-border: var(--color-tertiary);
+        --color-lesson-and-review-border-hover: var(--color-tertiary);
+
+        --color-button-modal-primary-background: var(--color-wk-panel-background);
+        --color-button-modal-primary-text: var(--color-text);
+        --color-button-modal-primary-hover-background: var(--color-wk-panel-background);
+        --color-button-modal-primary-hover-border: var(--color-tertiary);
+        --color-button-modal-primary-active-background: var(--color-wk-panel-background);
+        --color-button-modal-primary-active-border: var(--color-tertiary);
+        --color-button-modal-secondary-border: var(--color-button-default-border);
+        --color-button-modal-secondary-active-background: transparent;
+        --color-button-modal-secondary-active-border: var(--color-tertiary);
+        --color-button-modal-secondary-hover-border: var(--color-tertiary);
+        --color-button-modal-secondary-hover-text: var(--color-tertiary);
         
         /* Reviews */
         --color-quiz-input-background: var(--color-wk-panel-background);
@@ -197,11 +229,6 @@
         --color-subject-slide-navigation-background: var(--color-wk-panel-content-background);
         --color-button-quiz-text: var(--color-text-dark);
         --color-button-quiz-background: var(--color-vocabulary);
-        --color-button-modal-primary-background: var(--color-wk-panel-content-background);
-        --color-button-modal-primary-text: var(--color-text);
-        --color-button-modal-secondary-border: var(--color-tertiary);
-        --color-button-modal-secondary-hover-border: var(--color-tertiary);
-        --color-button-modal-secondary-hover-text: var(--color-tertiary);
 
         --color-lesson-picker-footer-background: var(--color-wk-panel-content-background);
         --color-button-lesson-picker-background: var(--color-wk-panel-background);
@@ -221,7 +248,9 @@
         --color-billing-plan-border: var(--color-wk-panel-content-background);
         --color-subscription-plan-border: var(--color-wk-panel-content-background);
         --color-billing-receipt-background-hover: var(--color-wk-panel-content-background);
-        --color-alert-background: var(--color-wk-panel-content-background);
+        --color-alert-cta-background: var(--color-wk-panel-content-background);
+        --color-alert-error-background: var(--color-wk-panel-content-background);
+        --color-alert-info-background: var(--color-wk-panel-content-background);
         --color-button-subscribe-background: var(--color-dashboard-panel-content-background);
         --color-button-subscribe-hover-background: var(--color-dashboard-panel-content-background);
         --color-button-subscribe-active-background: var(--color-dashboard-panel-content-background);
@@ -267,7 +296,12 @@
         background: var(--color-wk-panel-content-background) }
 
     a {
-        color: var(--color-link) }
+        color: var(--color-link);
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
     
     select {
         background-color: var(--color-wk-panel-content-background);
@@ -777,6 +811,8 @@
     .navigation-shortcut a.fcr_burn {
         background-color: transparent;
     }
+    .lesson-and-review-count__label, .lesson-and-review-count__count {
+        border-width: 1px }
         
     @media only screen and (min-width: 1024px) { /* Navigation menu buttons hover colours */
         .sitemap__section-header:hover {
@@ -844,23 +880,13 @@
         color: var(--color-tertiary) }
 
     /* Lessons / reviews buttons */
-    .lessons-and-reviews__lessons-button, .lessons-and-reviews__reviews-button {
-        background-color: var(--color-wk-panel-background);
-        transition: 0.2s;
+    .todays-lessons__button--start, .reviews-dashboard__button--start {
+        --color-button-modal-primary-text: var(--color-text);
+        --color-button-modal-primary-hover-text: var(--color-tertiary);
+        --color-button-modal-primary-active-text: var(--color-tertiary);
     }
-        .lessons-and-reviews__button:hover {
-            background-color: color-mix(in srgb, var(--color-tertiary) 15%, #2f2f2f 85%);
-        }
-        .lessons-and-reviews__button:focus {
-            color: var(--color-text);
-            text-decoration: none;
-        }
-        .lessons-and-reviews__button span {
-            background-color: transparent;
-            color: var(--color-text);
-        }
-        .lessons-and-reviews__button span.fcr_burn {
-            background-color: var(--color-burned) }
+    .reviews-dashboard__buttons {
+        margin-top: auto }
 
     /* Panels */
     .wk-panel {
@@ -898,7 +924,10 @@
         .dashboard .progress-and-forecast .wk-panel--level-progress, .dashboard .progress-and-forecast .wk-panel--recent-mistakes, .dashboard .progress-and-forecast .wk-panel--review-forecast {
             margin: 0;
         }
-        .dashboard .progress-and-forecast { margin-bottom: 30px; }
+        .dashboard .progress-and-forecast {
+            margin-bottom: 30px;
+            gap: 20px;
+        }
     }
 
     /* Level progress */
@@ -1072,6 +1101,7 @@
     /* -------------- Settings -------------- */
     /*[[settings-dashboard-colors]]*/
     /*[[settings-swap-quiz-colors]]*/
+    /*[[settings-minimize-le-re]]*/
     /*[[settings-minimize-rm]]*/
     /*[[settings-minimize-es]]*/
         
