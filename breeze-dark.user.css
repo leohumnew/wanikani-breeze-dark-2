@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.7.8
+@version      0.8.0
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -55,10 +55,10 @@
             --color-todays-lessons-background: color-mix(in srgb, var(--color-kanji) 60%, #666 40%);
             --color-reviews-dashboard-background: color-mix(in srgb, var(--color-radical) 60%, #666 40%);
             --color-todays-lessons-text: var(--color-text-dark);
-            --color-count_bubble-background: var(--color-text-dark);
             --color-todays-lessons-completed-background: var(--color-locked-lowlight);
         }
         .lessons-and-reviews, .todays-lessons__button--start, .reviews-dashboard__button--start {
+            --color-count_bubble-background: var(--color-text-dark);
             --color-button-modal-primary-border: var(--color-text-dark);
             --color-button-modal-primary-text: var(--color-text-dark);
             --color-button-modal-secondary-border: var(--color-text-dark);
@@ -75,6 +75,8 @@
         .todays-lessons__button--start, .reviews-dashboard__button--start {
             --color-button-modal-primary-background: transparent;
             --color-button-modal-primary-hover-background: transparent;
+            --color-button-modal-primary-active-background: transparent;
+            --color-button-modal-primary-active-text: var(--color-tertiary);
         }
         section.srs-progress ul li, section.srs-progress ul li span { color: var(--color-text-dark) !important; }
         section.srs-progress ul li:first-child { background-color: var(--color-apprentice) !important; }
@@ -105,6 +107,28 @@
         --color-quiz-srs-correct-text-color: var(--color-correct);
         --color-quiz-srs-incorrect-background: var(--color-wk-panel-background);
         --color-quiz-srs-incorrect-text-color: var(--color-incorrect);
+    EOT;
+}
+@advanced     dropdown settings-font-weight      "Font Weight" {
+    fw-def "Default" <<<EOT
+    EOT;
+    fw-min "Thinner" <<<EOT
+        :root { --font-weight-regular: 350 }
+    EOT;
+    fw-extra-min "Thinnest" <<<EOT
+        :root { --font-weight-regular: 300 }
+    EOT;
+    fw-extra-extra-min "Thin thinnest" <<<EOT
+        :root { --font-weight-regular: 200 }
+    EOT;
+    fw-max "Thicker" <<<EOT
+        :root { --font-weight-regular: 420 }
+    EOT;
+    fw-extra-max "Thickest" <<<EOT
+        :root { --font-weight-regular: 500 }
+    EOT;
+    fw-extra-extra-max "Thick thickest" <<<EOT
+        :root { --font-weight-regular: 600 }
     EOT;
 }
 @var          color    settings-color-text          "Text Color"         #e3e3e3
@@ -1126,6 +1150,7 @@
     /*[[settings-minimize-le-re]]*/
     /*[[settings-minimize-rm]]*/
     /*[[settings-minimize-es]]*/
+    /*[[settings-font-weight]]*/
         
     /* -------------- Scripts -------------- */
     /* ---- Item Info Injector ---- */
