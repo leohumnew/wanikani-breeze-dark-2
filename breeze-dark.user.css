@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.8.1
+@version      0.8.2
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -546,13 +546,13 @@
         color: var(--color-text) }
     .character-header--radical, .character-header--kanji, .character-header--vocabulary {
         background-image: none }
-    .character-header--radical .character-header__characters { color: var(--color-radical) }
+    .character-header--radical .character-header__characters { color: var(--color-radical) !important }
     .character-header--radical .character-header__character-image { --color-text: var(--color-radical) }
-    .character-header--kanji .character-header__characters { color: var(--color-kanji) }
-    .character-header--vocabulary .character-header__characters { color: var(--color-vocabulary) }
+    .character-header--kanji .character-header__characters { color: var(--color-kanji) !important }
+    .character-header--vocabulary .character-header__characters { color: var(--color-vocabulary) !important }
 
     .character-header--vocabulary, .character-header--kanji, .character-header--radical {
-        background-color: var(--color-wk-panel-background) }
+        background-color: var(--color-wk-panel-background) !important; }
 
     /* Quiz input */
     .quiz-input__question-type-container[data-question-type=meaning] {
