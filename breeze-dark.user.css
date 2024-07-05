@@ -2003,4 +2003,14 @@
     #niai_section .delete-badge::before {
         box-shadow: none;
     }
+
+    /* Account for script elements inserted after srs-progress */
+    section.srs-progress:has(+ section, + div) {
+        margin-bottom: 30px;
+    }
+    
+    /* Item Inspector */
+    #WkitTopBar {
+        margin-bottom: 0;
+    }
 }
