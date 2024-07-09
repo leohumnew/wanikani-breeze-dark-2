@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.8.3
+@version      0.8.4
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -84,6 +84,10 @@
             .srs-progress__stage--master { background-color: var(--color-srs-progress-master); }
             .srs-progress__stage--enlightened { background-color: var(--color-srs-progress-enlightened); }
             .srs-progress__stage--burned { background-color: var(--color-srs-progress-burned); }
+            li {
+                &:not(.srs-progress__stage--burned) .srs-progress__stage-header { --color-srs-progress-text: var(--color-text-dark); }
+                filter: brightness(0.85);
+            }
         }
     EOT;
 }
@@ -225,13 +229,13 @@
         --color-placeholder-background-stop-2: var(--color-wk-panel-content-background);
         --color-todays-lessons-text: var(--color-text);
         --color-count_bubble-background: var(--color-text);
-        --color-srs-progress-apprentice: var(--color-apprentice);
-        --color-srs-progress-guru: var(--color-guru);
-        --color-srs-progress-master: var(--color-master);
-        --color-srs-progress-enlightened: var(--color-enlightened);
-        --color-srs-progress-burned: var(--color-burned);
+        --color-srs-progress-apprentice: color-mix(in srgb, var(--color-apprentice) 60%, #666 40%);
+        --color-srs-progress-guru: color-mix(in srgb, var(--color-guru) 60%, #666 40%);
+        --color-srs-progress-master: color-mix(in srgb, var(--color-master) 60%, #666 40%);
+        --color-srs-progress-enlightened: color-mix(in srgb, var(--color-enlightened) 60%, #666 40%);
+        --color-srs-progress-burned: color-mix(in srgb, var(--color-burned) 60%, #666 40%);
         --color-srs-progress-text: var(--color-gray-light); /* #EEE */
-        --color-srs-progress-subject-type-background: var(--color-gray-light);
+        --color-srs-progress-subject-type-background: var(--color-wk-panel-content-background);
 
         --color-lesson-and-review-border: var(--color-tertiary);
         --color-lesson-and-review-border-hover: var(--color-tertiary);
@@ -648,7 +652,11 @@
 
     .progress,
     .progress-bar {
-        background-color: var(--color-wk-panel-content-background);
+        background: var(--color-wk-panel-content-background);
+    }
+
+    .progress .bar {
+        background-color: #323232 !important;
     }
 
     .progress-bar__bar {
@@ -1400,8 +1408,9 @@
     section.srs-progress ul li {
         background-color: var(--color-wk-panel-background);
         
-        .srs-progress__subject-type-title {
-            color: var(--color-text-dark);
+        .srs-progress__subject-type-title,
+        .srs-progress__subject-type-count {
+            color: var(--color-text);
         }
     }
 
