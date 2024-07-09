@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.8.2
+@version      0.8.3
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -13,26 +13,26 @@
     lr-def "Default" <<<EOT
     EOT;
     lr-min "Reduced" <<<EOT
-        .reviews-dashboard__text, .todays-lessons__text, .todays-lessons__subtitle { display: none }
+        .reviews-dashboard__text, .todays-lessons__text, .todays-lessons__subtitle { display: none; }
     EOT;
 }
 @advanced     dropdown settings-minimize-rm    "Recent Mistakes Size" {
     rm-def "Default" <<<EOT
     EOT;
     rm-min "Reduced" <<<EOT
-        .recent-mistakes-dashboard__content { display: none }
-        .recent-mistakes-dashboard__buttons { margin-top: 0 }
-        .wk-panel--recent-mistakes { min-height: 4em }
-        .wk-panel--recent-mistakes { flex-direction: row }
-        .recent-mistakes-dashboard__button a { font-size: var(--font-size-xsmall) }
+        .recent-mistakes-dashboard__content { display: none; }
+        .recent-mistakes-dashboard__buttons { margin-top: 0; }
+        .wk-panel--recent-mistakes { min-height: 4em; }
+        .wk-panel--recent-mistakes { flex-direction: row; }
+        .recent-mistakes-dashboard__button a { font-size: var(--font-size-xsmall); }
     EOT;
 }
 @advanced     dropdown settings-minimize-es    "Extra Study Size" {
     es-def "Default" <<<EOT
     EOT;
     es-min "Reduced" <<<EOT
-        .extra-study__image-wrapper, .extra-study__info .wk-text, .extra-study-button__tooltip-button { display: none }
-        .extra-study-button { margin: 0 0 0 10px }
+        .extra-study__image-wrapper, .extra-study__info .wk-text, .extra-study-button__tooltip-button { display: none; }
+        .extra-study-button { margin: 0 0 0 10px; }
         .extra-study__buttons {
             display: flex;
             flex-direction: row;
@@ -43,12 +43,12 @@
             justify-content: flex-end;
             background-color: var(--color-wk-panel-background);
         }
-        .extra-study__info {
-            flex: inherit; }
+        .extra-study__info { flex: inherit; }
     EOT;
 }
 @advanced     dropdown settings-dashboard-colors    "Dashboard Colours" {
     bg-dark "Default" <<<EOT
+        section.srs-progress ul li { color: var(--color-text-dark); }
     EOT;
     bg-colored "Colourful" <<<EOT
         :root {
@@ -78,12 +78,13 @@
             --color-button-modal-primary-active-background: transparent;
             --color-button-modal-primary-active-text: var(--color-tertiary);
         }
-        section.srs-progress ul li, section.srs-progress ul li span { color: var(--color-text-dark) !important; }
-        section.srs-progress ul li:first-child { background-color: var(--color-apprentice) !important; }
-        section.srs-progress ul li:nth-child(2) { background-color: var(--color-guru) !important; }
-        section.srs-progress ul li:nth-child(3) { background-color: var(--color-master) !important; }
-        section.srs-progress ul li:nth-child(4) { background-color: var(--color-enlightened) !important; }
-        section.srs-progress ul li:nth-child(5), section.srs-progress ul li:nth-child(5) span { background-color: var(--color-burned) !important; color: var(--color-text) !important; }
+        section.srs-progress ul {
+            .srs-progress__stage--apprentice { background-color: var(--color-srs-progress-apprentice); }
+            .srs-progress__stage--guru { background-color: var(--color-srs-progress-guru); }
+            .srs-progress__stage--master { background-color: var(--color-srs-progress-master); }
+            .srs-progress__stage--enlightened { background-color: var(--color-srs-progress-enlightened); }
+            .srs-progress__stage--burned { background-color: var(--color-srs-progress-burned); }
+        }
     EOT;
 }
 @advanced     dropdown settings-swap-quiz-colors    "Quiz Header and Character Colours" {
@@ -113,22 +114,22 @@
     fw-def "Default" <<<EOT
     EOT;
     fw-min "Thinner" <<<EOT
-        :root { --font-weight-regular: 350 }
+        :root { --font-weight-regular: 350; }
     EOT;
     fw-extra-min "Thinnest" <<<EOT
-        :root { --font-weight-regular: 300 }
+        :root { --font-weight-regular: 300; }
     EOT;
     fw-extra-extra-min "Thin thinnest" <<<EOT
-        :root { --font-weight-regular: 200 }
+        :root { --font-weight-regular: 200; }
     EOT;
     fw-max "Thicker" <<<EOT
-        :root { --font-weight-regular: 420 }
+        :root { --font-weight-regular: 420; }
     EOT;
     fw-extra-max "Thickest" <<<EOT
-        :root { --font-weight-regular: 500 }
+        :root { --font-weight-regular: 500; }
     EOT;
     fw-extra-extra-max "Thick thickest" <<<EOT
-        :root { --font-weight-regular: 600 }
+        :root { --font-weight-regular: 600; }
     EOT;
 }
 @var          color    settings-color-text          "Text Color"         #e3e3e3
@@ -155,7 +156,7 @@
 
 @-moz-document domain("www.wanikani.com") {
 
-/*-------------- Root variables --------------*/
+    /*-------------- Root variables --------------*/
     :root {
         color-scheme: dark;
         --color-tertiary: /*[[settings-color-tertiary]]*/;
@@ -166,7 +167,7 @@
         --color-menu: /*[[settings-color-menu]]*/;
         --color-meaning: /*[[settings-color-meaning]]*/;
         --color-reading: /*[[settings-color-reading]]*/;
-        
+
         /*---- WaniKani style variables ----*/
         /* General colors */
         --color-text: /*[[settings-color-text]]*/;
@@ -203,7 +204,7 @@
         --color-enlightened: /*[[settings-color-enlightened]]*/;
         --color-burned: /*[[settings-color-burned]]*/;
         --color-burned-dark: color-mix(in srgb, var(--color-burned) 90%, #000 10%);
-        
+
         /* Level progress bar colors */
         --color-level-progress-bar-progress: var(--color-tertiary);
         --color-level-progress-bar-background: var(--color-wk-panel-content-background);
@@ -224,6 +225,13 @@
         --color-placeholder-background-stop-2: var(--color-wk-panel-content-background);
         --color-todays-lessons-text: var(--color-text);
         --color-count_bubble-background: var(--color-text);
+        --color-srs-progress-apprentice: var(--color-apprentice);
+        --color-srs-progress-guru: var(--color-guru);
+        --color-srs-progress-master: var(--color-master);
+        --color-srs-progress-enlightened: var(--color-enlightened);
+        --color-srs-progress-burned: var(--color-burned);
+        --color-srs-progress-text: var(--color-gray-light); /* #EEE */
+        --color-srs-progress-subject-type-background: var(--color-gray-light);
 
         --color-lesson-and-review-border: var(--color-tertiary);
         --color-lesson-and-review-border-hover: var(--color-tertiary);
@@ -244,7 +252,7 @@
         --color-button-modal-secondary-active-border: var(--color-tertiary);
         --color-button-modal-secondary-hover-border: var(--color-tertiary);
         --color-button-modal-secondary-hover-text: var(--color-tertiary);
-        
+
         /* Reviews */
         --color-quiz-input-background: var(--color-wk-panel-background);
         --color-quiz-input-focus: var(--color-tertiary);
@@ -261,7 +269,8 @@
         --color-button-default-text: var(--color-text);
         --color-button-default-hover-text: var(--color-tertiary);
         --color-button-default-active-text: var(--color-tertiary);
-        --color-modal-background: var(--color-wk-panel-background); /* v New WaniKani variables, used in synonyms box */
+        --color-modal-background: var(--color-wk-panel-background);
+        /* v New WaniKani variables, used in synonyms box */
         --color-input-background: var(--color-wk-panel-content-background);
         --color-input-focus-border: var(--color-tertiary);
         --color-button-synonym-background: var(--color-wk-panel-content-background);
@@ -271,7 +280,7 @@
         --color-button-synonym-hover-text: var(--color-tertiary);
         --color-button-icon-only-hover-text: var(--color-tertiary);
         --color-button-icon-only-hover-background: #0000;
-        
+
         /* lessons */
         --color-subject-slide-navigation-button-hover: var(--color-menu);
         --color-subject-slide-navigation-background: var(--color-wk-panel-content-background);
@@ -281,7 +290,7 @@
         --color-lesson-picker-footer-background: var(--color-wk-panel-content-background);
         --color-button-lesson-picker-background: var(--color-wk-panel-background);
         --color-button-lesson-picker-border: transparent;
-        --color-button-lesson-picker-box-shadow: inset 0 -3px 1px rgba(0,0,0,0.2), inset 0 3px 1px rgba(0,0,0,0);
+        --color-button-lesson-picker-box-shadow: inset 0 -3px 1px rgba(0, 0, 0, 0.2), inset 0 3px 1px rgba(0, 0, 0, 0);
         --color-button-lesson-picker-hover-background: color-mix(in srgb, var(--color-tertiary) 15%, var(--color-wk-panel-background) 85%);
         --color-button-lesson-picker-hover-border: transparent;
         --color-button-lesson-picker-active-background: color-mix(in srgb, var(--color-tertiary) 30%, var(--color-wk-panel-background) 70%);
@@ -315,22 +324,31 @@
     .extra-study img {
         filter: invert(81%) sepia(9%) saturate(582%) hue-rotate(169deg) brightness(96%) contrast(93%);
     }
+
     .review-forecast__empty-image {
         filter: invert(81%) sepia(6%) saturate(842%) hue-rotate(169deg) brightness(98%) contrast(92%);
     }
-    .global-header .logo, footer ul li:last-child {
+
+    .global-header .logo,
+    footer ul li:last-child {
         filter: brightness(80%) hue-rotate(226deg);
     }
+
     .community-banner__image-wrapper img {
         filter: saturate(0%) invert(14%) sepia(20%) saturate(290%) hue-rotate(173deg) brightness(86%) contrast(102%);
     }
 
     /* Character colors */
-    wk-character-image, .subject-character__characters {
+    wk-character-image,
+    .subject-character__characters {
         --color-text: var(--color-character-text);
         color: var(--color-character-text);
     }
-    .subject-character--burned .subject-character__characters, .subject-character--burned .subject-character__meaning, .subject-character--burned .subject-character__reading, .subject-character--burned wk-character-image {
+
+    .subject-character--burned .subject-character__characters,
+    .subject-character--burned .subject-character__meaning,
+    .subject-character--burned .subject-character__reading,
+    .subject-character--burned wk-character-image {
         --color-text: /*[[settings-color-text]]*/ !important;
         color: var(--color-text);
     }
@@ -341,7 +359,8 @@
     }
 
     body {
-        background: var(--color-wk-panel-content-background) }
+        background: var(--color-wk-panel-content-background);
+    }
 
     a {
         color: var(--color-link);
@@ -351,152 +370,242 @@
             color: var(--color-tertiary);
         }
     }
-    
+
     select {
         background-color: var(--color-wk-panel-content-background);
         color: var(--color-text);
     }
-    
-    textarea, textarea[disabled], input[name^="user["], input[type="text"]:not(.quiz-input__input), input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+
+    textarea,
+    textarea[disabled],
+    input[name^="user["],
+    input[type="text"]:not(.quiz-input__input),
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"],
+    .uneditable-input {
         background-color: var(--color-wk-panel-content-background);
         color: var(--color-text);
     }
+
     .btn {
         background: transparent;
         color: var(--color-text);
         border-color: var(--color-tertiary);
     }
+
     .btn:hover {
         background: transparent;
         border-color: var(--color-tertiary);
         color: var(--color-tertiary);
     }
-    
-    ul.multi-character-grid li[class|=radical] { border-color: var(--color-radical) }
-    ul.multi-character-grid li[class|=kanji] { border-color: var(--color-kanji) }
-    ul.multi-character-grid li[class|=vocabulary] { border-color: var(--color-vocabulary) }
-    
+
+    ul.multi-character-grid li[class|=radical] {
+        border-color: var(--color-radical);
+    }
+
+    ul.multi-character-grid li[class|=kanji] {
+        border-color: var(--color-kanji);
+    }
+
+    ul.multi-character-grid li[class|=vocabulary] {
+        border-color: var(--color-vocabulary);
+    }
+
     /*---- Lessons ----*/
     .subject-slide {
         background-color: var(--color-wk-panel-background);
         border: none;
         box-shadow: 2px 2px 3px #000;
     }
-    .subject-slides__navigation-link[aria-selected=true]:after { border-bottom-color: var(--color-wk-panel-background) }
-    .subject-slides__navigation { box-shadow: 2px 2px 3px #000 }
-    
-    .lesson-container .subject-character__meaning { color: var(--color-text) }
-    
-    .lesson-container .wk-hint, .lesson-container .wk-hint h3 {
-        border-radius: 5px;
-        background-color: var(--color-wk-panel-content-background);;
+
+    .subject-slides__navigation-link[aria-selected=true]:after {
+        border-bottom-color: var(--color-wk-panel-background);
+    }
+
+    .subject-slides__navigation {
+        box-shadow: 2px 2px 3px #000;
+    }
+
+    .lesson-container .subject-character__meaning {
         color: var(--color-text);
     }
+
+    .lesson-container .wk-hint,
+    .lesson-container .wk-hint h3 {
+        border-radius: 5px;
+        background-color: var(--color-wk-panel-content-background);
+        color: var(--color-text);
+    }
+
     #user_synonyms .wk-button {
-        width: auto }
+        width: auto;
+    }
+
     .wk-button--quiz {
         box-shadow: none;
         border-radius: 5px;
         padding-bottom: 7px;
     }
-    
+
     /*---- Settings ----*/
     .settings-section {
         box-shadow: none;
-        background-color: var(--color-wk-panel-background); }
+        background-color: var(--color-wk-panel-background);
+    }
+
     .page-list ul {
-        background-color: var(--color-wk-panel-content-background) }
-    .page-list ul li a{
+        background-color: var(--color-wk-panel-content-background);
+    }
+
+    .page-list ul li a {
         background-color: var(--color-wk-panel-background);
         border: none;
         margin-left: 3px;
     }
+
     .wk-modal__window {
         background-color: var(--color-menu);
         color: var(--color-text);
     }
+
     .personal-access-token-permission__description {
-        color: var(--color-text) }
-    
+        color: var(--color-text);
+    }
+
     .account div div div {
-        background-color: var(--color-wk-panel-background) }
+        background-color: var(--color-wk-panel-background);
+    }
+
     .account dl {
-        color: var(--color-text) }
+        color: var(--color-text);
+    }
+
     .account a:hover {
-        background-color: var(--color-wk-panel-content-background) }
+        background-color: var(--color-wk-panel-content-background);
+    }
 
     /*---- Profile Page ----*/
-    html#public-profile div.wall-of-shame { background-color: var(--color-wk-panel-content-background)}
-    html#public-profile div.wall-of-shame h3 span {color: var(--color-text-dark)}
-    .kanji-progress, .vocabulary-progress {
+    html#public-profile div.wall-of-shame {
+        background-color: var(--color-wk-panel-content-background);
+    }
+
+    html#public-profile div.wall-of-shame h3 span {
+        color: var(--color-text-dark);
+    }
+
+    .kanji-progress,
+    .vocabulary-progress {
         background-color: var(--color-wk-panel-background);
         padding: 10px 25px;
     }
-    .kanji-progress { border-radius: 5px 5px 0 0}
-    .vocabulary-progress { border-radius: 0 0 5px 5px}
+
+    .kanji-progress {
+        border-radius: 5px 5px 0 0;
+    }
+
+    .vocabulary-progress {
+        border-radius: 0 0 5px 5px;
+    }
+
     html#public-profile div.wall-of-shame .progress {
         background-color: var(--color-wk-panel-background);
         background-image: none;
     }
-    html#public-profile div.wall-of-shame span.kanji-icon, html#public-profile div.wall-of-shame span.vocabulary-icon {
+
+    html#public-profile div.wall-of-shame span.kanji-icon,
+    html#public-profile div.wall-of-shame span.vocabulary-icon {
         box-shadow: none;
         color: var(--color-text-dark);
         background-image: none;
     }
-    html#public-profile div.wall-of-shame span.kanji-icon { background-color: var(--color-kanji) }
-    html#public-profile div.wall-of-shame span.vocabulary-icon { background-color: var(--color-vocabulary) }
-    html#public-profile .progress .bar span { color: var(--color-text-dark) }
+
+    html#public-profile div.wall-of-shame span.kanji-icon {
+        background-color: var(--color-kanji);
+    }
+
+    html#public-profile div.wall-of-shame span.vocabulary-icon {
+        background-color: var(--color-vocabulary);
+    }
+
+    html#public-profile .progress .bar span {
+        color: var(--color-text-dark);
+    }
+
     html#public-profile div.wall-of-shame h3 span {
         background-color: var(--color-wk-panel-background);
         color: var(--color-text);
         box-shadow: none;
     }
-    
+
     /*---- Item lists ----*/
     .subject-legend {
-        background-color: var(--color-wk-panel-background) }
+        background-color: var(--color-wk-panel-background);
+    }
+
     .subject-legend__item-badge--all,
     .subject-legend__item-badge--radicals {
         background-color: var(--color-radical);
         color: var(--color-text-dark);
         box-shadow: none;
     }
+
     .subject-legend__item-badge--kanji {
         color: var(--color-text-dark);
         background-color: var(--color-kanji);
         box-shadow: none;
     }
+
     .subject-legend__item-badge--vocabulary {
         color: var(--color-text-dark);
         background-color: var(--color-vocabulary);
         box-shadow: none;
     }
+
     .subject-legend__item-badge--burned {
         background-color: var(--color-burned);
         box-shadow: none;
     }
-    .subject-legend__item-badge--recently-unlocked, .subject-character__badge {
-        box-shadow: none }
+
+    .subject-legend__item-badge--recently-unlocked,
+    .subject-character__badge {
+        box-shadow: none;
+    }
+
     .subject-legend__item-badge--locked {
-        filter: brightness(80%) }
+        filter: brightness(80%);
+    }
+
     .subject-character--grid .subject-character__character-image {
         position: relative;
         top: -5px;
     }
-    
+
     /*---- Item Page ----*/
-    .wk-nav__item-link, .wk-nav__item-link:visited {
+    .wk-nav__item-link,
+    .wk-nav__item-link:visited {
         background-color: var(--color-wk-panel-content-background);
         color: var(--color-text-mid);
         border: none;
         text-decoration: none;
     }
+
     .wk-nav__item-link:hover {
         background-color: var(--color-menu);
         color: var(--color-text);
         text-decoration: none;
     }
-    
+
     div.site-content-container:not(.dashboard) .container {
         background-color: var(--color-wk-panel-background);
         padding: 25px;
@@ -504,55 +613,116 @@
         border-radius: 0 0 5px 5px;
         margin-bottom: 25px;
     }
-    .search--open { margin-top: 0 }
-    .page-header__icon--level { color: var(--color-text-dark) }
+
+    .search--open {
+        margin-top: 0;
+    }
+
+    .page-header__icon--level {
+        color: var(--color-text-dark);
+    }
+
     .page-header__icon {
         box-shadow: none;
         background-image: none;
         color: var(--color-character-text);
     }
-    .page-header__icon--radical { background-color: var(--color-radical) }
-    .page-header__icon--kanji { background-color: var(--color-kanji) }
-    .page-header__icon--vocabulary { background-color: var(--color-vocabulary) }
-    .page-header__icon--radical:hover, .page-header__icon--kanji:hover, .page-header__icon--vocabulary:hover {
-        box-shadow: 0 -2px 0 rgba(0,0,0,0.2) inset, 0 0 10px rgba(0,0,0,0.5); }
 
-    .progress, .progress-bar { background-color: var(--color-wk-panel-content-background) }
-    .progress-bar__bar { box-shadow: 2px 0px 3px #000}
+    .page-header__icon--radical {
+        background-color: var(--color-radical);
+    }
+
+    .page-header__icon--kanji {
+        background-color: var(--color-kanji);
+    }
+
+    .page-header__icon--vocabulary {
+        background-color: var(--color-vocabulary);
+    }
+
+    .page-header__icon--radical:hover,
+    .page-header__icon--kanji:hover,
+    .page-header__icon--vocabulary:hover {
+        box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset, 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .progress,
+    .progress-bar {
+        background-color: var(--color-wk-panel-content-background);
+    }
+
+    .progress-bar__bar {
+        box-shadow: 2px 0px 3px #000;
+    }
+
     .progress-bar__label {
         color: var(--color-text-dark);
         background-color: var(--color-tertiary);
         box-shadow: none;
     }
-    .progress-bar__label:before { display: none }
+
+    .progress-bar__label:before {
+        display: none;
+    }
+
     .progress-bar__label:after {
         border-top-color: var(--color-tertiary);
         transform: translateX(-45%);
     }
-    .subject-progress__streak-value { background-color: var(--color-wk-panel-content-background)}
-    .subject-progress__button { background: transparent; color: var(--color-text);}
+
+    .subject-progress__streak-value {
+        background-color: var(--color-wk-panel-content-background);
+    }
+
+    .subject-progress__button {
+        background: transparent;
+        color: var(--color-text);
+    }
 
     /*---- Terms ----*/
     .terms-of-service .short-version {
         background-color: var(--color-wk-panel-background);
         color: var(--color-text);
     }
+
     h2::before {
-        background-color: var(--color-text-mid) }
+        background-color: var(--color-text-mid);
+    }
 
     /*---- Reviews ----*/
     /* Header - takes into account settings boolean to swap background and character colours */
-    .character-header .character-header__menu div, .character-header .character-header__menu div i {
-        color: var(--color-text) }
-    .character-header--radical, .character-header--kanji, .character-header--vocabulary {
-        background-image: none }
-    .character-header--radical .character-header__characters { color: var(--color-radical) !important }
-    .character-header--radical .character-header__character-image { --color-text: var(--color-radical) }
-    .character-header--kanji .character-header__characters { color: var(--color-kanji) !important }
-    .character-header--vocabulary .character-header__characters { color: var(--color-vocabulary) !important }
+    .character-header .character-header__menu div,
+    .character-header .character-header__menu div i {
+        color: var(--color-text);
+    }
 
-    .character-header--vocabulary, .character-header--kanji, .character-header--radical {
-        background-color: var(--color-wk-panel-background) !important; }
+    .character-header--radical,
+    .character-header--kanji,
+    .character-header--vocabulary {
+        background-image: none;
+    }
+
+    .character-header--radical .character-header__characters {
+        color: var(--color-radical) !important;
+    }
+
+    .character-header--radical .character-header__character-image {
+        --color-text: var(--color-radical);
+    }
+
+    .character-header--kanji .character-header__characters {
+        color: var(--color-kanji) !important;
+    }
+
+    .character-header--vocabulary .character-header__characters {
+        color: var(--color-vocabulary) !important;
+    }
+
+    .character-header--vocabulary,
+    .character-header--kanji,
+    .character-header--radical {
+        background-color: var(--color-wk-panel-background) !important;
+    }
 
     /* Quiz input */
     .quiz-input__question-type-container[data-question-type=meaning] {
@@ -562,6 +732,7 @@
         border: none;
         box-shadow: 2px 2px 3px #000;
     }
+
     .quiz-input__question-type-container[data-question-type=reading] {
         background-image: none;
         background-color: var(--color-reading);
@@ -569,12 +740,12 @@
         border: none;
         box-shadow: 2px 2px 3px #000;
     }
-        
+
     .quiz-input__input {
         box-shadow: 2px 2px 3px 0 #000;
         border: none;
     }
-        
+
     /* Section Buttons */
     .additional-content__item {
         background-color: var(--color-wk-panel-background);
@@ -582,30 +753,42 @@
         color: var(--color-text);
         border: none;
     }
+
     .additional-content__item--disabled i {
-        opacity: 0.3; }
-        
+        opacity: 0.3;
+    }
+
     /* Advice Popup */
-    .answer-exception, .quiz-input__exception {
+    .answer-exception,
+    .quiz-input__exception {
         background-color: var(--color-menu);
         color: var(--color-text);
         box-shadow: 2px 2px 3px 0 #000;
         border-radius: 5px;
         top: 55px;
     }
-    .answer-exception:before, .quiz-input__exception:before {
-        border-color: rgba(0,0,0,0) rgba(0,0,0,0) var(--color-menu) rgba(0,0,0,0) }
+
+    .answer-exception:before,
+    .quiz-input__exception:before {
+        border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) var(--color-menu) rgba(0, 0, 0, 0);
+    }
+
     .quiz-input__exception {
         border-radius: 5px;
         box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7), 2px 2px 2px rgba(0, 0, 0, 0.7) !important;
         position: fixed;
         top: 190px;
     }
-    .quiz-input__exception-container { padding: 0 }
-        
+
+    .quiz-input__exception-container {
+        padding: 0;
+    }
+
     /* Info Box General */
     .subject-info[busy]:after {
-        background-color: var(--color-wk-panel-background) }
+        background-color: var(--color-wk-panel-background);
+    }
+
     .additional-content__content {
         margin-top: 16px;
         background-color: var(--color-wk-panel-background);
@@ -613,113 +796,150 @@
         box-shadow: 2px 2px 3px #000;
         border: none;
     }
+
     .additional-content__item--open:after {
-        border-color: rgba(0,0,0,0) rgba(0,0,0,0) var(--color-wk-panel-background) rgba(0,0,0,0);
-        bottom: -20px
+        border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) var(--color-wk-panel-background) rgba(0, 0, 0, 0);
+        bottom: -20px;
     }
 
-    .radical-highlight { 
+    .radical-highlight {
         background-color: var(--color-radical);
         background-image: linear-gradient(to bottom, var(--color-radical), var(--color-radical-dark));
         color: var(--color-text-dark);
         box-shadow: none;
     }
-    .kanji-highlight { 
+
+    .kanji-highlight {
         background-color: var(--color-kanji);
         background-image: linear-gradient(to bottom, var(--color-kanji), var(--color-kanji-dark));
         color: var(--color-text-dark);
         box-shadow: none;
     }
-    .vocabulary-highlight { 
+
+    .vocabulary-highlight {
         background-color: var(--color-vocabulary);
         background-image: linear-gradient(to bottom, var(--color-vocabulary), var(--color-vocabulary-dark));
         color: var(--color-text-dark);
         box-shadow: none;
     }
-    .reading-highlight { 
+
+    .reading-highlight {
         background-color: var(--color-reading);
         background-image: none;
         color: var(--color-text);
         box-shadow: none;
     }
-    .meaning-highlight { 
+
+    .meaning-highlight {
         background-color: var(--color-meaning);
         background-image: none;
         color: var(--color-text);
         box-shadow: none;
     }
-    
-    .reading-highlight:hover:before, .meaning-highlight:hover:before, .vocabulary-highlight:hover:before, .kanji-highlight:hover:before, .radical-highlight:hover:before {
+
+    .reading-highlight:hover:before,
+    .meaning-highlight:hover:before,
+    .vocabulary-highlight:hover:before,
+    .kanji-highlight:hover:before,
+    .radical-highlight:hover:before {
         color: var(--color-text);
         background-color: var(--color-menu);
     }
-    .reading-highlight:hover:after, .meaning-highlight:hover:after, .vocabulary-highlight:hover:after, .kanji-highlight:hover:after, .radical-highlight:hover:after {
-        border-top-color: var(--color-menu) }
-        
-    .subject-section__title { border-color: var(--color-wk-panel-content-background) }
+
+    .reading-highlight:hover:after,
+    .meaning-highlight:hover:after,
+    .vocabulary-highlight:hover:after,
+    .kanji-highlight:hover:after,
+    .radical-highlight:hover:after {
+        border-top-color: var(--color-menu);
+    }
+
+    .subject-section__title {
+        border-color: var(--color-wk-panel-content-background);
+    }
 
     /* Info - Components */
     .component-character span {
         box-shadow: none;
         color: var(--text-color);
     }
+
     .component-character--radical {
         background-color: var(--color-radical);
         background-image: linear-gradient(to bottom, var(--color-radical), var(--color-radical-dark));
     }
+
     .components-list .component-character--radical {
         padding-right: 8px;
         border-radius: 5px;
         color: var(--color-text-dark);
     }
+
     .components-list .component-character--burned span:first-child {
         background-color: var(--color-burned);
         background-image: none;
         box-shadow: none;
-        color: var(--color-text)
-    }
-        
-    .subject-hint, .subject-hint h3 {
-        border-radius: 5px;
-        background-color: var(--color-wk-panel-content-background);;
         color: var(--color-text);
     }
 
-    .character-item, ul.single-character-grid li.character-item, ul.multi-character-grid li.character-item { color: var(--color-text-dark) }
-    .character-item--radical:not(.character-item--burned) .radical-image, ul.multi-character-grid li.character-item .radical-image {
-        --color-text: var(--color-text-dark) }
+    .subject-hint,
+    .subject-hint h3 {
+        border-radius: 5px;
+        background-color: var(--color-wk-panel-content-background);
+        color: var(--color-text);
+    }
+
+    .character-item,
+    ul.single-character-grid li.character-item,
+    ul.multi-character-grid li.character-item {
+        color: var(--color-text-dark);
+    }
+
+    .character-item--radical:not(.character-item--burned) .radical-image,
+    ul.multi-character-grid li.character-item .radical-image {
+        --color-text: var(--color-text-dark);
+    }
+
     .character-item--radical {
         background-color: var(--color-radical);
         background-image: linear-gradient(to bottom, var(--color-radical), var(--color-radical-dark));
-        border-color: var(--color-radical) rgba(0,0,0,0) var(--color-radical-dark) var(--color-radical)
+        border-color: var(--color-radical) rgba(0, 0, 0, 0) var(--color-radical-dark) var(--color-radical);
     }
+
     .character-item--kanji {
         background-color: var(--color-kanji);
         background-image: linear-gradient(to bottom, var(--color-kanji), var(--color-kanji-dark));
-        border-color: var(--color-kanji) rgba(0,0,0,0) var(--color-kanji-dark) var(--color-kanji)
+        border-color: var(--color-kanji) rgba(0, 0, 0, 0) var(--color-kanji-dark) var(--color-kanji);
     }
+
     .character-item--vocabulary {
         background-color: var(--color-vocabulary);
         background-image: linear-gradient(to bottom, var(--color-vocabulary), var(--color-vocabulary-dark));
         border-width: 1px 0;
-        border-color: var(--color-vocabulary) rgba(0,0,0,0) var(--color-vocabulary-dark) var(--color-vocabulary)
+        border-color: var(--color-vocabulary) rgba(0, 0, 0, 0) var(--color-vocabulary-dark) var(--color-vocabulary);
     }
+
     .character-item--burned {
         background-color: var(--color-burned);
         background-image: linear-gradient(to bottom, var(--color-burned), var(--color-burned-dark));
-        border-color: var(--color-burned) rgba(0,0,0,0) var(--color-burned-dark) var(--color-burned);
+        border-color: var(--color-burned) rgba(0, 0, 0, 0) var(--color-burned-dark) var(--color-burned);
         color: var(--color-text);
     }
+
     .character-item--burned .radical-image {
-        opacity: 1 }
+        opacity: 1;
+    }
+
     .character-item--locked {
         background-image: url(https://assets.wanikani.com/assets/stripes-b1fe3954592c3890ba1c7f411696ba17e267470fee29b9eafd83a4b50950a66f.png);
         filter: brightness(70%);
         background-repeat: repeat;
     }
+
     .character-item__badge {
-        box-shadow: none }
-        
+        box-shadow: none;
+    }
+
     /* Info - Meanings / Synonyms */
     #user_synonyms a {
         padding: 6px;
@@ -730,97 +950,154 @@
         margin-top: auto;
         margin-bottom: auto;
     }
+
     .subject-section--meaning .subject-section__content .subject-section__subsection:first-child .subject-section__meanings:first-child .subject-section__meanings-items {
         background-color: var(--color-menu);
         padding: 4px;
         border-radius: 5px;
     }
 
-    .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:last-child, .quiz .subject-section--reading .subject-section__content .subject-section__subsection:last-child {
+    .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:last-child,
+    .quiz .subject-section--reading .subject-section__content .subject-section__subsection:last-child {
         background-color: var(--color-wk-panel-content-background);
         padding: 8px;
         padding-left: 15px;
-        border-radius:5px;
+        border-radius: 5px;
         box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, 0.7);
         margin-bottom: 0;
     }
 
-    @media (min-width: 1400px) { /* Better review info layout on larger screens */
-        .quiz .subject-section--meaning .subject-section__content:not([hidden]), .quiz .subject-section--reading .subject-section__content:not([hidden]) {
+    @media (min-width: 1400px) {
+        /* Better review info layout on larger screens */
+        .quiz .subject-section--meaning .subject-section__content:not([hidden]),
+        .quiz .subject-section--reading .subject-section__content:not([hidden]) {
             display: grid;
             grid-template-columns: 0.5fr 1fr;
             grid-template-rows: auto;
         }
-        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(1), .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(1) {
+
+        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(1),
+        .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(1) {
             border-right: 1px solid var(--color-wk-panel-content-background);
             margin-right: 30px;
             margin-bottom: 20px;
         }
-        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(2), .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(2) {
+
+        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:nth-child(2),
+        .quiz .subject-section--reading .subject-section__content .subject-section__subsection:nth-child(2) {
             margin-top: 5px;
         }
-        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:last-child, .quiz .subject-section--reading .subject-section__content .subject-section__subsection:last-child {
+
+        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:last-child,
+        .quiz .subject-section--reading .subject-section__content .subject-section__subsection:last-child {
             grid-column: 1 / span 2;
             grid-row: 2;
         }
-        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:last-child h3, .quiz .subject-section--reading .subject-section__content .subject-section__subsection:last-child h3 {
+
+        .quiz .subject-section--meaning .subject-section__content .subject-section__subsection:last-child h3,
+        .quiz .subject-section--reading .subject-section__content .subject-section__subsection:last-child h3 {
             font-variant-caps: all-small-caps;
             font-weight: bold;
         }
+
         .quiz .subject-readings-with-audio__item {
-            margin-bottom: 0 }
+            margin-bottom: 0;
+        }
     }
-        
+
     .user-note__link {
-        color: var(--color-text) }
-    .user-note__fields, .user-note__fields textarea, .user-note__button, .user-note__button:visited {
         color: var(--color-text);
-        background-color: var(--color-wk-panel-content-background)
     }
+
+    .user-note__fields,
+    .user-note__fields textarea,
+    .user-note__button,
+    .user-note__button:visited {
+        color: var(--color-text);
+        background-color: var(--color-wk-panel-content-background);
+    }
+
     .user-note__button:hover {
-        color: var(--color-tertiary) }
-        
+        color: var(--color-tertiary);
+    }
+
     /* Info - Patterns of Use */
     .subject-collocations__pattern-name {
-        background-color: var(--color-wk-panel-content-background) }
+        background-color: var(--color-wk-panel-content-background);
+    }
+
     .subject-collocations__pattern-name[aria-selected=true] {
         background-color: var(--color-wk-panel-content-background);
         border: 1px solid var(--color-tertiary);
         border-right: none;
     }
+
     .subject-collocations__patterns:after {
-        box-shadow: 0 0 5px rgba(0, 0, 0, .89) }
-     .subject-info .subject-collocations__pattern-name[aria-selected=true]:after, .subject-collocations__pattern-name[aria-selected=true]:after {
+        box-shadow: 0 0 5px rgba(0, 0, 0, .89);
+    }
+
+    .subject-info .subject-collocations__pattern-name[aria-selected=true]:after,
+    .subject-collocations__pattern-name[aria-selected=true]:after {
         background-color: var(--color-wk-panel-background);
         box-shadow: 0 0 5px rgba(0, 0, 0, .89);
         background-image: none;
     }
-        
+
     /* Kana Chart */
-    .kana-chart__character, .kana-chart__backspace {background-color: var(--color-wk-panel-content-background); color: var(--color-text)}
-    .kana-chart__character:hover, .kana-chart__backspace:hover, .kana-chart__tab:not(.kana-chart__tab--selected):hover {
+    .kana-chart__character,
+    .kana-chart__backspace {
+        background-color: var(--color-wk-panel-content-background);
+        color: var(--color-text);
+    }
+
+    .kana-chart__character:hover,
+    .kana-chart__backspace:hover,
+    .kana-chart__tab:not(.kana-chart__tab--selected):hover {
         background-color: var(--color-wk-panel-content-background);
         color: var(--color-tertiary);
     }
-    .kana-chart__tab:not(.kana-chart__tab--selected) { border-bottom-color: var(--color-wk-panel-content-background)}
-    .kana-chart__tab--selected { border-color: var(--color-wk-panel-content-background) var(--color-wk-panel-content-background) rgba(0,0,0,0) var(--color-wk-panel-content-background)}
-    
+
+    .kana-chart__tab:not(.kana-chart__tab--selected) {
+        border-bottom-color: var(--color-wk-panel-content-background);
+    }
+
+    .kana-chart__tab--selected {
+        border-color: var(--color-wk-panel-content-background) var(--color-wk-panel-content-background) rgba(0, 0, 0, 0) var(--color-wk-panel-content-background);
+    }
+
     /* Last 10 */
     .last-item {
         background-color: var(--color-wk-panel-content-background);
         box-shadow: none;
     }
+
     .last-item span:not(.last-item__label) {
-        color: var(--color-text) }
+        color: var(--color-text);
+    }
+
     .last-item .last-item__label {
-        color: var(--color-text-mid) }
-    .last-item span.last-item__characters { color: var(--color-text-dark) }
-    .last-item__characters--radical { background-color: var(--color-radical) }
-    .last-item__characters--kanji { background-color: var(--color-kanji) }
-    .last-item__characters--vocabulary { background-color: var(--color-vocabulary) }
-        
+        color: var(--color-text-mid);
+    }
+
+    .last-item span.last-item__characters {
+        color: var(--color-text-dark);
+    }
+
+    .last-item__characters--radical {
+        background-color: var(--color-radical);
+    }
+
+    .last-item__characters--kanji {
+        background-color: var(--color-kanji);
+    }
+
+    .last-item__characters--vocabulary {
+        background-color: var(--color-vocabulary);
+    }
+
     /* Footer Buttons */
-    .quiz-footer a, .quiz-footer a div {
+    .quiz-footer a,
+    .quiz-footer a div {
         background-color: var(--color-wk-panel-background);
         color: var(--color-text);
     }
@@ -833,108 +1110,204 @@
         border-bottom: 0;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.7);
     }
+
     .sitemap__section-header {
-        color: var(--text-color) }
-    .sitemap { /* Mobile-size menu */
+        color: var(--text-color);
+    }
+
+    .sitemap {
+        /* Mobile-size menu */
         background-color: var(--color-wk-panel-background);
     }
+
     .navigation__toggle[data-expanded="true"] {
-        background-color: var(--color-wk-panel-background) }
-        
-    .navigation-shortcut__button, .navigation-shortcut__link {
+        background-color: var(--color-wk-panel-background);
+    }
+
+    .navigation-shortcut__button,
+    .navigation-shortcut__link {
         color: var(--text-color);
         border-color: var(--color-wk-panel-content-background);
     }
-    .navigation-shortcut__button:hover, .navigation-shortcut__link:hover {
+
+    .navigation-shortcut__button:hover,
+    .navigation-shortcut__link:hover {
         color: var(--text-color);
         border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%);
     }
-    .navigation-shortcut__button:focus, .navigation-shortcut__link:focus {
+
+    .navigation-shortcut__button:focus,
+    .navigation-shortcut__link:focus {
         color: var(--text-color);
         border-color: var(--color-tertiary);
     }
+
     .navigation-shortcut__count {
         background: var(--color-tertiary);
         color: var(--color-text-dark);
     }
+
     .navigation-shortcut a.fcr_burn {
         background-color: transparent;
     }
-    .lesson-and-review-count__label, .lesson-and-review-count__count {
-        border-width: 1px }
-        
-    @media only screen and (min-width: 1024px) { /* Navigation menu buttons hover colours */
-        .sitemap__section-header:hover {
-            border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%) }
-        .sitemap__section-header:focus, .sitemap__section--open .sitemap__section-header {
-            border-color: var(--color-tertiary) }
-        
-        .sitemap__section-header--radicals:hover, .sitemap__section-header--radicals:focus, .sitemap__section-header--radicals[data-expanded="true"], .sitemap__section--open .sitemap__section-header--radicals {
-            color: var(--color-radical) }
-        .sitemap__section-header--radicals:hover {
-            border-color: color-mix(in srgb, var(--color-radical) 25%, #0000 75%) }
-        .sitemap__section-header--radicals[data-expanded="true"],.sitemap__section-header--radicals:focus, .sitemap__section--open .sitemap__section-header--radicals {
-            border-color: var(--color-radical) }
 
-        .sitemap__section-header--kanji:hover, .sitemap__section-header--kanji:focus, .sitemap__section-header--kanji[data-expanded="true"], .sitemap__section--open .sitemap__section-header--kanji {
-            color: var(--color-kanji) }
-        .sitemap__section-header--kanji:hover {
-            border-color: color-mix(in srgb, var(--color-kanji) 25%, #0000 75%) }
-        .sitemap__section-header--kanji[data-expanded="true"], .sitemap__section-header--kanji:focus, .sitemap__section--open .sitemap__section-header--kanji {
-            border-color: var(--color-kanji) }
-
-        .sitemap__section-header--vocabulary:hover, .sitemap__section-header--vocabulary:focus, .sitemap__section-header--vocabulary[data-expanded="true"], .sitemap__section--open .sitemap__section-header--vocabulary {
-            color: var(--color-vocabulary) }
-        .sitemap__section-header--vocabulary:hover {
-            border-color: color-mix(in srgb, var(--color-vocabulary) 25%, #0000 75%) }
-        .sitemap__section-header--vocabulary[data-expanded="true"], .sitemap__section-header--vocabulary:focus, .sitemap__section--open .sitemap__section-header--vocabulary {
-            border-color: var(--color-vocabulary) }
+    .lesson-and-review-count__label,
+    .lesson-and-review-count__count {
+        border-width: 1px;
     }
-    .sitemap__section-header--subsection { color: var(--color-text-mid) }
-    .sitemap__section-header--subsection:hover { border-color: transparent; }
-    .sitemap__expandable-chunk, .sitemap__expandable-chunk--levels, .sitemap__expandable-chunk--levels:before, .sitemap__expandable-chunk:before {
-        background: var(--color-menu) }
-    .sitemap__expandable-chunk--radicals, .sitemap__expandable-chunk--radicals:before {
-        background: var(--color-radical) }
-    .sitemap__expandable-chunk--kanji, .sitemap__expandable-chunk--kanji:before {
-        background: var(--color-kanji) }
-    .sitemap__expandable-chunk--vocabulary, .sitemap__expandable-chunk--vocabulary:before {
-        background: var(--color-vocabulary) }
+
+    @media only screen and (min-width: 1024px) {
+        /* Navigation menu buttons hover colours */
+        .sitemap__section-header:hover {
+            border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%);
+        }
+
+        .sitemap__section-header:focus,
+        .sitemap__section--open .sitemap__section-header {
+            border-color: var(--color-tertiary);
+        }
+
+        .sitemap__section-header--radicals:hover,
+        .sitemap__section-header--radicals:focus,
+        .sitemap__section-header--radicals[data-expanded="true"],
+        .sitemap__section--open .sitemap__section-header--radicals {
+            color: var(--color-radical);
+        }
+
+        .sitemap__section-header--radicals:hover {
+            border-color: color-mix(in srgb, var(--color-radical) 25%, #0000 75%);
+        }
+
+        .sitemap__section-header--radicals[data-expanded="true"],
+        .sitemap__section-header--radicals:focus,
+        .sitemap__section--open .sitemap__section-header--radicals {
+            border-color: var(--color-radical);
+        }
+
+        .sitemap__section-header--kanji:hover,
+        .sitemap__section-header--kanji:focus,
+        .sitemap__section-header--kanji[data-expanded="true"],
+        .sitemap__section--open .sitemap__section-header--kanji {
+            color: var(--color-kanji);
+        }
+
+        .sitemap__section-header--kanji:hover {
+            border-color: color-mix(in srgb, var(--color-kanji) 25%, #0000 75%);
+        }
+
+        .sitemap__section-header--kanji[data-expanded="true"],
+        .sitemap__section-header--kanji:focus,
+        .sitemap__section--open .sitemap__section-header--kanji {
+            border-color: var(--color-kanji);
+        }
+
+        .sitemap__section-header--vocabulary:hover,
+        .sitemap__section-header--vocabulary:focus,
+        .sitemap__section-header--vocabulary[data-expanded="true"],
+        .sitemap__section--open .sitemap__section-header--vocabulary {
+            color: var(--color-vocabulary);
+        }
+
+        .sitemap__section-header--vocabulary:hover {
+            border-color: color-mix(in srgb, var(--color-vocabulary) 25%, #0000 75%);
+        }
+
+        .sitemap__section-header--vocabulary[data-expanded="true"],
+        .sitemap__section-header--vocabulary:focus,
+        .sitemap__section--open .sitemap__section-header--vocabulary {
+            border-color: var(--color-vocabulary);
+        }
+    }
+
+    .sitemap__section-header--subsection {
+        color: var(--color-text-mid);
+    }
+
+    .sitemap__section-header--subsection:hover {
+        border-color: transparent;
+    }
+
+    .sitemap__expandable-chunk,
+    .sitemap__expandable-chunk--levels,
+    .sitemap__expandable-chunk--levels:before,
+    .sitemap__expandable-chunk:before {
+        background: var(--color-menu);
+    }
+
+    .sitemap__expandable-chunk--radicals,
+    .sitemap__expandable-chunk--radicals:before {
+        background: var(--color-radical);
+    }
+
+    .sitemap__expandable-chunk--kanji,
+    .sitemap__expandable-chunk--kanji:before {
+        background: var(--color-kanji);
+    }
+
+    .sitemap__expandable-chunk--vocabulary,
+    .sitemap__expandable-chunk--vocabulary:before {
+        background: var(--color-vocabulary);
+    }
+
     .sitemap__page span {
-        color: var(--color-text-dark) !important }
-        
-    .search-form form .search-query, #query {
+        color: var(--color-text-dark) !important;
+    }
+
+    .search-form form .search-query,
+    #query {
         background-color: var(--color-wk-panel-background);
         color: var(--color-text);
         border: 1px solid var(--color-tertiary);
     }
-    .search-form button, .search__button {
+
+    .search-form button,
+    .search__button {
         color: var(--color-text);
         background-color: var(--color-wk-panel-background);
         border: 1px solid transparent;
     }
-        .search-form button:hover, .search__button:hover {
-            border: 1px solid var(--color-tertiary);
-        }
-        #search__trigger:hover, .search-button:hover { border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%)}
-        #search__trigger:focus, .search-button:focus { border-color: transparent }
-    
+
+    .search-form button:hover,
+    .search__button:hover {
+        border: 1px solid var(--color-tertiary);
+    }
+
+    #search__trigger:hover,
+    .search-button:hover {
+        border-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%);
+    }
+
+    #search__trigger:focus,
+    .search-button:focus {
+        border-color: transparent;
+    }
+
     /* Alerts */
-    .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
+    .dashboard section.system-alert,
+    .dashboard section.alert-where-user-scripts-cant-ignore {
         background-color: var(--color-wk-panel-background);
         background-image: none;
         border: 2px solid var(--color-tertiary);
     }
-    .dashboard section.system-alert time, .dashboard section.alert-where-user-scripts-cant-ignore time, .dashboard section.system-alert .close-alert, .dashboard section.alert-where-user-scripts-cant-ignore .close-alert {
-        color: var(--color-tertiary) }
+
+    .dashboard section.system-alert time,
+    .dashboard section.alert-where-user-scripts-cant-ignore time,
+    .dashboard section.system-alert .close-alert,
+    .dashboard section.alert-where-user-scripts-cant-ignore .close-alert {
+        color: var(--color-tertiary);
+    }
 
     /* Lessons / reviews buttons */
-    .todays-lessons__button--start, .reviews-dashboard__button--start {
+    .todays-lessons__button--start,
+    .reviews-dashboard__button--start {
         --color-button-modal-primary-text: var(--color-text);
         --color-button-modal-primary-hover-text: var(--color-tertiary);
         --color-button-modal-primary-active-text: var(--color-tertiary);
     }
-    .wk-button--modal-primary:focus { color: var(--color-tertiary) }
+
+    .wk-button--modal-primary:focus {
+        color: var(--color-tertiary);
+    }
 
     /* Panels */
     .wk-panel {
@@ -947,17 +1320,23 @@
             overflow-y: auto;
         }
     }
+
     #review-forecast::after {
         background-image: none;
         background-color: var(--color-wk-panel-background);
     }
+
     /* Entrance fade in animation */
-    @keyframes fadeIn {  
-        from {  
-            opacity:0; }  
-        to {  
-            opacity:1; }  
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
+
     /* Fade in each day in forecast to avoid pop-in */
     .review-forecast__day {
         opacity: 0;
@@ -965,15 +1344,29 @@
     }
 
     /* Moving divs */
-    .dashboard .progress-and-forecast .wk-panel--recent-mistakes { grid-row: /*[[grid-location-rm]]*/; display: /*[[grid-location-rm]]*/;}
-    .dashboard .progress-and-forecast .wk-panel--extra-study { grid-row: /*[[grid-location-es]]*/; display: /*[[grid-location-es]]*/;}
-    .dashboard .progress-and-forecast .wk-panel--level-progress { grid-row: /*[[grid-location-lp]]*/; display: /*[[grid-location-lp]]*/;}
+    .dashboard .progress-and-forecast .wk-panel--recent-mistakes {
+        grid-row: /*[[grid-location-rm]]*/;
+        display: /*[[grid-location-rm]]*/;
+    }
+
+    .dashboard .progress-and-forecast .wk-panel--extra-study {
+        grid-row: /*[[grid-location-es]]*/;
+        display: /*[[grid-location-es]]*/;
+    }
+
+    .dashboard .progress-and-forecast .wk-panel--level-progress {
+        grid-row: /*[[grid-location-lp]]*/;
+        display: /*[[grid-location-lp]]*/;
+    }
+
     @media (min-width: 768px) {
-        .dashboard .progress-and-forecast .wk-panel--level-progress, .dashboard .progress-and-forecast .wk-panel--recent-mistakes, .dashboard .progress-and-forecast .wk-panel--review-forecast {
+        .dashboard .progress-and-forecast .wk-panel--level-progress,
+        .dashboard .progress-and-forecast .wk-panel--recent-mistakes,
+        .dashboard .progress-and-forecast .wk-panel--review-forecast {
             margin: 0;
         }
+
         .dashboard .progress-and-forecast {
-            margin-bottom: 30px;
             gap: 20px;
         }
     }
@@ -983,85 +1376,106 @@
         border-radius: 5px !important;
         box-shadow: none !important;
     }
-    .character-item:hover .radical-image, .subject-character--grid:hover .subject-character__character-image {
+
+    .character-item:hover .radical-image,
+    .subject-character--grid:hover .subject-character__character-image {
         filter: none;
     }
+
     .subject-character--grid:after {
         border: 1px solid;
         border-color: #0000 #0000 #3336 #3336;
     }
+
     .level-progress-dashboard__content-title h3 {
         border-color: var(--color-text);
     }
 
     /* Extra Study */
     .extra-study-button:hover {
-        border-color: var(--color-tertiary) }
+        border-color: var(--color-tertiary);
+    }
 
     /* Item levels */
     section.srs-progress ul li {
-        background-image: none !important;
-        background-color: var(--color-wk-panel-background) !important;
+        background-color: var(--color-wk-panel-background);
+        
+        .srs-progress__subject-type-title {
+            color: var(--color-text-dark);
+        }
     }
-        section.srs-progress ul li:first-child span { color: var(--color-apprentice); }
-        section.srs-progress ul li:nth-child(2) span { color: var(--color-guru); }
-        section.srs-progress ul li:nth-child(3) span { color: var(--color-master); }
-        section.srs-progress ul li:nth-child(4) span { color: var(--color-enlightened); }
-        section.srs-progress ul li:nth-child(5) span { color: var(--color-burned); }
-    
-    .popover.srs .popover-content ul li {
-        background-image: none !important;
-        border: none !important;
-        color: var(--color-text-dark);
-    }
-    .popover.srs .popover-content ul li:first-child {
-        background-color: var(--color-radical) }
-    .popover.srs .popover-content ul li:nth-child(2) {
-        background-color: var(--color-kanji) }
-    .popover.srs .popover-content ul li:nth-child(3) {
-        background-color: var(--color-vocabulary) }
 
     /* Item lists (new, critical, burned) */
-    @media (min-width: 767px){ /* Make sections all reach the bottom of the row area if side-by-side on screen */
+    @media (min-width: 767px) {
+        /* Make sections all reach the bottom of the row area if side-by-side on screen */
         .dashboard .row .span12 .row {
             display: flex;
             align-items: stretch;
             margin-bottom: 30px;
         }
+
         .kotoba-table-list {
             display: flex;
             flex-direction: column;
             min-height: 100%;
-            position: relative ;
+            position: relative;
             border-radius: 5px;
         }
-        .kotoba-table-list .see-more {
-            bottom: 0;
+
+        .dashboard:not(.container) .kotoba-table-list .see-more {
+            bottom: -4px;
             position: absolute;
             width: 100%;
         }
-    }
         
-    .kotoba-table-list table a span, .kotoba-table-list table { /* Fix all the colours */
+        div.dashboard.container .kotoba-table-list .see-more {
+            width: 100%;
+        }
+    }
+
+    .kotoba-table-list table a span,
+    .kotoba-table-list table {
+        /* Fix all the colours */
         color: var(--color-text-dark) !important;
     }
-    ul.single-character-grid li[class|=kanji],ul.single-character-grid tr[class|=kanji],ul.multi-character-grid li[class|=kanji],ul.multi-character-grid tr[class|=kanji],.kotoba-table-list li[class|=kanji],.kotoba-table-list tr[class|=kanji] {
+
+    ul.single-character-grid li[class|=kanji],
+    ul.single-character-grid tr[class|=kanji],
+    ul.multi-character-grid li[class|=kanji],
+    ul.multi-character-grid tr[class|=kanji],
+    .kotoba-table-list li[class|=kanji],
+    .kotoba-table-list tr[class|=kanji] {
         background-color: var(--color-kanji);
         background-image: linear-gradient(to bottom, var(--color-kanji), var(--color-kanji-dark));
     }
-    ul.single-character-grid li[class|=radical],ul.single-character-grid tr[class|=radical],ul.multi-character-grid li[class|=radical],ul.multi-character-grid tr[class|=radical],.kotoba-table-list li[class|=radical],.kotoba-table-list tr[class|=radical] {
-        background-color: var(--color-radical);;
+
+    ul.single-character-grid li[class|=radical],
+    ul.single-character-grid tr[class|=radical],
+    ul.multi-character-grid li[class|=radical],
+    ul.multi-character-grid tr[class|=radical],
+    .kotoba-table-list li[class|=radical],
+    .kotoba-table-list tr[class|=radical] {
+        background-color: var(--color-radical);
         background-image: linear-gradient(to bottom, var(--color-radical), var(--color-radical-dark));
     }
-    ul.single-character-grid li[class|=vocabulary],ul.single-character-grid tr[class|=vocabulary],ul.multi-character-grid li[class|=vocabulary],ul.multi-character-grid tr[class|=vocabulary],.kotoba-table-list li[class|=vocabulary],.kotoba-table-list tr[class|=vocabulary] {
+
+    ul.single-character-grid li[class|=vocabulary],
+    ul.single-character-grid tr[class|=vocabulary],
+    ul.multi-character-grid li[class|=vocabulary],
+    ul.multi-character-grid tr[class|=vocabulary],
+    .kotoba-table-list li[class|=vocabulary],
+    .kotoba-table-list tr[class|=vocabulary] {
         background-color: var(--color-vocabulary);
         background-image: linear-gradient(to bottom, var(--color-vocabulary), var(--color-vocabulary-dark));
     }
-    .dashboard .fa-clock {
-        color: var(--color-tertiary) }
+
     .dashboard table tr.none-available div {
-        border-color: var(--color-tertiary) }
-        
+        border-color: var(--color-tertiary);
+        .wk-icon--check {
+            fill: var(--color-tertiary, currentColor);
+        }
+    }
+
     /* Footers */
     .community-banner {
         background-color: var(--color-wk-panel-background);
@@ -1070,82 +1484,141 @@
 
 
     /*-------- Multiple --------*/
-    h1, html#public-profile div.wall-of-shame div.title, .community-banner__content p, h2, h3, h4, h5, h6 {
+    h1,
+    html#public-profile div.wall-of-shame div.title,
+    .community-banner__content p,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         color: var(--color-text);
     }
 
-    [class|=account-subscription] h3, [class|=account-billing] h3, .kotoba-table-list, .kotoba-table-list h3, .kotoba-table-list div, .kotoba-table-list tr.none-available {
+    [class|=account-subscription] h3,
+    [class|=account-billing] h3,
+    .kotoba-table-list,
+    .kotoba-table-list h3,
+    .kotoba-table-list div,
+    .kotoba-table-list tr.none-available {
         background-color: var(--color-wk-panel-background) !important;
         color: var(--color-text);
     }
 
-    .dashboard div.wk-panel--review-forecast, .kotoba-table-list div, .dashboard section.newbie, .dashboard section.upgrade, .dashboard section.system-alert, .dashboard section.alert-where-user-scripts-cant-ignore {
+    .dashboard div.wk-panel--review-forecast,
+    .kotoba-table-list div,
+    .dashboard section.newbie,
+    .dashboard section.upgrade,
+    .dashboard section.system-alert,
+    .dashboard section.alert-where-user-scripts-cant-ignore {
         box-shadow: none !important;
     }
 
     /*-------- Readers page --------*/
     .readers-list {
-        background: var(--color-wk-panel-background) }
+        background: var(--color-wk-panel-background);
+    }
+
     .readers-list li {
-        background-color: var(--color-wk-panel-content-background) }
+        background-color: var(--color-wk-panel-content-background);
+    }
+
     .readers-list__item {
-        box-shadow: none }
-    .reader-summary__title, .reader-summary__title:visited {
-        color: var(--color-tertiary) }
+        box-shadow: none;
+    }
+
+    .reader-summary__title,
+    .reader-summary__title:visited {
+        color: var(--color-tertiary);
+    }
+
     .reader-summary__title:hover {
-        color: var(--color-tertiary) }
-    .info-popover__button, .info-popover__button:focus, .info-popover__message {
+        color: var(--color-tertiary);
+    }
+
+    .info-popover__button,
+    .info-popover__button:focus,
+    .info-popover__message {
         color: var(--color-text);
         background-color: var(--color-menu);
     }
-    .info-popover__button:hover, .reader-bookmark:hover {
+
+    .info-popover__button:hover,
+    .reader-bookmark:hover {
         color: var(--color-tertiary);
     }
-    .info-popover__message a, .info-popover__message a:visited {
-        color: var(--color-tertiary) }
+
+    .info-popover__message a,
+    .info-popover__message a:visited {
+        color: var(--color-tertiary);
+    }
+
     .reader {
-        background-color: var(--color-wk-panel-content-background) }
+        background-color: var(--color-wk-panel-content-background);
+    }
+
     .reader__story {
         background-color: var(--color-wk-panel-background);
         padding: 30px;
         border-radius: 7px;
         max-width: 80ch;
     }
+
     .reader__content {
-        color: var(--color-text) }
+        color: var(--color-text);
+    }
+
     .reader__nav-action--close .reader__nav-action-link {
         color: var(--color-text);
         background-color: var(--color-wk-panel-content-background);
     }
+
     .reader__nav-action--close .reader__nav-action-link:hover {
         color: var(--color-tertiary);
         background-color: var(--color-wk-panel-content-background);
     }
-    .supporting-text__content, .supporting-text__toggle[aria-expanded=true] {
-        background-color: var(--color-menu); }
+
+    .supporting-text__content,
+    .supporting-text__toggle[aria-expanded=true] {
+        background-color: var(--color-menu);
+    }
+
     .supporting-text__toggle:hover {
         color: var(--color-tertiary);
         background: var(--color-wk-panel-content-background);
     }
+
     .supporting-text__toggle[aria-expanded=true]:hover {
         color: var(--color-tertiary);
         background: var(--color-menu);
     }
+
     .reader__nav-action .reader-completion__link:hover {
-        color: var(--color-tertiary); }
-    
+        color: var(--color-tertiary);
+    }
+
     /*-------- Sale page --------*/
-    .message-from-the-crabigator, .question-section, .testimonial-section__description, h1.global-title--dark {
-        color: var(--color-text) }
+    .message-from-the-crabigator,
+    .question-section,
+    .testimonial-section__description,
+    h1.global-title--dark {
+        color: var(--color-text);
+    }
+
     .global-header__illo.global-header__illo--mask {
-        filter: invert(84%) sepia(10%) saturate(616%) hue-rotate(169deg) brightness(104%) contrast(87%) }
+        filter: invert(84%) sepia(10%) saturate(616%) hue-rotate(169deg) brightness(104%) contrast(87%);
+    }
+
     .testimonial {
         background-color: var(--color-wk-panel-background);
         color: var(--color-text);
     }
-    .testimonial-section__title, .question-section__title {
-        border-bottom-color: var(--color-text-mid) }
-    
+
+    .testimonial-section__title,
+    .question-section__title {
+        border-bottom-color: var(--color-text-mid);
+    }
+
     /* -------------- Settings -------------- */
     /*[[settings-dashboard-colors]]*/
     /*[[settings-swap-quiz-colors]]*/
@@ -1153,16 +1626,21 @@
     /*[[settings-minimize-rm]]*/
     /*[[settings-minimize-es]]*/
     /*[[settings-font-weight]]*/
-        
     /* -------------- Scripts -------------- */
     /* ---- Item Info Injector ---- */
-    .item-info-injector-accordion > button, .item-info-injector > h2:not(.subject-section__meanings-title) {
-        border-bottom: 1px solid var(--color-wk-panel-content-background) }
+    .item-info-injector-accordion > button,
+    .item-info-injector > h2:not(.subject-section__meanings-title) {
+        border-bottom: 1px solid var(--color-wk-panel-content-background);
+    }
+
     .item-info-injector-accordion > button {
-        color: var(--color-text) }
+        color: var(--color-text);
+    }
+
     .item-info-injector-accordion > div {
         padding-left: 0px;
     }
+
     @media (min-width: 1400px) {
         .quiz .subject-section--meaning .subject-section__content .item-info-injector,
         .quiz .subject-section--reading .subject-section__content .item-info-injector {
@@ -1170,206 +1648,329 @@
             grid-row: 3;
         }
     }
-    
+
     /* Scripts Menu */
     #scripts-menu ul.dropdown-menu {
         background-color: var(--color-menu);
     }
-    #scripts-menu ul.dropdown-menu > li, #scripts-menu ul.dropdown-menu > li a {
-        color: var(--color-text)}
+
+    #scripts-menu ul.dropdown-menu > li,
+    #scripts-menu ul.dropdown-menu > li a {
+        color: var(--color-text);
+    }
+
     #scripts-menu ul.dropdown-menu > li:hover:not(.scripts-header) a:hover {
-        background-color: transparent}
-    
+        background-color: transparent;
+    }
+
     /* WKOF UI Dialog */
-    #wkof_ds .ui-dialog, #wkof_ds .ui-dialog div:not(.color-label), #wkofs_ss_quiz .filters .row.checked {
+    #wkof_ds .ui-dialog,
+    #wkof_ds .ui-dialog div:not(.color-label),
+    #wkofs_ss_quiz .filters .row.checked {
         background-color: var(--color-menu);
         border: none;
         background-image: none;
         color: var(--color-text);
     }
+
     #wkof_ds .ui-dialog .ui-dialog-buttonpane {
         background-color: var(--color-menu);
         border: none;
     }
-    #wkof_ds .wkof_settings .ui-tabs .ui-tabs-nav li a, #wkof_ds .ui-button {
+
+    #wkof_ds .wkof_settings .ui-tabs .ui-tabs-nav li a,
+    #wkof_ds .ui-button {
         background-color: var(--color-menu);
         color: var(--color-text);
     }
-    #wkof_ds .wkof_settings .ui-tabs .ui-tabs-nav li a:hover, #wkof_ds .ui-button:hover {
-        color: var(--color-tertiary) }
-    #wkof_ds .wkof_settings .ui-tabs .ui-tabs-nav li.ui-tabs-active, #wkof_ds .ui-button:hover { 
-        background-color: var(--color-menu) }
-    
+
+    #wkof_ds .wkof_settings .ui-tabs .ui-tabs-nav li a:hover,
+    #wkof_ds .ui-button:hover {
+        color: var(--color-tertiary);
+    }
+
+    #wkof_ds .wkof_settings .ui-tabs .ui-tabs-nav li.ui-tabs-active,
+    #wkof_ds .ui-button:hover {
+        background-color: var(--color-menu);
+    }
+
     /* Extra study */
     #wkof_ds #ss_quiz .answer input {
         background-color: var(--color-wk-panel-content-background);
         border: none;
     }
+
     #wkof_ds #ss_quiz .answer input:focus {
         box-shadow: 0 0 2px 2px var(--color-tertiary);
     }
+
     #wkof_ds #ss_quiz .answer {
-        background-color: var(--color-wk-panel-background) }
+        background-color: var(--color-wk-panel-background);
+    }
+
     #ss_quiz[data-atype="meaning"] .atype {
         background-color: var(--color-meaning);
         background-image: none;
         color: var(--color-text-mid);
         border: none;
     }
+
     #wkof_ds #ss_quiz[data-result="correct"] .answer input {
-        background-color: var(--color-quiz-correct-background) }
+        background-color: var(--color-quiz-correct-background);
+    }
+
     #wkof_ds #ss_quiz[data-result="incorrect"] .answer input {
-        background-color: var(--color-quiz-incorrect-background) }
+        background-color: var(--color-quiz-incorrect-background);
+    }
+
     #ss_quiz[data-atype="reading"] .atype {
         background-color: var(--color-reading);
         background-image: none;
         color: var(--color-text-mid);
         border: none;
     }
-    #ss_quiz .help, #ss_quiz .message {
+
+    #ss_quiz .help,
+    #ss_quiz .message {
         background-color: var(--color-menu);
         color: var(--color-text);
         border: none;
         box-shadow: 0 0 2px 2px #222;
     }
-    
+
     /* Audio Quiz */
-    label.switch::before { background-color: var(--color-wk-panel-content-background)}
-    
+    label.switch::before {
+        background-color: var(--color-wk-panel-content-background);
+    }
+
     /* Forecast details: TODO */
-    .review-forecast__bar.fcr_radical { background: var(--color-radical)}
-    .review-forecast__bar.fcr_kanji { background: var(--color-kanji)}
-    .review-forecast__bar.fcr_vocab { background: var(--color-vocabulary)}
-    
+    .review-forecast__bar.fcr_radical {
+        background: var(--color-radical);
+    }
+
+    .review-forecast__bar.fcr_kanji {
+        background: var(--color-kanji);
+    }
+
+    .review-forecast__bar.fcr_vocab {
+        background: var(--color-vocabulary);
+    }
+
     /* CIDWWA */
     .wk-custom-button {
         --focus-color: var(--color-tertiary) !important;
         --hover-color: color-mix(in srgb, var(--color-tertiary) 25%, #0000 75%) !important;
     }
-    .wk-custom-button:hover, .wk-custom-button:focus {
+
+    .wk-custom-button:hover,
+    .wk-custom-button:focus {
         color: var(--color-text) !important;
     }
-    
+
     /* Ultimate Timeline */
-    #timeline, #timeline .review_info .inner {
+    #timeline,
+    #timeline .review_info .inner {
         background-color: var(--color-wk-panel-background);
         margin-bottom: 30px;
         border-radius: 5px;
         padding: 0.5rem;
         border: none;
     }
+
     #timeline .review_info .item_list wk-character-image {
-        --color-text: var(--color-text-dark); }
+        --color-text: var(--color-text-dark);
+    }
+
     #timeline .graph_panel {
-        overflow: hidden !important; }
+        overflow: hidden !important;
+    }
+
     #timeline .graph .bkgd {
-        fill: transparent; }
-    #timeline .graph .label-x > text, #timeline .graph .label-y > text, #timeline .graph .markers > path {
-        fill: var(--color-text) }
-    #timeline > .link:hover { color: var(--color-tertiary) }
+        fill: transparent;
+    }
+
+    #timeline .graph .label-x > text,
+    #timeline .graph .label-y > text,
+    #timeline .graph .markers > path {
+        fill: var(--color-text);
+    }
+
+    #timeline > .link:hover {
+        color: var(--color-tertiary);
+    }
+
     #timeline .graph .markers > .bur {
         fill: var(--color-burned);
         stroke: var(--color-tertiary);
     }
-    #timeline .graph .rad, #timeline .review_info[data-mode="item_type"] .rad {
+
+    #timeline .graph .rad,
+    #timeline .review_info[data-mode="item_type"] .rad {
         fill: var(--color-radical) !important;
-        background-color: var(--color-radical) }
-    #timeline .graph .kan, #timeline .review_info[data-mode="item_type"] .kan {
+        background-color: var(--color-radical);
+    }
+
+    #timeline .graph .kan,
+    #timeline .review_info[data-mode="item_type"] .kan {
         fill: var(--color-kanji) !important;
-        background-color: var(--color-kanji) }
-    #timeline .graph .voc, #timeline .review_info[data-mode="item_type"] .voc {
+        background-color: var(--color-kanji);
+    }
+
+    #timeline .graph .voc,
+    #timeline .review_info[data-mode="item_type"] .voc {
+        fill: var(--color-vocabulary) !important;
         background-color: var(--color-vocabulary);
-        fill: var(--color-vocabulary) !important }
+    }
+
     #timeline .review_info[data-mode="srs_stage"] .summary div {
         background-image: none !important;
-        color: var(--color-text-dark) }
-    #timeline .review_info[data-mode="srs_stage"] .appr, #timeline .graph .appr {
+        color: var(--color-text-dark);
+    }
+
+    #timeline .review_info[data-mode="srs_stage"] .appr,
+    #timeline .graph .appr {
         background-color: var(--color-apprentice);
-        fill: var(--color-apprentice) }
-    #timeline .review_info[data-mode="srs_stage"] .guru, #timeline .graph .guru {
+        fill: var(--color-apprentice);
+    }
+
+    #timeline .review_info[data-mode="srs_stage"] .guru,
+    #timeline .graph .guru {
         background-color: var(--color-guru);
-        fill: var(--color-guru) }
-    #timeline .review_info[data-mode="srs_stage"] .mast, #timeline .graph .mast {
+        fill: var(--color-guru);
+    }
+
+    #timeline .review_info[data-mode="srs_stage"] .mast,
+    #timeline .graph .mast {
         background-color: var(--color-master);
-        fill: var(--color-master) }
-    #timeline .review_info[data-mode="srs_stage"] .enli, #timeline .graph .enli {
+        fill: var(--color-master);
+    }
+
+    #timeline .review_info[data-mode="srs_stage"] .enli,
+    #timeline .graph .enli {
         background-color: var(--color-enlightened);
-        fill: var(--color-enlightened) }
-    #timeline .bar_style select, #timeline > .link, #timeline .review_info .summary .tot, #timeline .detail_buttons button, #timeline .review_info button.item_type {
+        fill: var(--color-enlightened);
+    }
+
+    #timeline .bar_style select,
+    #timeline > .link,
+    #timeline .review_info .summary .tot,
+    #timeline .detail_buttons button,
+    #timeline .review_info button.item_type {
         background-color: var(--color-wk-panel-background);
         color: var(--color-text) !important;
     }
+
     #timeline .review_info .inner {
-        box-shadow: 0px 2px 4px #111 }
-    #timeline .review_info .inner, #timeline .review_info .bur, #timeline .review_info .summary .tot {
+        box-shadow: 0px 2px 4px #111;
+    }
+
+    #timeline .review_info .inner,
+    #timeline .review_info .bur,
+    #timeline .review_info .summary .tot {
         background-color: var(--color-menu) !important;
         background-image: none !important;
     }
-    #timeline .review_info .summary .item_type:first-child, #timeline .review_info .summary .srs_stage:nth-child(4), #timeline .review_info .summary .level:nth-child(8) {
+
+    #timeline .review_info .summary .item_type:first-child,
+    #timeline .review_info .summary .srs_stage:nth-child(4),
+    #timeline .review_info .summary .level:nth-child(8) {
         border-top-left-radius: 0.3em;
         border-top-right-radius: 0.3em;
     }
-    #timeline .review_info .summary .item_type:nth-child(3), #timeline .review_info .summary .srs_stage:nth-child(7), #timeline .review_info .summary .level:nth-child(13) {
+
+    #timeline .review_info .summary .item_type:nth-child(3),
+    #timeline .review_info .summary .srs_stage:nth-child(7),
+    #timeline .review_info .summary .level:nth-child(13) {
         border-bottom-left-radius: 0.3em;
         border-bottom-right-radius: 0.3em;
     }
-    #timeline .review_info .item_type, #timeline .review_info .item_type > span, #timeline .item_list > li {
+
+    #timeline .review_info .item_type,
+    #timeline .review_info .item_type > span,
+    #timeline .item_list > li {
         color: var(--color-text-dark) !important;
         background-image: none !important;
     }
+
     #timeline .review_info .rad svg {
-        stroke: var(--color-text-dark); }
-    
+        stroke: var(--color-text-dark);
+    }
+
     /* Level Progress Dashboard Detail */
     .level-progress-dashboard {
         background-color: var(--color-wk-panel-background);
         border-radius: 8px;
     }
+
     .level-progress-dashboard .vocab-progress {
         margin: 0 20px;
         margin-top: 20px;
     }
+
     .level-progress-dashboard .vocab-progress ~ .vocab-progress {
-        margin-top: 0 }
-    
+        margin-top: 0;
+    }
+
     /* Lesson Hover Details and Dashboard Progress Plus */
-    .popover, .level-progress-dashboard__items .popover {
+    .popover,
+    .level-progress-dashboard__items .popover {
         background-color: var(--color-menu);
         border-color: var(--color-menu);
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         color: var(--color-text);
     }
-    .popover.bottom .arrow, .popover.bottom .arrow:after {
-        border-bottom-color: var(--color-menu) }
-    .level-progress-dashboard__content .popover.left .arrow, .level-progress-dashboard__content .popover.left .arrow::after {
-        border-left-color: var(--color-menu) }
-    .level-progress-dashboard__content .popover.right .arrow, .level-progress-dashboard__content .popover.right .arrow::after {
-        border-right-color: var(--color-menu) }
+
+    .popover.bottom .arrow,
+    .popover.bottom .arrow:after {
+        border-bottom-color: var(--color-menu);
+    }
+
+    .level-progress-dashboard__content .popover.left .arrow,
+    .level-progress-dashboard__content .popover.left .arrow::after {
+        border-left-color: var(--color-menu);
+    }
+
+    .level-progress-dashboard__content .popover.right .arrow,
+    .level-progress-dashboard__content .popover.right .arrow::after {
+        border-right-color: var(--color-menu);
+    }
 
     .level-progress-dashboard__items .level-progress-dashboard__item.pct90 {
-        background-color: var(--color-wk-panel-background) }
-    
+        background-color: var(--color-wk-panel-background);
+    }
+
     [data-type="kanji"] .dpp-progress .subject-character:not(.subject-character--locked) .subject-character__characters {
         background-color: var(--color-kanji) !important;
         background-image: none !important;
     }
+
     [data-type="kanji"] .dpp-progress .subject-character--locked .subject-character__characters {
         background-color: var(--color-locked) !important;
         background-image: none;
     }
+
     [data-type="radical"] .dpp-progress .subject-character:not(.subject-character--locked) .subject-character__characters {
         background-color: var(--color-radical) !important;
         background-image: none !important;
     }
+
     [data-type="radical"] .dpp-progress .subject-character--locked .subject-character__characters {
         background-color: var(--color-locked) !important;
         background-image: none;
     }
-    .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="4"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="5"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="6"] > a {
-        filter: brightness(0.85) }
-      .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="7"] > a, .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="8"] > a {
-        filter: brightness(0.7) }
+
+    .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="4"] > a,
+    .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="5"] > a,
+    .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="6"] > a {
+        filter: brightness(0.85);
+    }
+
+    .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="7"] > a,
+    .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="8"] > a {
+        filter: brightness(0.7);
+    }
+
     .level-progress-dashboard__content .level-progress-dashboard__item[data-srs-lvl="9"] > a > .subject-character > .subject-character__characters {
         background-color: var(--color-burned) !important;
         color: var(--color-text);
@@ -1377,21 +1978,39 @@
 
     /* Stroke order diagram */
     .stroke_order_diagram--current_path {
-        stroke: var(--color-tertiary) }
+        stroke: var(--color-tertiary);
+    }
+
     .stroke_order_diagram--path_start {
-        fill: var(--color-tertiary) }
-    .stroke_order_diagram--guide_line, .stroke_order_diagram--bounding_box {
-        stroke: var(--color-text-dark) }
+        fill: var(--color-tertiary);
+    }
+
+    .stroke_order_diagram--guide_line,
+    .stroke_order_diagram--bounding_box {
+        stroke: var(--color-text-dark);
+    }
 
     /* Keisei Phonetic-Semantic Composition */
     .wk_keisei .recently-unlocked-badge::before {
         box-shadow: none;
     }
+
     .wk_keisei .keisei_phonetic_grid {
-        border-bottom: none}
+        border-bottom: none;
+    }
 
     /* Niai Similar Kanji */
     #niai_section .delete-badge::before {
         box-shadow: none;
+    }
+
+    /* Account for script elements inserted after srs-progress */
+    section.srs-progress:has(+ section, + div) {
+        margin-bottom: 30px;
+    }
+    
+    /* Item Inspector */
+    #WkitTopBar {
+        margin-bottom: 0;
     }
 }
