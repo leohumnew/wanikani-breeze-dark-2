@@ -1993,10 +1993,6 @@
         box-shadow: none;
     }
     
-    .lesson-container #niai_section .subject-character__meaning {
-        color: var(--color-character-text);
-    }
-    
     /* Niai and Keisei */
     ul.single-character-grid li[class|=kanji],
     ul.single-character-grid tr[class|=kanji],
