@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.8.5
+@version      0.8.6
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -303,6 +303,7 @@
         --color-button-lesson-picker-disabled-box-shadow: var(--color-button-lesson-picker-box-shadow);
 
         /* About and other settings pages */
+        --color-progress-chart-bar-background: var(--color-wk-panel-content-background);
         --color-about-page-image-focus-border: 5px solid var(--color-wk-panel-content-background);
         --color-billing-plan-background: var(--color-wk-panel-content-background);
         --color-subscription-plan-background: var(--color-wk-panel-content-background);
@@ -508,17 +509,17 @@
         color: var(--color-text-dark);
     }
 
-    .kanji-progress,
-    .vocabulary-progress {
+    .public-profile__kanji-progress,
+    .public-profile__vocabulary-progress {
         background-color: var(--color-wk-panel-background);
         padding: 10px 25px;
     }
 
-    .kanji-progress {
+    .public-profile__kanji-progress {
         border-radius: 5px 5px 0 0;
     }
 
-    .vocabulary-progress {
+    .public-profile__vocabulary-progress {
         border-radius: 0 0 5px 5px;
     }
 
@@ -610,7 +611,7 @@
         text-decoration: none;
     }
 
-    div.site-content-container:not(.dashboard) .container {
+    div.site-content-container:not(.dashboard):not(:has(.public-profile)) .container {
         background-color: var(--color-wk-panel-background);
         padding: 25px;
         box-shadow: 3px 3px 3px #171717;
@@ -1426,6 +1427,7 @@
             flex-direction: column;
             height: 100%;
             justify-content: center;
+            padding: 0;
             
             .subject-character-grid--single-column {
                 flex: 1 0 auto;
