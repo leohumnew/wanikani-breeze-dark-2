@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.8.4
+@version      0.8.5
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -1416,69 +1416,24 @@
 
     /* Item lists (new, critical, burned) */
     @media (min-width: 767px) {
-        /* Make sections all reach the bottom of the row area if side-by-side on screen */
-        .dashboard .row .span12 .row {
-            display: flex;
-            align-items: stretch;
-            margin-bottom: 30px;
-        }
-
-        .kotoba-table-list {
-            display: flex;
-            flex-direction: column;
-            min-height: 100%;
-            position: relative;
-            border-radius: 5px;
-        }
-
-        .dashboard:not(.container) .kotoba-table-list .see-more {
-            bottom: -4px;
-            position: absolute;
-            width: 100%;
+        /* Make sections all reach the bottom of the row area if side-by-side on screen */        
+        .dashboard .progress-and-forecast [class*="wk-panel--dashboard-list"] {
+            align-self: stretch;
         }
         
-        div.dashboard.container .kotoba-table-list .see-more {
-            width: 100%;
+        .dashboard-lists {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            
+            .subject-character-grid--single-column {
+                flex: 1 0 auto;
+            }
         }
     }
 
-    .kotoba-table-list table a span,
-    .kotoba-table-list table {
-        /* Fix all the colours */
-        color: var(--color-text-dark) !important;
-    }
-
-    ul.single-character-grid li[class|=kanji],
-    ul.single-character-grid tr[class|=kanji],
-    ul.multi-character-grid li[class|=kanji],
-    ul.multi-character-grid tr[class|=kanji],
-    .kotoba-table-list li[class|=kanji],
-    .kotoba-table-list tr[class|=kanji] {
-        background-color: var(--color-kanji);
-        background-image: linear-gradient(to bottom, var(--color-kanji), var(--color-kanji-dark));
-    }
-
-    ul.single-character-grid li[class|=radical],
-    ul.single-character-grid tr[class|=radical],
-    ul.multi-character-grid li[class|=radical],
-    ul.multi-character-grid tr[class|=radical],
-    .kotoba-table-list li[class|=radical],
-    .kotoba-table-list tr[class|=radical] {
-        background-color: var(--color-radical);
-        background-image: linear-gradient(to bottom, var(--color-radical), var(--color-radical-dark));
-    }
-
-    ul.single-character-grid li[class|=vocabulary],
-    ul.single-character-grid tr[class|=vocabulary],
-    ul.multi-character-grid li[class|=vocabulary],
-    ul.multi-character-grid tr[class|=vocabulary],
-    .kotoba-table-list li[class|=vocabulary],
-    .kotoba-table-list tr[class|=vocabulary] {
-        background-color: var(--color-vocabulary);
-        background-image: linear-gradient(to bottom, var(--color-vocabulary), var(--color-vocabulary-dark));
-    }
-
-    .dashboard table tr.none-available div {
+    .dashboard .wk-panel .dashboard-lists__empty-icon {
         border-color: var(--color-tertiary);
         .wk-icon--check {
             fill: var(--color-tertiary, currentColor);
@@ -1921,6 +1876,31 @@
     }
 
     /* Lesson Hover Details and Dashboard Progress Plus */
+    .popover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1060;
+        padding: 1px;
+        line-height: 1.42857143;
+        text-align: left;
+        text-align: start;
+        text-decoration: none;
+        text-shadow: none;
+        text-transform: none;
+        letter-spacing: normal;
+        word-break: normal;
+        word-spacing: normal;
+        word-wrap: normal;
+        white-space: normal;
+        background-clip: padding-box;
+        line-break: auto;
+    }
+    
+    .popover-content {
+        padding: 9px 14px;
+    }
+    
     .popover,
     .level-progress-dashboard__items .popover {
         background-color: var(--color-menu);
@@ -2012,7 +1992,32 @@
     #niai_section .delete-badge::before {
         box-shadow: none;
     }
+    
+    /* Niai and Keisei */
+    ul.single-character-grid li[class|=kanji],
+    ul.single-character-grid tr[class|=kanji],
+    ul.multi-character-grid li[class|=kanji],
+    ul.multi-character-grid tr[class|=kanji] {
+        background-color: var(--color-kanji);
+        background-image: linear-gradient(to bottom, var(--color-kanji), var(--color-kanji-dark));
+    }
 
+    ul.single-character-grid li[class|=radical],
+    ul.single-character-grid tr[class|=radical],
+    ul.multi-character-grid li[class|=radical],
+    ul.multi-character-grid tr[class|=radical] {
+        background-color: var(--color-radical);
+        background-image: linear-gradient(to bottom, var(--color-radical), var(--color-radical-dark));
+    }
+
+    ul.single-character-grid li[class|=vocabulary],
+    ul.single-character-grid tr[class|=vocabulary],
+    ul.multi-character-grid li[class|=vocabulary],
+    ul.multi-character-grid tr[class|=vocabulary] {
+        background-color: var(--color-vocabulary);
+        background-image: linear-gradient(to bottom, var(--color-vocabulary), var(--color-vocabulary-dark));
+    }
+    
     /* Account for script elements inserted after srs-progress */
     section.srs-progress:has(+ section, + div) {
         margin-bottom: 30px;
