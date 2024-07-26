@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.8.8
+@version      0.9.0
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -31,17 +31,33 @@
     es-def "Default" <<<EOT
     EOT;
     es-min "Reduced" <<<EOT
-        .extra-study__image-wrapper, .extra-study__info .wk-text, .extra-study-button__tooltip-button { display: none; }
+        .extra-study__image-wrapper, .extra-study__info .wk-text, .extra-study-button__tooltip-button, .extra-study__button-info { display: none; }
         .extra-study-button { margin: 0 0 0 10px; }
         .extra-study__buttons {
             display: flex;
             flex-direction: row;
+            margin: 0;
+            .wk-button__icon wk-button__icon--after { display: none; }
         }
         .wk-panel--extra-study { flex-direction: row }
         .extra-study {
             padding: 0;
             justify-content: flex-end;
             background-color: var(--color-wk-panel-background);
+        }
+        .extra-study__button-container {
+            margin: 0;
+            a span {
+                font-size: 0;
+                &.wk-button__text::after { font-size: var(--font-size-small); }
+            }
+        }
+        .extra-study__button-container:first-child {
+            margin-right: var(--spacing-tight);
+            a .wk-button__text::after { content: "Recent Lessons"; }
+        }
+        .extra-study__button-container:last-child a .wk-button__text::after {
+            content: "Burned Items";
         }
         .extra-study__info { flex: inherit; }
     EOT;
