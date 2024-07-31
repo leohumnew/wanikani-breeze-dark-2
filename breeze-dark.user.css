@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.9.0
+@version      0.9.2
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -449,6 +449,10 @@
         border: none;
         box-shadow: 2px 2px 3px #000;
     }
+    .subject-slide .subject-section {
+        box-shadow: none !important;
+        padding: 0.5rem !important;
+    }
 
     .subject-slides__navigation-link[aria-selected=true]:after {
         border-bottom-color: var(--color-wk-panel-background);
@@ -810,7 +814,7 @@
     }
 
     /* Info Box General */
-    .subject-info[busy]:after {
+    .subject-info[busy]:after, .last-items:not([complete])::after {
         background-color: var(--color-wk-panel-background);
     }
 
