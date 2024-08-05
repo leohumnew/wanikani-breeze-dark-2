@@ -2,7 +2,7 @@
 @name         WaniKani Breeze Dark 2
 @description  Dark mode for WaniKani, successor to Breeze Dark.
 @namespace    breezedark.two
-@version      0.9.3
+@version      0.9.5
 @supportURL   https://github.com/leohumnew/wanikani-breeze-dark-2/issues
 @author       leohumnew
 
@@ -100,7 +100,7 @@
             .srs-progress__stage--master { background-color: var(--color-srs-progress-master); }
             .srs-progress__stage--enlightened { background-color: var(--color-srs-progress-enlightened); }
             .srs-progress__stage--burned { background-color: var(--color-srs-progress-burned); }
-            li {
+            > li {
                 &:not(.srs-progress__stage--burned) .srs-progress__stage-header { --color-srs-progress-text: var(--color-text-dark); }
                 filter: brightness(0.85);
             }
@@ -651,6 +651,10 @@
         box-shadow: none;
         background-image: none;
         color: var(--color-character-text);
+        &:is(a):hover {
+            color: var(--color-character-text);
+            filter: brightness(0.8);
+        }
     }
 
     .page-header__icon--radical {
@@ -1348,7 +1352,7 @@
 
     /* Review forecasts */
     @media (min-width: 768px) {
-        .dashboard .progress-and-forecast .wk-panel--review-forecast .wk-panel__content {
+        .dashboard .dashboard__content .wk-panel--review-forecast .wk-panel__content {
             overflow-y: auto;
         }
     }
@@ -1376,29 +1380,29 @@
     }
 
     /* Moving divs */
-    .dashboard .progress-and-forecast .wk-panel--recent-mistakes {
+    .dashboard .dashboard__content .dashboard__recent-mistakes {
         grid-row: /*[[grid-location-rm]]*/;
         display: /*[[grid-location-rm]]*/;
     }
 
-    .dashboard .progress-and-forecast .wk-panel--extra-study {
+    .dashboard .dashboard__content .dashboard__extra-study {
         grid-row: /*[[grid-location-es]]*/;
         display: /*[[grid-location-es]]*/;
     }
 
-    .dashboard .progress-and-forecast .wk-panel--level-progress {
+    .dashboard .dashboard__content .dashboard__level-progress {
         grid-row: /*[[grid-location-lp]]*/;
         display: /*[[grid-location-lp]]*/;
     }
 
     @media (min-width: 768px) {
-        .dashboard .progress-and-forecast .wk-panel--level-progress,
-        .dashboard .progress-and-forecast .wk-panel--recent-mistakes,
-        .dashboard .progress-and-forecast .wk-panel--review-forecast {
+        .dashboard .dashboard__content .dashboard__level-progress,
+        .dashboard .dashboard__content .dashboard__recent-mistakes,
+        .dashboard .dashboard__content .dashboard__review-forecast {
             margin: 0;
         }
 
-        .dashboard .progress-and-forecast {
+        .dashboard .dashboard__content {
             gap: 20px;
         }
     }
@@ -1430,7 +1434,7 @@
 
     /* Item levels */
     section.srs-progress ul li {
-        background-color: var(--color-wk-panel-background);
+        background-color: var(--color-srs-progress-subject-type-background);
         
         .srs-progress__subject-type-title,
         .srs-progress__subject-type-count {
@@ -1441,7 +1445,7 @@
     /* Item lists (new, critical, burned) */
     @media (min-width: 767px) {
         /* Make sections all reach the bottom of the row area if side-by-side on screen */        
-        .dashboard .progress-and-forecast [class*="wk-panel--dashboard-list"] {
+        .dashboard .dashboard__content [class*="wk-panel--dashboard-list"] {
             align-self: stretch;
         }
         
@@ -1641,6 +1645,19 @@
     /* Scripts Menu */
     #scripts-menu ul.dropdown-menu {
         background-color: var(--color-menu);
+        position: absolute;
+        padding: 5px;
+        border-radius: 6px;
+        
+        & > li {
+            line-height: 20px;
+            padding: 3px 0;
+            display: list-item;
+        }
+    }
+    
+    .quiz #scripts-menu:not(.open) > ul.dropdown-menu {
+        display: none;
     }
 
     #scripts-menu ul.dropdown-menu > li,
@@ -1648,8 +1665,46 @@
         color: var(--color-text);
     }
 
-    #scripts-menu ul.dropdown-menu > li:hover:not(.scripts-header) a:hover {
+    #scripts-menu ul.dropdown-menu > li.scripts-header {
+        text-transform: uppercase;
+        font-size: 11px;
+        font-weight: bold;
+        padding: 3px 20px;
+        display: list-item;
+    }
+
+    .quiz #scripts-menu ul.dropdown-menu > li:hover:not(.scripts-header) a:hover {
         background-color: transparent;
+        filter: brightness(0.8);
+    }
+    
+    .quiz #scripts-menu ul.dropdown-menu a {
+        padding: 3px 20px;
+        opacity: 1;
+        border: 0;
+        display: inline;
+        text-decoration: none;
+    }
+    
+    .quiz #scripts-menu .scripts-submenu > a::before {
+        content: "";
+    }
+    
+    .quiz #scripts-menu .scripts-submenu > a::after {
+        content: " >";
+    }
+    
+    .quiz #scripts-menu .scripts-submenu.open > .dropdown-menu {
+        display: block;
+        position: absolute;
+        top: 0px;
+        margin-left: 25px;
+        transform: scale(1) translateX(50%);
+        min-width: 200px;
+    }
+    
+    .character-header__menu-navigation-link:not(:first-of-type) {
+        margin-left: 0.5rem;
     }
 
     /* WKOF UI Dialog */
@@ -1921,9 +1976,121 @@
         background-clip: padding-box;
         line-break: auto;
     }
+
+    .popover.top {
+        margin-top: -10px;
+    }
+
+    .popover.right {
+        margin-left: 10px;
+    }
+
+    .popover.bottom {
+        margin-top: 10px;
+    }
+
+    .popover.left {
+        margin-left: -10px;
+    }
+
+    .popover-title {
+        padding: 8px 14px;
+        margin: 0;
+        font-size: 14px;
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #ebebeb;
+        border-radius: 5px 5px 0 0;
+    }
     
     .popover-content {
         padding: 9px 14px;
+    }
+
+    .popover > .arrow,
+    .popover > .arrow:after {
+    position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+    }
+
+    .popover > .arrow {
+        border-width: 11px;
+    }
+
+    .popover > .arrow:after {
+        content: "";
+        border-width: 10px;
+    }
+
+    .popover.top > .arrow {
+        bottom: -11px;
+        left: 50%;
+        margin-left: -11px;
+        border-top-color: #999;
+        border-top-color: rgba(0, 0, 0, .25);
+        border-bottom-width: 0;
+    }
+
+    .popover.top > .arrow:after {
+        bottom: 1px;
+        margin-left: -10px;
+        content: " ";
+        border-top-color: #fff;
+        border-bottom-width: 0;
+    }
+
+    .popover.right > .arrow {
+        top: 50%;
+        left: -11px;
+        margin-top: -11px;
+        border-right-color: #999;
+        border-right-color: rgba(0, 0, 0, .25);
+        border-left-width: 0;
+    }
+
+    .popover.right > .arrow:after {
+        bottom: -10px;
+        left: 1px;
+        content: " ";
+        border-right-color: #fff;
+        border-left-width: 0;
+    }
+
+    .popover.bottom > .arrow {
+        top: -11px;
+        left: 50%;
+        margin-left: -11px;
+        border-top-width: 0;
+        border-bottom-color: #999;
+        border-bottom-color: rgba(0, 0, 0, .25);
+    }
+
+    .popover.bottom > .arrow:after {
+        top: 1px;
+        margin-left: -10px;
+        content: " ";
+        border-top-width: 0;
+        border-bottom-color: #fff;
+    }
+
+    .popover.left > .arrow {
+        top: 50%;
+        right: -11px;
+        margin-top: -11px;
+        border-right-width: 0;
+        border-left-color: #999;
+        border-left-color: rgba(0, 0, 0, .25);
+    }
+
+    .popover.left > .arrow:after {
+        right: 1px;
+        bottom: -10px;
+        content: " ";
+        border-right-width: 0;
+        border-left-color: #fff;
     }
     
     .popover,
@@ -1938,6 +2105,11 @@
     .popover.bottom .arrow,
     .popover.bottom .arrow:after {
         border-bottom-color: var(--color-menu);
+    }
+    
+    .popover.left .arrow,
+    .popover.left .arrow:after {
+        border-left-color: var(--color-menu)
     }
 
     .level-progress-dashboard__content .popover.left .arrow,
@@ -2018,6 +2190,10 @@
         box-shadow: none;
     }
     
+    .lesson-container #niai_section .subject-character__meaning {
+        color: var(--color-character-text);
+    }
+    
     /* Niai and Keisei */
     ul.single-character-grid li[class|=kanji],
     ul.single-character-grid tr[class|=kanji],
@@ -2045,11 +2221,14 @@
     
     /* Account for script elements inserted after srs-progress */
     section.srs-progress:has(+ section, + div) {
-        margin-bottom: 30px;
+        margin-bottom: var(--spacing-normal);
     }
     
     /* Item Inspector */
     #WkitTopBar {
         margin-bottom: 0;
     }
+    
+    /* Araigoshi's Wanikani Stage Breakdown */
+    .dashboard section.srs-progress .srs-progress__stage li.grouped-list span[class|="group-item"] { color: var(--color-text); }
 }
